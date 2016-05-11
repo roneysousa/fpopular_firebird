@@ -1,0 +1,1 @@
+gbak -r -user SYSDBA -password masterkey INFOGERENCIADOR.FBK INFOGERENCIADOR.FDB
