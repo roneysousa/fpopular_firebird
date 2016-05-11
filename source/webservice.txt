@@ -1,0 +1,12 @@
+https://200.214.130.41:9443/farmaciahomologa/services/ServicoSolicitacaoWS?wsdl
+https://200.214.130.55:9443/farmaciapopula/services/ServicoSolicitacaoWS?wsdl
+
+https://200.214.130.55:9443/farmaciapopular/services/ServicoSolicitacaoWS?wsdl
+
+usuario
+
+senha
+
+
+o usuario e 11986419 
+e a senha e 69961186

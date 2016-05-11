@@ -1,0 +1,206 @@
+procedure TfPrincipal.Button2Click(Sender: TObject);
+
+begin
+
+  with sqlConexao do
+
+  begin
+
+    if Connected then
+
+    begin
+
+      cdsClientes.Active := False;
+
+      CloseDataSets;
+
+      Connected := False;
+
+    end;
+
+    case rdgEscolheBanco.ItemIndex of
+
+      0: // INTERBASE / FIREBIRD
+
+      begin
+
+        ConnectionName := 'INTERBASE';
+
+        DriverName := 'Interbase';
+
+        GetDriverFunc := 'getSQLDriverINTERBASE';
+
+        LibraryName := 'dbxint30.dll';
+
+        Params.Clear;
+
+        Params.Add('DriverName=Interbase');
+
+        Params.Add('Database=C:\Adriano\ClubeDelphi\CLUBEDELPHI.GDB');
+
+        Params.Add('RoleName=RoleName');
+
+        Params.Add('User_Name=SYSDBA');
+
+        Params.Add('Password=masterkey');
+
+        Params.Add('ServerCharSet=');
+
+        Params.Add('SQLDialect=3');
+
+        Params.Add('BlobSize=-1');
+
+        Params.Add('CommitRetain=False');
+
+        Params.Add('WaitOnLocks=True');
+
+        Params.Add('ErrorResourceFile=');
+
+        Params.Add('LocaleCode=0000');
+
+        Params.Add('Interbase TransIsolation=ReadCommited');
+
+        Params.Add('Trim Char=False');
+
+        VendorLib := 'gds32.dll';
+
+      end;
+
+      1: // ORACLE XE
+
+      begin
+
+        ConnectionName := 'XE';
+
+        DriverName := 'Oracle';
+
+        GetDriverFunc := 'getSQLDriverORACLE';
+
+        LibraryName := 'dbxora30.dll';
+
+        Params.Clear;
+
+        Params.Add('DriverName=Oracle');
+
+        Params.Add('DriverName=Oracle');
+
+        Params.Add('DataBase=XE');
+
+        Params.Add('User_Name=SYSTEM');
+
+        Params.Add('Password=masterkey);
+
+        Params.Add('BlobSize=-1');
+
+        Params.Add('ErrorResourceFile=');
+
+        Params.Add('LocaleCode=0000');
+
+        Params.Add('Oracle TransIsolation=ReadCommited');
+
+        Params.Add('RowsetSize=20');
+
+        Params.Add('OS Authentication=False');
+
+        Params.Add('Multiple Transaction=False');
+
+        Params.Add('Trim Char=False');
+
+        Params.Add('Decimal Separator=.');
+
+        VendorLib := 'oci.dll';
+
+      end;
+
+      2: // MYSQL
+
+      begin
+
+        ConnectionName := 'MYSQL';
+
+        DriverName := 'MySQL';
+
+        GetDriverFunc := 'getSQLDriverMYSQL';
+
+        LibraryName := 'dbxmys30.dll';
+
+        Params.Clear;
+
+        Params.Add('DriverName=MySQL');
+
+        Params.Add('HostName=localhost');
+
+        Params.Add('Database=CLUBEDELPHI');
+
+        Params.Add('User_Name=root');
+
+        Params.Add('Password=masterkey');
+
+        Params.Add('BlobSize=-1');
+
+        Params.Add('ErrorResourceFile=');
+
+        Params.Add('LocaleCode=0000');
+
+        Params.Add('Compressed=False');
+
+        Params.Add('Encrypted=False');
+
+        VendorLib := 'libmysql.dll';
+
+      end;
+
+    end;
+
+    try
+
+      Connected := True;
+
+      cdsClientes.Open;
+
+      lblConectado.Caption := 'Banco ' + rdgEscolheBanco.Items[rdgEscolheBanco.ItemIndex] + ' = CONECTADO';
+
+      Button2.Enabled := False;
+
+      Button3.Enabled := True;
+
+    except on E: Exception do
+
+      begin
+
+        lblConectado.Caption := 'Erro ao conectar-se';
+
+        Button2.Enabled := True;
+
+        Button3.Enabled := False;
+
+        Application.MessageBox(pchar('Não foi possível estabelecer uma conexão '
+
+          +
+
+          #13 +
+
+          'com o servidor ' + rdgEscolheBanco.Items[rdgEscolheBanco.ItemIndex] + #13#13 +
+
+          Params.Text + #13#13 +
+
+          'Verifique os parâmetros definidos para' + #13 +
+
+          'o banco de dados ou ainda se o ' + #13 +
+
+          'usuario e senha estão definidos no banco de dados.' + #13#13
+
+          +
+
+          'Mensagem : ' + E.Message),
+
+          'Informação', MB_OK + MB_ICONINFORMATION);
+
+      end;
+
+    end;
+
+  end;
+
+end;
+

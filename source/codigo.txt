@@ -1,0 +1,30 @@
+var
+    SERVIDOR, USUARIO, CAMINHO, SENHA : String;
+begin
+     SERVIDOR := uFuncoes.percorreArquivoTexto(ExtractFilePath( Application.ExeName )+'caminho.txt');
+     USUARIO  := 'SYSBDA';
+     CAMINHO  := 'C:\INFOG2\VendaEletronica\INFOGERENCIADOR.FDB';
+     SENHA    := 'masterkey';
+   //
+  with sqlConnGerenciador do
+  begin
+    if SERVIDOR <> '' then
+      params.Values['database'] := SERVIDOR + ':' + CAMINHO
+    else
+      params.Values['database'] := CAMINHO;
+
+    params.Values['USER'] := USUARIO;
+    params.Values['PASSWORD'] := SENHA;
+    try
+      Connected := true;
+      Connected := false;
+      ShowMessage('Conexão OK!');
+    except
+      on e: exception do
+      begin
+        ShowMessage('Falha na conexão! Erro:' + e.message);
+        Connected := false;
+        Application.Terminate;
+      End;
+    end;
+  end;

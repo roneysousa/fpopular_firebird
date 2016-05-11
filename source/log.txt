@@ -1,0 +1,1082 @@
+INTERBASE - isc_attach_database
+INTERBASE - isc_dsql_allocate_statement
+INTERBASE - isc_start_transaction
+select * from CONFIGURACAO
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_dsql_allocate_statement
+SELECT 0, '', '', A.RDB$RELATION_NAME, A.RDB$INDEX_NAME, B.RDB$FIELD_NAME, B.RDB$FIELD_POSITION, '', 0, A.RDB$INDEX_TYPE, '', A.RDB$UNIQUE_FLAG, C.RDB$CONSTRAINT_NAME, C.RDB$CONSTRAINT_TYPE FROM RDB$INDICES A, RDB$INDEX_SEGMENTS B FULL OUTER JOIN RDB$RELATION_CONSTRAINTS C ON A.RDB$RELATION_NAME = C.RDB$RELATION_NAME AND C.RDB$CONSTRAINT_TYPE = 'PRIMARY KEY' WHERE (A.RDB$SYSTEM_FLAG <> 1 OR A.RDB$SYSTEM_FLAG IS NULL) AND (A.RDB$INDEX_NAME = B.RDB$INDEX_NAME) AND (A.RDB$RELATION_NAME = UPPER('CONFIGURACAO')) ORDER BY RDB$INDEX_NAME
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_sqlcode
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+INTERBASE - isc_open_blob
+INTERBASE - isc_blob_info
+INTERBASE - isc_close_blob
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+INTERBASE - isc_open_blob
+INTERBASE - isc_blob_info
+INTERBASE - isc_close_blob
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+INTERBASE - isc_open_blob
+INTERBASE - isc_blob_info
+INTERBASE - isc_get_segment
+INTERBASE - isc_get_segment
+INTERBASE - isc_get_segment
+INTERBASE - isc_get_segment
+INTERBASE - isc_close_blob
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select * from USUARIOS 
+Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_dsql_allocate_statement
+Select * from USUARIOS Where (SEN_CODIGO = ?)
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+select * from IMPRESSORA
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_dsql_allocate_statement
+SELECT 0, '', '', A.RDB$RELATION_NAME, A.RDB$INDEX_NAME, B.RDB$FIELD_NAME, B.RDB$FIELD_POSITION, '', 0, A.RDB$INDEX_TYPE, '', A.RDB$UNIQUE_FLAG, C.RDB$CONSTRAINT_NAME, C.RDB$CONSTRAINT_TYPE FROM RDB$INDICES A, RDB$INDEX_SEGMENTS B FULL OUTER JOIN RDB$RELATION_CONSTRAINTS C ON A.RDB$RELATION_NAME = C.RDB$RELATION_NAME AND C.RDB$CONSTRAINT_TYPE = 'PRIMARY KEY' WHERE (A.RDB$SYSTEM_FLAG <> 1 OR A.RDB$SYSTEM_FLAG IS NULL) AND (A.RDB$INDEX_NAME = B.RDB$INDEX_NAME) AND (A.RDB$RELATION_NAME = UPPER('IMPRESSORA')) ORDER BY RDB$INDEX_NAME
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_sqlcode
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_start_transaction
+INTERBASE - isc_dsql_allocate_statement
+update "USUARIOS"  set
+ "SEN_DTATUAL" = ?
+where
+ "SEN_CODIGO" = ? and
+ "SEN_DTATUAL" = ?
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_sql_info
+INTERBASE - isc_vax_integer
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_commit_transaction
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_dsql_allocate_statement
+INTERBASE - isc_open_blob
+INTERBASE - isc_blob_info
+INTERBASE - isc_close_blob
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+INTERBASE - isc_open_blob
+INTERBASE - isc_blob_info
+INTERBASE - isc_close_blob
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+INTERBASE - isc_open_blob
+INTERBASE - isc_blob_info
+INTERBASE - isc_get_segment
+INTERBASE - isc_get_segment
+INTERBASE - isc_get_segment
+INTERBASE - isc_get_segment
+INTERBASE - isc_close_blob
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_dsql_allocate_statement
+INTERBASE - isc_open_blob
+INTERBASE - isc_blob_info
+INTERBASE - isc_close_blob
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+INTERBASE - isc_open_blob
+INTERBASE - isc_blob_info
+INTERBASE - isc_close_blob
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+INTERBASE - isc_open_blob
+INTERBASE - isc_blob_info
+INTERBASE - isc_get_segment
+INTERBASE - isc_get_segment
+INTERBASE - isc_get_segment
+INTERBASE - isc_get_segment
+INTERBASE - isc_close_blob
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_allocate_statement
+Select SEN_CODIGO, SEN_PASTA from USUARIOS Where (SEN_CODIGO = ?)
+
+INTERBASE - isc_dsql_prepare
+INTERBASE - isc_dsql_describe_bind
+INTERBASE - SQLDialect = 3
+INTERBASE - isc_dsql_execute
+INTERBASE - isc_dsql_fetch
+INTERBASE - isc_commit_retaining
+INTERBASE - isc_dsql_free_statement
+INTERBASE - isc_dsql_free_statement

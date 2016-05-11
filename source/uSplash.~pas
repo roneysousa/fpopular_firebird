@@ -1,0 +1,83 @@
+unit uSplash;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, StdCtrls;
+
+type
+  TfrmSplash = class(TForm)
+    Panel1: TPanel;
+    Label1: TLabel;
+    Image1: TImage;
+    lblNet: TLabel;
+    procedure FormPaint(Sender: TObject);
+    procedure FormResize(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+  procedure imgPaintCanvas(TheCanvas : TCanvas; TheString : String;
+    TheFontSize, UCorner, LCorner : Integer);
+    { Public declarations }
+  end;
+
+var
+  frmSplash: TfrmSplash;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmSplash.FormPaint(Sender: TObject);
+var
+  altura, coluna: Word;
+begin
+  {altura := (ClientHeight + 255) div 256;
+  for coluna := 0 to 255 do
+    with Canvas do
+    begin
+      Brush.Color := RGB(0,0,coluna); // Modifique para obter cores diferentes
+      FillRect(Rect(0, coluna * altura, ClientWidth, (coluna + 1) * altura)) ;
+    end;}
+  //
+     imgPaintCanvas(frmSplash.Canvas, '100010010001001110101010101110011101101', 14,0,10);
+     imgPaintCanvas(frmSplash.Canvas, '011000010001000001010101010101001101011', 14,0,40);
+     imgPaintCanvas(frmSplash.Canvas, '110100010010010001001011000110111001000', 14,0,70);
+     imgPaintCanvas(frmSplash.Canvas, '100010010001001110101010101110011101101', 14,0,100);
+     imgPaintCanvas(frmSplash.Canvas, '110100010010010001001011000110111001000', 14,0,130);
+     imgPaintCanvas(frmSplash.Canvas, '011000010001000001010101010101001101011', 14,0,160);
+     imgPaintCanvas(frmSplash.Canvas, '010100100011100101100001010000001101111', 14,0,190);
+     imgPaintCanvas(frmSplash.Canvas, '010101011101011101000001100110001011011', 14,0,220);
+end;
+
+procedure TfrmSplash.FormResize(Sender: TObject);
+begin
+      Invalidate;
+end;
+
+procedure TfrmSplash.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+     Action := caFree;
+end;
+
+procedure TfrmSplash.imgPaintCanvas(TheCanvas: TCanvas; TheString: String;
+  TheFontSize, UCorner, LCorner: Integer);
+begin
+  TheCanvas.Brush.Style := bsClear;
+  TheCanvas.Font.Style := [fsBold];
+  TheCanvas.Font.Name := 'Arial';
+  TheCanvas.Font.Size := TheFontSize;
+  TheCanvas.Font.Color := clBlack;
+  TheCanvas.TextOut(UCorner, LCorner, TheString);
+  TheCanvas.Font.Color := clGray;
+  TheCanvas.TextOut(UCorner - 1, LCorner - 1, TheString);
+  TheCanvas.Font.Color := clWhite;
+  TheCanvas.TextOut(UCorner - 2, LCorner - 2, TheString);
+  TheCanvas.Font.Color := clSilver;
+  //TheCanvas.Font.Color := clTeal;
+  TheCanvas.TextOut(UCorner - 3, LCorner - 3, TheString);
+end;
+
+end.

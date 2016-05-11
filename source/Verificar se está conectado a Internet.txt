@@ -1,0 +1,23 @@
+Questão/Problema: 
+
+Verificar se está conectado a Internet 
+ 
+Resposta: 
+
+Function Tform1.IsConnected : Boolean;
+var
+reg : TRegistry;
+buff : dword;
+begin
+reg:= tregistry.Create ;
+Reg.RootKey:=HKey_local_machine;
+if reg.OpenKey('SystemCurrentControlSetServicesRemoteAccess',false)
+then
+begin
+reg.ReadBinaryData('Remote Connection',buff,sizeof(buff));
+result := buff = 1;
+reg.CloseKey ;
+reg.Free ;
+end;
+end; 
+ 

@@ -1,0 +1,898 @@
+object FrmConsultaPreSolicitacoes: TFrmConsultaPreSolicitacoes
+  Left = 202
+  Top = 138
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Consulta de Pr'#233'-Solicita'#231#245'es'
+  ClientHeight = 491
+  ClientWidth = 972
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  ShowHint = True
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 972
+    Height = 450
+    Align = alClient
+    TabOrder = 0
+    object Panel3: TPanel
+      Left = 1
+      Top = 1
+      Width = 970
+      Height = 104
+      Align = alTop
+      TabOrder = 0
+      object Label1: TLabel
+        Left = 16
+        Top = 11
+        Width = 41
+        Height = 13
+        Caption = '&Per'#237'odo:'
+        FocusControl = edtDTINIC
+        Transparent = True
+      end
+      object Label2: TLabel
+        Left = 144
+        Top = 32
+        Width = 6
+        Height = 13
+        Caption = #224
+        Transparent = True
+      end
+      object Label3: TLabel
+        Left = 16
+        Top = 49
+        Width = 68
+        Height = 13
+        Caption = 'CPF P&aciente:'
+        FocusControl = edtNRCPF
+        Transparent = True
+      end
+      object spLocCliente: TSpeedButton
+        Left = 113
+        Top = 65
+        Width = 23
+        Height = 22
+        Hint = 'Localizar Cliente'
+        Flat = True
+        Glyph.Data = {
+          F6000000424DF600000000000000760000002800000010000000100000000100
+          0400000000008000000000000000000000001000000000000000000000000000
+          80000080000000808000800000008000800080800000C0C0C000808080000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00777777777777
+          7777777777777777777777770077777777777770FF077777777777077FF07777
+          7777770777FF077777777770777FFF00777777790777F1111077777790771117
+          0B77777770799170B77777777709990B77777777770990B77777777777090B77
+          777777777770B777777777777777777777777777777777777777}
+        OnClick = spLocClienteClick
+      end
+      object Label8: TLabel
+        Left = 160
+        Top = 49
+        Width = 76
+        Height = 13
+        Caption = 'N&ome Paciente:'
+        FocusControl = edtNMCLIE
+        Transparent = True
+      end
+      object edtDTINIC: TDateEdit
+        Left = 16
+        Top = 27
+        Width = 121
+        Height = 21
+        Hint = 'Per'#237'odo inicial'
+        NumGlyphs = 2
+        TabOrder = 0
+        OnExit = edtDTINICExit
+        OnKeyPress = edtDTINICKeyPress
+      end
+      object edtDTFINA: TDateEdit
+        Left = 160
+        Top = 27
+        Width = 121
+        Height = 21
+        Hint = 'Per'#237'odo Final'
+        NumGlyphs = 2
+        TabOrder = 1
+        OnExit = edtDTFINAExit
+        OnKeyPress = edtDTFINAKeyPress
+      end
+      object btLocalizar: TBitBtn
+        Left = 506
+        Top = 61
+        Width = 75
+        Height = 25
+        Hint = 'Clique aqui para consulta'
+        Caption = '&Consulta'
+        TabOrder = 3
+        OnClick = btLocalizarClick
+        Glyph.Data = {
+          F6000000424DF600000000000000760000002800000010000000100000000100
+          0400000000008000000000000000000000001000000000000000000000000000
+          80000080000000808000800000008000800080800000C0C0C000808080000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00777777777777
+          7777777777777777777744444777774444474B444777774B44474B444777774B
+          4447444444474444444744B444444B44444744B444744B44444744B444744B44
+          44477444444444444477774B44474B4447777744444744444777777444777444
+          77777774B47774B4777777744477744477777777777777777777}
+      end
+      object edtNRCPF: TMaskEdit
+        Left = 16
+        Top = 65
+        Width = 95
+        Height = 21
+        Hint = 'CPF do paciente.'
+        EditMask = '999.999.999-99;0;_'
+        MaxLength = 14
+        TabOrder = 2
+        OnChange = edtNRCPFChange
+        OnExit = edtNRCPFExit
+        OnKeyPress = edtNRCPFKeyPress
+      end
+      object edtNMCLIE: TEdit
+        Left = 160
+        Top = 65
+        Width = 342
+        Height = 21
+        TabStop = False
+        CharCase = ecUpperCase
+        Color = clSilver
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        MaxLength = 40
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 4
+      end
+      object rgConfirmada: TRadioGroup
+        Left = 770
+        Top = 17
+        Width = 169
+        Height = 68
+        Caption = '[ Confirmadas ]'
+        ItemIndex = 1
+        Items.Strings = (
+          '&Sim'
+          '&N'#227'o')
+        TabOrder = 5
+        OnClick = rgConfirmadaClick
+      end
+    end
+    object Panel4: TPanel
+      Left = 937
+      Top = 105
+      Width = 34
+      Height = 344
+      Align = alRight
+      TabOrder = 1
+      object sbProximo: TSpeedButton
+        Left = 5
+        Top = 83
+        Width = 25
+        Height = 35
+        Hint = 'Pr'#243'ximo registro'
+        Enabled = False
+        Flat = True
+        Glyph.Data = {
+          76060000424D7606000000000000360400002800000018000000180000000100
+          0800000000004002000000000000000000000001000000000000FFFFFF00FFE6
+          E600FEE5E500FCE3E300FBE1E100F9DFE000F7DDDE00F7DDDD00F5DBDB00F4DB
+          DB00F2D9D900E6D9D900F0D6D700EED4D400EBD2D200E9D0D000E9CFD000E7CD
+          CD00E5CBCB00E3C9C900E0C7C700DEC4C400DCC2C200CCC0C000D9C0BF00D7BE
+          BD00D4BBBB00D3B9B900D0B7B700CFB5B500CEB4B400CCB3B300C9B0B000C7AE
+          AE00C5ACAC00C3AAAA00C1A8A800C1A7A700BFA5A500BDA3A300BCA3A300BAA0
+          A100BAA1A000B89E9E00B59C9C00B39A9A00AF969600AD949400A88F8F00A68D
+          8D00A18888009F8686009B8382009A818100998080006633330000000000C0C0
+          C000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000393939393939
+          3939393939393939393939393939393939393939393939393939393939393939
+          3939393939393939393939393939393939393939393939393939393939393939
+          3939393939393939393939393939393939393939393939393939393939393939
+          3939393939393939393939393939393939393939393939393939393939003939
+          3939393939393939393939393939393939393939000037393939393939393939
+          39393939393939393939390000370D3839393939393939393939393939393939
+          39390000370D260D383939393939393939393939393939393900003706260D2E
+          1138393939393939393939393939393900003706260D2C112E15383939393939
+          3939393939393900003705210D2B112E15311938393939393939393939390000
+          3706210D261038143019331D383939393939393939000037012106260D383938
+          18331D331D38393939393939000037012106260D3839393938193321331D3839
+          393939393937011D05250C3839393939393821331D170B383939393939393801
+          25063839393939393939381D170B383939393939393939380638393939393939
+          393939380B383939393939393939393938393939393939393939393938393939
+          3939393939393939393939393939393939393939393939393939393939393939
+          3939393939393939393939393939393939393939393939393939393939393939
+          3939393939393939393939393939393939393939393939393939393939393939
+          3939393939393939393939393939393939393939393939393939}
+        ParentShowHint = False
+        ShowHint = True
+        OnClick = sbProximoClick
+      end
+      object sbUltimo: TSpeedButton
+        Left = 5
+        Top = 122
+        Width = 25
+        Height = 35
+        Hint = #218'ltimo registro'
+        Enabled = False
+        Flat = True
+        Glyph.Data = {
+          96010000424D9601000000000000760000002800000018000000180000000100
+          0400000000002001000000000000000000001000000000000000FFFFFF006130
+          30006E3D3D00916161009E6E6E00C2919100CF9E9E00C0C0C000000000000000
+          0000000000000000000000000000000000000000000000000000777777777777
+          7777777777777777777777777777777777777777777777777777777777777777
+          7777777777777777777777777777777077777777777777777777770027777777
+          7777777777777002327777777777777777770023432777777777777777700234
+          3432777777777777770023434343277777777777700234343434327777777777
+          0025656565656547777777700256565656565654777777772121212121212121
+          2777777777777777777777777777777000000000000000007777777034343434
+          3434343617777770456565656565656527777770365656565656565617777770
+          4565656565656565277777771212121212121212177777777777777777777777
+          7777777777777777777777777777777777777777777777777777}
+        ParentShowHint = False
+        ShowHint = True
+        OnClick = sbUltimoClick
+      end
+      object sbAnterior: TSpeedButton
+        Left = 5
+        Top = 44
+        Width = 25
+        Height = 35
+        Hint = 'Registro anterior'
+        Enabled = False
+        Flat = True
+        Glyph.Data = {
+          76060000424D7606000000000000360400002800000018000000180000000100
+          0800000000004002000000000000000000000001000000000000FFFFFF00FEE5
+          E400FDE3E300FBE1E100F9DFE000F7DEDD00F4DBDB00F2D9D900E6D9D900F0D7
+          D700EED4D400EBD2D200E9CFCF00E7CECD00E5CBCB00E3C9C900E0C6C700DEC4
+          C500DBC2C200D9C0C000CDC0C000CCC0C000D7BDBD00D5BBBB00D3B9B900D1B7
+          B700CFB6B500CFB5B500CDB4B400CCB3B300C7AEAE00C6ACAC00C1A8A800BFA6
+          A600BAA0A100B89E9E00B39A9A00B1989800AD949400AA919100A68D8D00A38A
+          8A009F8686009D8484009C8283009A818100998080006633330000000000C0C0
+          C000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000313131313131
+          3131313131313131313131313131313131313131313131313131313131313131
+          3131313131313131313131313131313131313131313131313131313131313131
+          3131313131313131313131313131313131313131313131313131313131313131
+          3131313131313131313131313131313131313131313131003131313131313131
+          313131003131313131313131313100002F31313131313131313100002F313131
+          313131313100002F01303131313131313100002F1A3031313131313100002F01
+          1E0530313131313100002F1A2A1A303131313131312F011E05210A3031313100
+          002F1E2A1A1408303131313131313004210A230D303100002F1E2A1A14083031
+          313131313131313005210D241130002F1A2A1A16083031313131313131313131
+          300A240D26162F1A2A1A140830313131313131313131313131300D2611281A2A
+          1A1408303131313131313131313131313131301128162A1A1408303131313131
+          313131313131313131313130162A1A1408303131313131313131313131313131
+          3131313130191408303131313131313131313131313131313131313131300830
+          3131313131313131313131313131313131313131313130313131313131313131
+          3131313131313131313131313131313131313131313131313131313131313131
+          3131313131313131313131313131313131313131313131313131313131313131
+          3131313131313131313131313131313131313131313131313131313131313131
+          3131313131313131313131313131313131313131313131313131}
+        ParentShowHint = False
+        ShowHint = True
+        OnClick = sbAnteriorClick
+      end
+      object sbPrimeiro: TSpeedButton
+        Left = 5
+        Top = 6
+        Width = 25
+        Height = 35
+        Hint = 'Primeiro registro'
+        Enabled = False
+        Flat = True
+        Glyph.Data = {
+          96010000424D9601000000000000760000002800000018000000180000000100
+          0400000000002001000000000000000000001000000000000000FFFFFF006130
+          30006E3D3D00916161009E6E6E00C2919100CF9E9E00C0C0C000000000000000
+          0000000000000000000000000000000000000000000000000000777777777777
+          7777777777777777777777777777777777777777777777777777777777777770
+          0000000000000000777777703434343434343436177777704565656565656565
+          2777777036565656565656561777777045656565656565652777777712121212
+          1212121217777777777777777777777777777777777777777777777777777770
+          0000000000000000777777771212121212121212177777777143434343434341
+          7777777777143434343656177777777777714343436561777777777777771434
+          3656177777777777777771436561777777777777777777165617777777777777
+          7777777161777777777777777777777717777777777777777777777777777777
+          7777777777777777777777777777777777777777777777777777}
+        ParentShowHint = False
+        ShowHint = True
+        OnClick = sbPrimeiroClick
+      end
+    end
+    object grdConsultar: TDBGrid
+      Left = 1
+      Top = 105
+      Width = 936
+      Height = 344
+      Align = alClient
+      Ctl3D = False
+      DataSource = dsDados
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
+      ParentCtl3D = False
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 2
+      TitleFont.Charset = ANSI_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Verdana'
+      TitleFont.Style = [fsBold]
+      Columns = <
+        item
+          Alignment = taCenter
+          Expanded = False
+          FieldName = 'PRE_AUTORIZACAO'
+          Title.Alignment = taCenter
+          Width = 128
+          Visible = True
+        end
+        item
+          Alignment = taCenter
+          Expanded = False
+          FieldName = 'PRE_CUPOMFISCAL'
+          Title.Alignment = taCenter
+          Title.Caption = 'C.Fiscal'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'PRE_CPFPACIENTE'
+          Visible = True
+        end
+        item
+          Alignment = taCenter
+          Expanded = False
+          FieldName = 'PRE_CRM'
+          Title.Alignment = taCenter
+          Title.Caption = 'CRM'
+          Width = 62
+          Visible = True
+        end
+        item
+          Alignment = taCenter
+          Expanded = False
+          FieldName = 'PRE_DTMOVIMENTO'
+          Title.Alignment = taCenter
+          Width = 70
+          Visible = True
+        end
+        item
+          Alignment = taCenter
+          Expanded = False
+          FieldName = 'PRE_HOMOVIMENTO'
+          Title.Alignment = taCenter
+          Visible = True
+        end
+        item
+          Alignment = taCenter
+          Expanded = False
+          FieldName = 'PRE_CODIGOBARRAS'
+          Title.Alignment = taCenter
+          Width = 102
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'PRE_NOME_MEDICAMENTO'
+          Title.Alignment = taCenter
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'PRE_QTSOLICITADA'
+          Title.Alignment = taRightJustify
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'PRE_QTAUTORIZADA'
+          Title.Alignment = taRightJustify
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'PRE_MOTIVO'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'PRE_STATUS'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'PRE_CONFIRMADA'
+          Visible = False
+        end>
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 450
+    Width = 972
+    Height = 41
+    Align = alBottom
+    Color = clNavy
+    TabOrder = 1
+    object Label4: TLabel
+      Left = 16
+      Top = 14
+      Width = 66
+      Height = 13
+      Caption = 'Registro(s):'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Transparent = True
+    end
+    object lblRegistros: TLabel
+      Left = 88
+      Top = 14
+      Width = 21
+      Height = 13
+      Caption = '0/0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Transparent = True
+    end
+    object lblMsg: TLabel
+      Left = 208
+      Top = 14
+      Width = 5
+      Height = 13
+      Caption = '.'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Transparent = True
+    end
+    object BtSair: TBitBtn
+      Left = 856
+      Top = 8
+      Width = 75
+      Height = 25
+      Caption = '&Fechar'
+      TabOrder = 0
+      OnClick = BtSairClick
+      Glyph.Data = {
+        36050000424D3605000000000000360400002800000010000000100000000100
+        08000000000000010000220B0000220B00000001000000010000006400004242
+        42008C6363009A666600B9666600BB686800B0717200C3686900C66A6B00C76A
+        6D00CF6C6E00D2686900D16D6E00CC6E7100C0797A00D2707200D4707100D572
+        7300D0727500D3747600D9757600D8767700E37D7E000080000000960000DC7F
+        8000FF00FF00D7868700DA888800D8888A00DA888A00DF898A00E6808100E085
+        8500E9818200EE868700E3888900E78C8D00F0878800F18B8C00F28B8C00F18D
+        8E00F48C8D00F48E8F00EB8F9000EC969700E49A9800F3919200F7909100F791
+        9200F2939400F9909200F9949500FA949500F9969700F0999A00FC999A00FF9D
+        9E00F7B58400F5A7A500FACCAA00FBD6BB00FADCDC00FFFFFF00000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        00000000000000000000000000000000000000000000000000001A1A1A1A1A1A
+        1A02011A1A1A1A1A1A1A1A1A1A1A02030405011A1A1A1A1A1A1A1A1A0203080B
+        0B07010303030303031A1A1A030C0C0C0A09010E1F323B3B031A1A1A030C0C10
+        0F0D01181818183B031A1A1A03111114151201181818183B031A1A1A03161616
+        201301181717173B031A1A1A0326222D3E1D01171700003B031A1A1A03262337
+        3F1E013C3A3A3A3B031A1A1A03272B282A19013C3D3D3D3B031A1A1A03273031
+        2921013C3D3D3D3B031A1A1A032734352F24013C3D3D3D3B031A1A1A03273338
+        3625013C3D3D3D3B031A1A1A03032E33392C013C3D3D3D3B031A1A1A1A1A0306
+        1B1C010303030303031A1A1A1A1A1A1A0303011A1A1A1A1A1A1A}
+    end
+    object btnVerificar: TBitBtn
+      Left = 664
+      Top = 8
+      Width = 145
+      Height = 25
+      Caption = 'Consultar Pr'#233'-Solicita'#231#227'o'
+      TabOrder = 1
+      OnClick = btnVerificarClick
+    end
+  end
+  object dsDados: TDataSource
+    AutoEdit = False
+    DataSet = cdsConsultar
+    OnDataChange = dsDadosDataChange
+    Left = 528
+    Top = 168
+  end
+  object dstConsultar: TSQLDataSet
+    CommandText = 
+      'Select P.PRE_SEQUENCIA, P.PRE_CPFPACIENTE, P.PRE_AUTORIZACAO,'#13#10'P' +
+      '.PRE_CUPOMFISCAL, P.PRE_CRM, P.PRE_CRM_UF, P.PRE_DTMOVIMENTO,'#13#10'P' +
+      '.PRE_HOMOVIMENTO, P.PRE_CODIGOBARRAS, P.PRE_NOME_MEDICAMENTO,'#13#10'P' +
+      '.PRE_QTSOLICITADA, P.PRE_QTPREESCRITA, P.PRE_QTAUTORIZADA, P.PRE' +
+      '_VALOR_VENDA,'#13#10'P.PRE_PARCELA_MS, P.PRE_PARCELA_CLIENTE, P.PRE_VE' +
+      'NDEDOR, P.PRE_STATUS,'#13#10'P.PRE_MOTIVO, P.PRE_CONFIRMADA from PRESO' +
+      'LICITACAO P'#13#10'Where (P.PRE_DTMOVIMENTO >= :pDTINICIO) and (P.PRE_' +
+      'DTMOVIMENTO  <= :pDTFINAL)'#13#10'ORDER BY P.PRE_DTMOVIMENTO, P.PRE_HO' +
+      'MOVIMENTO'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftDateTime
+        Name = 'pDTINICIO'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = 'pDTFINAL'
+        ParamType = ptInput
+      end>
+    SQLConnection = dmGerenciador.sqlConnGerenciador
+    Left = 408
+    Top = 168
+  end
+  object dspConsultar: TDataSetProvider
+    DataSet = dstConsultar
+    Options = [poAllowCommandText]
+    Left = 448
+    Top = 168
+  end
+  object cdsConsultar: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftDateTime
+        Name = 'pDTINICIO'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = 'pDTFINAL'
+        ParamType = ptInput
+      end>
+    ProviderName = 'dspConsultar'
+    Left = 488
+    Top = 168
+    object cdsConsultarPRE_SEQUENCIA: TIntegerField
+      FieldName = 'PRE_SEQUENCIA'
+      Required = True
+    end
+    object cdsConsultarPRE_CPFPACIENTE: TStringField
+      Alignment = taCenter
+      DisplayLabel = 'CPF do Paciente'
+      FieldName = 'PRE_CPFPACIENTE'
+      Required = True
+      EditMask = '###.###.###-##;0;_'
+      Size = 11
+    end
+    object cdsConsultarPRE_AUTORIZACAO: TStringField
+      DisplayLabel = 'N'#186'. Autoriza'#231#227'o'
+      FieldName = 'PRE_AUTORIZACAO'
+      Size = 30
+    end
+    object cdsConsultarPRE_CUPOMFISCAL: TStringField
+      DisplayLabel = 'Cupom Fiscal'
+      FieldName = 'PRE_CUPOMFISCAL'
+      Size = 8
+    end
+    object cdsConsultarPRE_CRM: TStringField
+      FieldName = 'PRE_CRM'
+      Size = 10
+    end
+    object cdsConsultarPRE_CRM_UF: TStringField
+      DisplayLabel = 'UF CRM'
+      FieldName = 'PRE_CRM_UF'
+      FixedChar = True
+      Size = 2
+    end
+    object cdsConsultarPRE_DTMOVIMENTO: TDateField
+      DisplayLabel = 'Data'
+      FieldName = 'PRE_DTMOVIMENTO'
+    end
+    object cdsConsultarPRE_HOMOVIMENTO: TStringField
+      DisplayLabel = 'Hora'
+      FieldName = 'PRE_HOMOVIMENTO'
+      FixedChar = True
+      Size = 8
+    end
+    object cdsConsultarPRE_CODIGOBARRAS: TStringField
+      DisplayLabel = 'C'#243'digo Barras'
+      FieldName = 'PRE_CODIGOBARRAS'
+      Size = 14
+    end
+    object cdsConsultarPRE_NOME_MEDICAMENTO: TStringField
+      DisplayLabel = 'Mendicamento'
+      FieldName = 'PRE_NOME_MEDICAMENTO'
+      Size = 60
+    end
+    object cdsConsultarPRE_QTSOLICITADA: TFMTBCDField
+      DisplayLabel = 'Qt.Solicitada'
+      FieldName = 'PRE_QTSOLICITADA'
+      Precision = 18
+      Size = 3
+    end
+    object cdsConsultarPRE_QTPREESCRITA: TFMTBCDField
+      DisplayLabel = 'Qt.Preescrita'
+      FieldName = 'PRE_QTPREESCRITA'
+      Precision = 18
+      Size = 3
+    end
+    object cdsConsultarPRE_QTAUTORIZADA: TFMTBCDField
+      DisplayLabel = 'Qt.Autorizada'
+      FieldName = 'PRE_QTAUTORIZADA'
+      Precision = 18
+      Size = 3
+    end
+    object cdsConsultarPRE_VALOR_VENDA: TFMTBCDField
+      DisplayLabel = 'Valor Venda'
+      FieldName = 'PRE_VALOR_VENDA'
+      Precision = 18
+      Size = 2
+    end
+    object cdsConsultarPRE_PARCELA_MS: TFMTBCDField
+      DisplayLabel = 'Valor MS'
+      FieldName = 'PRE_PARCELA_MS'
+      Precision = 18
+      Size = 2
+    end
+    object cdsConsultarPRE_PARCELA_CLIENTE: TFMTBCDField
+      DisplayLabel = 'Valor Cliente'
+      FieldName = 'PRE_PARCELA_CLIENTE'
+      Precision = 18
+      Size = 2
+    end
+    object cdsConsultarPRE_VENDEDOR: TIntegerField
+      DisplayLabel = 'Vendedor'
+      FieldName = 'PRE_VENDEDOR'
+    end
+    object cdsConsultarPRE_STATUS: TStringField
+      DisplayLabel = 'Status'
+      FieldName = 'PRE_STATUS'
+      FixedChar = True
+      Size = 5
+    end
+    object cdsConsultarPRE_MOTIVO: TStringField
+      DisplayLabel = 'Motivo'
+      FieldName = 'PRE_MOTIVO'
+      Size = 200
+    end
+    object cdsConsultarPRE_CONFIRMADA: TStringField
+      FieldName = 'PRE_CONFIRMADA'
+      Required = True
+      FixedChar = True
+      Size = 1
+    end
+  end
+  object dstItensVendas: TSQLDataSet
+    CommandText = 
+      'Select * from PRESOLICITACAO P'#13#10'Where (PRE_AUTORIZACAO = :pAUTOR' +
+      'IZACAO) and (PRE_DTMOVIMENTO = :pDTMOVIMENTO) and (PRE_HOMOVIMEN' +
+      'TO = :pHOMOVIMENTO)'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftString
+        Name = 'pAUTORIZACAO'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDate
+        Name = 'pDTMOVIMENTO'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'pHOMOVIMENTO'
+        ParamType = ptInput
+      end>
+    SQLConnection = dmGerenciador.sqlConnGerenciador
+    Left = 408
+    Top = 216
+  end
+  object dspItensVenda: TDataSetProvider
+    DataSet = dstItensVendas
+    Options = [poAllowCommandText]
+    Left = 448
+    Top = 216
+  end
+  object cdsItensVenda: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftString
+        Name = 'pAUTORIZACAO'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDate
+        Name = 'pDTMOVIMENTO'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'pHOMOVIMENTO'
+        ParamType = ptInput
+      end>
+    ProviderName = 'dspItensVenda'
+    Left = 488
+    Top = 216
+    object cdsItensVendaPRE_SEQUENCIA: TIntegerField
+      FieldName = 'PRE_SEQUENCIA'
+      Required = True
+    end
+    object cdsItensVendaPRE_CPFPACIENTE: TStringField
+      FieldName = 'PRE_CPFPACIENTE'
+      Required = True
+      Size = 11
+    end
+    object cdsItensVendaPRE_AUTORIZACAO: TStringField
+      FieldName = 'PRE_AUTORIZACAO'
+      Size = 30
+    end
+    object cdsItensVendaPRE_CUPOMFISCAL: TStringField
+      FieldName = 'PRE_CUPOMFISCAL'
+      Size = 8
+    end
+    object cdsItensVendaPRE_CRM: TStringField
+      FieldName = 'PRE_CRM'
+      Size = 10
+    end
+    object cdsItensVendaPRE_CRM_UF: TStringField
+      FieldName = 'PRE_CRM_UF'
+      FixedChar = True
+      Size = 2
+    end
+    object cdsItensVendaPRE_DTMOVIMENTO: TDateField
+      FieldName = 'PRE_DTMOVIMENTO'
+    end
+    object cdsItensVendaPRE_HOMOVIMENTO: TStringField
+      FieldName = 'PRE_HOMOVIMENTO'
+      FixedChar = True
+      Size = 8
+    end
+    object cdsItensVendaPRE_CODIGOBARRAS: TStringField
+      FieldName = 'PRE_CODIGOBARRAS'
+      Size = 14
+    end
+    object cdsItensVendaPRE_NOME_MEDICAMENTO: TStringField
+      FieldName = 'PRE_NOME_MEDICAMENTO'
+      Size = 60
+    end
+    object cdsItensVendaPRE_QTSOLICITADA: TFMTBCDField
+      FieldName = 'PRE_QTSOLICITADA'
+      Precision = 18
+      Size = 3
+    end
+    object cdsItensVendaPRE_QTPREESCRITA: TFMTBCDField
+      FieldName = 'PRE_QTPREESCRITA'
+      Precision = 18
+      Size = 3
+    end
+    object cdsItensVendaPRE_QTAUTORIZADA: TFMTBCDField
+      FieldName = 'PRE_QTAUTORIZADA'
+      Precision = 18
+      Size = 3
+    end
+    object cdsItensVendaPRE_VALOR_VENDA: TFMTBCDField
+      FieldName = 'PRE_VALOR_VENDA'
+      Precision = 18
+      Size = 2
+    end
+    object cdsItensVendaPRE_PARCELA_MS: TFMTBCDField
+      FieldName = 'PRE_PARCELA_MS'
+      Precision = 18
+      Size = 2
+    end
+    object cdsItensVendaPRE_PARCELA_CLIENTE: TFMTBCDField
+      FieldName = 'PRE_PARCELA_CLIENTE'
+      Precision = 18
+      Size = 2
+    end
+    object cdsItensVendaPRE_VENDEDOR: TIntegerField
+      FieldName = 'PRE_VENDEDOR'
+    end
+    object cdsItensVendaPRE_STATUS: TStringField
+      FieldName = 'PRE_STATUS'
+      FixedChar = True
+      Size = 5
+    end
+    object cdsItensVendaPRE_MOTIVO: TStringField
+      FieldName = 'PRE_MOTIVO'
+      Size = 200
+    end
+    object cdsItensVendaPRE_CONFIRMADA: TStringField
+      FieldName = 'PRE_CONFIRMADA'
+      Required = True
+      FixedChar = True
+      Size = 1
+    end
+  end
+end
