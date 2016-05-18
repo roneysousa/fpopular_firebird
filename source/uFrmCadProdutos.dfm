@@ -5,7 +5,6 @@ inherited frmCadProdutos: TfrmCadProdutos
   ClientWidth = 661
   OldCreateOrder = True
   OnClose = FormClose
-  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl1: TPageControl
@@ -92,37 +91,45 @@ inherited frmCadProdutos: TfrmCadProdutos
         Left = 16
         Top = 72
         Width = 521
-        Height = 21
+        Height = 19
         CharCase = ecUpperCase
+        Ctl3D = False
         DataField = 'PRO_MEDICAMENTO'
         DataSource = dmGerenciador.dsCadProdutos
+        ParentCtl3D = False
         TabOrder = 1
       end
       object dbeVLVENDA: TDBEdit
         Left = 16
         Top = 112
         Width = 120
-        Height = 21
+        Height = 19
+        Ctl3D = False
         DataField = 'PRO_VALORVENDA'
         DataSource = dmGerenciador.dsCadProdutos
+        ParentCtl3D = False
         TabOrder = 2
       end
       object dbeQTAPRES: TDBEdit
         Left = 16
         Top = 152
         Width = 120
-        Height = 21
+        Height = 19
+        Ctl3D = False
         DataField = 'PRO_QUANTIDADE'
         DataSource = dmGerenciador.dsCadProdutos
+        ParentCtl3D = False
         TabOrder = 3
       end
       object dbeCDBARRAS: TDBEdit
         Left = 16
         Top = 30
         Width = 120
-        Height = 21
+        Height = 19
+        Ctl3D = False
         DataField = 'PRO_BARRAS'
         DataSource = dmGerenciador.dsCadProdutos
+        ParentCtl3D = False
         TabOrder = 4
         OnExit = dbeCDBARRASExit
         OnKeyPress = dbeCDBARRASKeyPress
@@ -187,7 +194,7 @@ inherited frmCadProdutos: TfrmCadProdutos
           OnClick = btnConsultarClick
         end
         inherited btnAlterar: TBitBtn
-          Left = 572
+          Left = 537
           Top = 18
         end
       end
@@ -196,6 +203,7 @@ inherited frmCadProdutos: TfrmCadProdutos
         DataSource = dsConsultar
         Columns = <
           item
+            Alignment = taRightJustify
             Expanded = False
             FieldName = 'PRO_BARRAS'
             Title.Caption = 'BARRAS'

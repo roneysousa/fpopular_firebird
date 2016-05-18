@@ -104,6 +104,11 @@ type
     cdsProdutosVendasPRV_FLCANC: TStringField;
     cdsProdutosVendasPRV_QTESTORNADA: TFMTBCDField;
     lbl_registros: TLabel;
+    Panel5: TPanel;
+    sbProximo: TSpeedButton;
+    sbUltimo: TSpeedButton;
+    sbAnterior: TSpeedButton;
+    sbPrimeiro: TSpeedButton;
     procedure btFecharClick(Sender: TObject);
     procedure btEstornarClick(Sender: TObject);
     procedure btLocalizarClick(Sender: TObject);
@@ -115,6 +120,9 @@ type
     procedure BitBtn1Click(Sender: TObject);
     procedure grdConsultarDblClick(Sender: TObject);
     procedure dsConsultaDataChange(Sender: TObject; Field: TField);
+    procedure grdConsultarDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
   private
       Procedure CONSULTA(M_DTINIC, M_DTFINA : TDate );
     { Private declarations }
@@ -321,15 +329,29 @@ begin
         Except
           on Exc:Exception do
           begin
-                Application.MessageBox(PChar('Erro ao tentar acessar serviço farmacia popular.'+#13+'Estornar venda!!!'
+               if (iTentativa < 2) Then
+                begin
+                     iTentativa := iTentativa + 1;
+                     // Panel1.Caption := 'Aguarde, tentando novamente sua solicitação!!!';
+                     Application.ProcessMessages;
+                     Sleep(100);
+                     btEstornarClick(self);
+                End
+                Else
+                begin
+                     iTentativa := 1;
+                     //
+                      Application.MessageBox(PChar('Erro ao tentar acessar serviço farmacia popular.'+#13+'Estornar venda!!!'
                       + Exc.Message),
                       'ATENÇÃO', MB_OK+MB_ICONINFORMATION+MB_APPLMODAL);
-                //
-                 If Application.MessageBox('Tentar novamente?',
-                      'ATENÇÃO', MB_YESNO+MB_ICONQUESTION+MB_DEFBUTTON1+MB_APPLMODAL) = idYes then
-                begin
-                       btEstornarClick(self);
-                End
+                      //
+                      If Application.MessageBox('Tentar novamente?',
+                           'ATENÇÃO', MB_YESNO+MB_ICONQUESTION+MB_DEFBUTTON1+MB_APPLMODAL) = idYes then
+                     begin
+                            btEstornarClick(self);
+                     End
+                End;
+
           End;
         End;
     Finally
@@ -523,6 +545,19 @@ begin
                                  InttoStr(dsConsulta.DataSet.RecordCount)
      Else
          lbl_registros.Caption := 'Registro(s):';
+end;
+
+procedure TfrmCancelaVendas.grdConsultarDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn;
+  State: TGridDrawState);
+begin
+    if not odd(TDBGrid(Sender).DataSource.DataSet.RecNo) then
+      if not (gdSelected in State) then
+       begin
+            grdConsultar.Canvas.Brush.Color := ufuncoes.aCorGridZebrado;
+            grdConsultar.Canvas.FillRect(Rect);
+            grdConsultar.DefaultDrawDataCell(rect,Column.Field,state);
+       end;
 end;
 
 end.

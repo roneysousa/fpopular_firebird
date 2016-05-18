@@ -1,6 +1,6 @@
 object frmPesquisa: TfrmPesquisa
-  Left = 145
-  Top = 142
+  Left = 226
+  Top = 154
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Pesquisa'
@@ -23,6 +23,7 @@ object frmPesquisa: TfrmPesquisa
     Width = 687
     Height = 65
     Align = alTop
+    Color = clWhite
     TabOrder = 0
     object Label1: TLabel
       Left = 16
@@ -46,7 +47,9 @@ object frmPesquisa: TfrmPesquisa
       Top = 27
       Width = 121
       Height = 21
+      Ctl3D = False
       NumGlyphs = 2
+      ParentCtl3D = False
       TabOrder = 0
       OnExit = edtDTINICExit
     end
@@ -55,7 +58,9 @@ object frmPesquisa: TfrmPesquisa
       Top = 27
       Width = 121
       Height = 21
+      Ctl3D = False
       NumGlyphs = 2
+      ParentCtl3D = False
       TabOrder = 1
       OnExit = edtDTFINAExit
     end
@@ -93,15 +98,21 @@ object frmPesquisa: TfrmPesquisa
       TabStop = False
       Align = alClient
       Ctl3D = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
       Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
       ParentCtl3D = False
+      ParentFont = False
       ReadOnly = True
       TabOrder = 0
-      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Charset = ANSI_CHARSET
       TitleFont.Color = clWindowText
       TitleFont.Height = -11
-      TitleFont.Name = 'MS Sans Serif'
-      TitleFont.Style = []
+      TitleFont.Name = 'Verdana'
+      TitleFont.Style = [fsBold]
       Columns = <
         item
           Expanded = False
@@ -185,6 +196,7 @@ object frmPesquisa: TfrmPesquisa
     Width = 687
     Height = 41
     Align = alBottom
+    Color = clNavy
     TabOrder = 2
     object btFechar: TBitBtn
       Left = 589

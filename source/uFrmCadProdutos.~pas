@@ -220,11 +220,11 @@ end;
 procedure TfrmCadProdutos.btnAlterarClick(Sender: TObject);
 begin
   inherited;
-     // tratabotoes;
-      //
-      buscar;
-      PageControl1.ActivePageIndex := 0;
-      dbeDescricao.SetFocus;
+    if not (cdsConsultar.IsEmpty) then
+     begin
+         buscar;
+         PageControl1.ActivePageIndex := 0;
+     End;
 end;
 
 procedure TfrmCadProdutos.BtCancelarClick(Sender: TObject);
@@ -347,7 +347,7 @@ begin
   inherited;
  try
      bPrecoTabela2 := False;
-     If Application.MessageBox('Importar tabela B ?',
+     If Application.MessageBox('Importar preço da tabela B ?',
          'ATENÇÃO', MB_YESNO+MB_ICONQUESTION+MB_DEFBUTTON1+MB_APPLMODAL) = idYes then
             bPrecoTabela2 := True;
      // TAB_VLVEND
@@ -568,7 +568,9 @@ begin
          CommandText := CommandText + 'order by PRO_MEDICAMENTO';
          Open;
        end;
-  End;
+  End
+  else
+      cdsConsultar.close;
 end;
 
 procedure TfrmCadProdutos.rgConsultarClick(Sender: TObject);

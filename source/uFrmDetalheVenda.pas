@@ -13,6 +13,9 @@ type
     grdConsultar: TDBGrid;
     BitBtn1: TBitBtn;
     dsDados: TDataSource;
+    procedure grdConsultarDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -24,8 +27,21 @@ var
 
 implementation
 
-uses udmGerenciador;
+uses udmGerenciador, ufuncoes;
 
 {$R *.dfm}
+
+procedure TfrmDetalheVenda.grdConsultarDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn;
+  State: TGridDrawState);
+begin
+    if not odd(TDBGrid(Sender).DataSource.DataSet.RecNo) then
+      if not (gdSelected in State) then
+       begin
+            grdConsultar.Canvas.Brush.Color := ufuncoes.aCorGridZebrado;
+            grdConsultar.Canvas.FillRect(Rect);
+            grdConsultar.DefaultDrawDataCell(rect,Column.Field,state);
+       end;
+end;
 
 end.

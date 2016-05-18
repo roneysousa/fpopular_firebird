@@ -20,6 +20,7 @@ type
     procedure edtConsultarKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure grdConsultarKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -96,6 +97,18 @@ begin
     //
     dmGerenciador.cdsProdutos.Close;
     Action := caFree;
+end;
+
+procedure TfrmLocProdutos2.grdConsultarKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+   If (Key = #13)
+      and (dmGerenciador.cdsprodutos.Active)
+      and not (dmGerenciador.cdsprodutos.IsEmpty) Then
+    Begin
+         Key := #0;
+         Close;
+   End;
 end;
 
 end.

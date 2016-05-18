@@ -21,6 +21,9 @@ type
     procedure edtConsultarKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure grdConsultarDblClick(Sender: TObject);
+    procedure grdConsultarDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -112,6 +115,19 @@ procedure TfrmLocProduto.grdConsultarDblClick(Sender: TObject);
 begin
      If (dmGerenciador.qryLocProduto.Active = True) Then
         Close;
+end;
+
+procedure TfrmLocProduto.grdConsultarDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn;
+  State: TGridDrawState);
+begin
+    if not odd(TDBGrid(Sender).DataSource.DataSet.RecNo) then
+      if not (gdSelected in State) then
+       begin
+            grdConsultar.Canvas.Brush.Color := ufuncoes.aCorGridZebrado;
+            grdConsultar.Canvas.FillRect(Rect);
+            grdConsultar.DefaultDrawDataCell(rect,Column.Field,state);
+       end;
 end;
 
 end.

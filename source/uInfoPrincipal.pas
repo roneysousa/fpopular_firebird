@@ -15,7 +15,7 @@ uses
   Dialogs, Menus, ComCtrls, ToolWin, ImgList, Buttons, ExtCtrls,
   QRCtrls, DB, UrlMon, DBClient, StdCtrls, Grids, DBGrids, DBCtrls,
   OleCtrls, SHDocVw, IdBaseComponent, IdComponent, IdTCPConnection,
-          IdTCPClient, IdHTTP;
+          IdTCPClient, IdHTTP, jpeg;
 
 type
   TfrmPrincipal = class(TForm)
@@ -131,13 +131,13 @@ procedure TfrmPrincipal.FormCreate(Sender: TObject);
 Var
    aArquivo : String;
 begin
-    scaled := true;
+    {scaled := true;
     if (screen.width <> ScreenWidth) then
     begin
         height := longint(height) * longint(screen.height) DIV ScreenHeight;
         width := longint(width) * longint(screen.width) DIV ScreenWidth;
         scaleBy(screen.width, ScreenWidth);
-    end;
+    end; }
      //If not(fileexists(ExtractFilePath( Application.ExeName )+'Infoweb.dat')) then
      {If not(fileexists('c:\windows\Infoweb.dat')) then
       begin

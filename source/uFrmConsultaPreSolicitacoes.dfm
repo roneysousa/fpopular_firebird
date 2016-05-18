@@ -1,6 +1,6 @@
 object FrmConsultaPreSolicitacoes: TFrmConsultaPreSolicitacoes
-  Left = 202
-  Top = 138
+  Left = 209
+  Top = 153
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Consulta de Pr'#233'-Solicita'#231#245'es'
@@ -31,13 +31,14 @@ object FrmConsultaPreSolicitacoes: TFrmConsultaPreSolicitacoes
       Width = 970
       Height = 104
       Align = alTop
+      Color = clWhite
       TabOrder = 0
       object Label1: TLabel
         Left = 16
         Top = 11
-        Width = 41
+        Width = 38
         Height = 13
-        Caption = '&Per'#237'odo:'
+        Caption = '&Per'#237'odo'
         FocusControl = edtDTINIC
         Transparent = True
       end
@@ -52,9 +53,9 @@ object FrmConsultaPreSolicitacoes: TFrmConsultaPreSolicitacoes
       object Label3: TLabel
         Left = 16
         Top = 49
-        Width = 68
+        Width = 65
         Height = 13
-        Caption = 'CPF P&aciente:'
+        Caption = 'CPF P&aciente'
         FocusControl = edtNRCPF
         Transparent = True
       end
@@ -79,9 +80,9 @@ object FrmConsultaPreSolicitacoes: TFrmConsultaPreSolicitacoes
       object Label8: TLabel
         Left = 160
         Top = 49
-        Width = 76
+        Width = 88
         Height = 13
-        Caption = 'N&ome Paciente:'
+        Caption = 'N&ome do Paciente'
         FocusControl = edtNMCLIE
         Transparent = True
       end
@@ -91,7 +92,9 @@ object FrmConsultaPreSolicitacoes: TFrmConsultaPreSolicitacoes
         Width = 121
         Height = 21
         Hint = 'Per'#237'odo inicial'
+        Ctl3D = False
         NumGlyphs = 2
+        ParentCtl3D = False
         TabOrder = 0
         OnExit = edtDTINICExit
         OnKeyPress = edtDTINICKeyPress
@@ -102,13 +105,15 @@ object FrmConsultaPreSolicitacoes: TFrmConsultaPreSolicitacoes
         Width = 121
         Height = 21
         Hint = 'Per'#237'odo Final'
+        Ctl3D = False
         NumGlyphs = 2
+        ParentCtl3D = False
         TabOrder = 1
         OnExit = edtDTFINAExit
         OnKeyPress = edtDTFINAKeyPress
       end
       object btLocalizar: TBitBtn
-        Left = 506
+        Left = 530
         Top = 61
         Width = 75
         Height = 25
@@ -130,10 +135,12 @@ object FrmConsultaPreSolicitacoes: TFrmConsultaPreSolicitacoes
         Left = 16
         Top = 65
         Width = 95
-        Height = 21
+        Height = 19
         Hint = 'CPF do paciente.'
+        Ctl3D = False
         EditMask = '999.999.999-99;0;_'
         MaxLength = 14
+        ParentCtl3D = False
         TabOrder = 2
         OnChange = edtNRCPFChange
         OnExit = edtNRCPFExit
@@ -143,16 +150,18 @@ object FrmConsultaPreSolicitacoes: TFrmConsultaPreSolicitacoes
         Left = 160
         Top = 65
         Width = 342
-        Height = 21
+        Height = 19
         TabStop = False
         CharCase = ecUpperCase
         Color = clSilver
+        Ctl3D = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlue
         Font.Height = -11
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         MaxLength = 40
+        ParentCtl3D = False
         ParentFont = False
         ReadOnly = True
         TabOrder = 4
@@ -163,10 +172,12 @@ object FrmConsultaPreSolicitacoes: TFrmConsultaPreSolicitacoes
         Width = 169
         Height = 68
         Caption = '[ Confirmadas ]'
+        Ctl3D = False
         ItemIndex = 1
         Items.Strings = (
           '&Sim'
           '&N'#227'o')
+        ParentCtl3D = False
         TabOrder = 5
         OnClick = rgConfirmadaClick
       end
@@ -177,6 +188,7 @@ object FrmConsultaPreSolicitacoes: TFrmConsultaPreSolicitacoes
       Width = 34
       Height = 344
       Align = alRight
+      Color = clWhite
       TabOrder = 1
       object sbProximo: TSpeedButton
         Left = 5
@@ -384,9 +396,9 @@ object FrmConsultaPreSolicitacoes: TFrmConsultaPreSolicitacoes
       TitleFont.Height = -11
       TitleFont.Name = 'Verdana'
       TitleFont.Style = [fsBold]
+      OnDrawColumnCell = grdConsultarDrawColumnCell
       Columns = <
         item
-          Alignment = taCenter
           Expanded = False
           FieldName = 'PRE_AUTORIZACAO'
           Title.Alignment = taCenter
@@ -394,7 +406,6 @@ object FrmConsultaPreSolicitacoes: TFrmConsultaPreSolicitacoes
           Visible = True
         end
         item
-          Alignment = taCenter
           Expanded = False
           FieldName = 'PRE_CUPOMFISCAL'
           Title.Alignment = taCenter
@@ -407,7 +418,6 @@ object FrmConsultaPreSolicitacoes: TFrmConsultaPreSolicitacoes
           Visible = True
         end
         item
-          Alignment = taCenter
           Expanded = False
           FieldName = 'PRE_CRM'
           Title.Alignment = taCenter
@@ -416,7 +426,6 @@ object FrmConsultaPreSolicitacoes: TFrmConsultaPreSolicitacoes
           Visible = True
         end
         item
-          Alignment = taCenter
           Expanded = False
           FieldName = 'PRE_DTMOVIMENTO'
           Title.Alignment = taCenter
@@ -424,14 +433,12 @@ object FrmConsultaPreSolicitacoes: TFrmConsultaPreSolicitacoes
           Visible = True
         end
         item
-          Alignment = taCenter
           Expanded = False
           FieldName = 'PRE_HOMOVIMENTO'
           Title.Alignment = taCenter
           Visible = True
         end
         item
-          Alignment = taCenter
           Expanded = False
           FieldName = 'PRE_CODIGOBARRAS'
           Title.Alignment = taCenter
@@ -654,16 +661,19 @@ object FrmConsultaPreSolicitacoes: TFrmConsultaPreSolicitacoes
       Size = 11
     end
     object cdsConsultarPRE_AUTORIZACAO: TStringField
+      Alignment = taRightJustify
       DisplayLabel = 'N'#186'. Autoriza'#231#227'o'
       FieldName = 'PRE_AUTORIZACAO'
       Size = 30
     end
     object cdsConsultarPRE_CUPOMFISCAL: TStringField
+      Alignment = taRightJustify
       DisplayLabel = 'Cupom Fiscal'
       FieldName = 'PRE_CUPOMFISCAL'
       Size = 8
     end
     object cdsConsultarPRE_CRM: TStringField
+      Alignment = taRightJustify
       FieldName = 'PRE_CRM'
       Size = 10
     end
@@ -684,6 +694,7 @@ object FrmConsultaPreSolicitacoes: TFrmConsultaPreSolicitacoes
       Size = 8
     end
     object cdsConsultarPRE_CODIGOBARRAS: TStringField
+      Alignment = taRightJustify
       DisplayLabel = 'C'#243'digo Barras'
       FieldName = 'PRE_CODIGOBARRAS'
       Size = 14

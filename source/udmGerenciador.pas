@@ -5,7 +5,7 @@ interface
 uses
   SysUtils, Classes, DBXpress, DB, SqlExpr, DBTables, FMTBcd, Provider,
   DBClient, InvokeRegistry, Rio, SOAPHTTPClient, Forms, Dialogs,
-  AppEvnts, Windows, FileCtrl, MidasLib;
+  AppEvnts, Windows, FileCtrl, MidasLib, Graphics;
 
 type
   TdmGerenciador = class(TDataModule)
@@ -602,6 +602,7 @@ type
 var
   dmGerenciador: TdmGerenciador;
 
+
 implementation
 
 uses IniFiles, uFuncoes, uInfoPrincipal, ServicoSolicitacaoWS2;
@@ -763,6 +764,8 @@ begin
         //
         sqlConnGerenciador.Connected := false;
         sqlConnGerenciador.Connected := True;
+
+        ufuncoes.aCorGridZebrado := stringtoColor('$00FFCA95');
 
         Parametros;
         If (cdsConfig.FieldByName('CFG_FLPRODUCAO').AsString = 'P') Then

@@ -4,8 +4,8 @@ object frmPesquisa: TfrmPesquisa
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Pesquisa'
-  ClientHeight = 346
-  ClientWidth = 588
+  ClientHeight = 349
+  ClientWidth = 687
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,7 +20,7 @@ object frmPesquisa: TfrmPesquisa
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 588
+    Width = 687
     Height = 65
     Align = alTop
     TabOrder = 0
@@ -81,15 +81,15 @@ object frmPesquisa: TfrmPesquisa
   object Panel2: TPanel
     Left = 0
     Top = 65
-    Width = 588
-    Height = 240
+    Width = 687
+    Height = 243
     Align = alClient
     TabOrder = 1
     object grdConsultar: TDBGrid
       Left = 1
       Top = 1
-      Width = 586
-      Height = 238
+      Width = 685
+      Height = 241
       TabStop = False
       Align = alClient
       Ctl3D = False
@@ -107,6 +107,11 @@ object frmPesquisa: TfrmPesquisa
           Expanded = False
           FieldName = 'PRV_CODBARRAS'
           Title.Caption = 'COD. BARRAS'
+          Title.Font.Charset = ANSI_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Verdana'
+          Title.Font.Style = []
           Width = 89
           Visible = True
         end
@@ -114,6 +119,11 @@ object frmPesquisa: TfrmPesquisa
           Expanded = False
           FieldName = 'PRV_NOMEAPRESENTACAO'
           Title.Caption = 'DESCRI'#199#195'O'
+          Title.Font.Charset = ANSI_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Verdana'
+          Title.Font.Style = []
           Width = 181
           Visible = True
         end
@@ -121,7 +131,12 @@ object frmPesquisa: TfrmPesquisa
           Expanded = False
           FieldName = 'PRV_QUANTIDADE_AUTORIZADA'
           Title.Caption = 'QUANTIDADE'
-          Width = 74
+          Title.Font.Charset = ANSI_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Verdana'
+          Title.Font.Style = []
+          Width = 88
           Visible = True
         end
         item
@@ -129,6 +144,11 @@ object frmPesquisa: TfrmPesquisa
           FieldName = 'PRV_VLVENDA'
           Title.Alignment = taRightJustify
           Title.Caption = 'VALOR'
+          Title.Font.Charset = ANSI_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Verdana'
+          Title.Font.Style = []
           Width = 81
           Visible = True
         end
@@ -136,6 +156,12 @@ object frmPesquisa: TfrmPesquisa
           Expanded = False
           FieldName = 'PRV_VLPRECO_SUBSIDIADO'
           Title.Caption = 'VL.SUBSIDIADO'
+          Title.Font.Charset = ANSI_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Verdana'
+          Title.Font.Style = []
+          Width = 80
           Visible = True
         end
         item
@@ -143,6 +169,11 @@ object frmPesquisa: TfrmPesquisa
           FieldName = 'PRO_VLPRECO_SUBPACIENTE'
           Title.Alignment = taRightJustify
           Title.Caption = 'VL.PAGO CLIE'
+          Title.Font.Charset = ANSI_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Verdana'
+          Title.Font.Style = []
           Width = 79
           Visible = True
         end>
@@ -150,13 +181,13 @@ object frmPesquisa: TfrmPesquisa
   end
   object Panel3: TPanel
     Left = 0
-    Top = 305
-    Width = 588
+    Top = 308
+    Width = 687
     Height = 41
     Align = alBottom
     TabOrder = 2
     object btFechar: TBitBtn
-      Left = 501
+      Left = 589
       Top = 8
       Width = 75
       Height = 25

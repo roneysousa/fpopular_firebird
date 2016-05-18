@@ -5,8 +5,8 @@ object frmVendaAprovada: TfrmVendaAprovada
   BorderStyle = bsNone
   BorderWidth = 1
   Caption = 'frmVendaAprovada'
-  ClientHeight = 374
-  ClientWidth = 572
+  ClientHeight = 348
+  ClientWidth = 563
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -22,26 +22,26 @@ object frmVendaAprovada: TfrmVendaAprovada
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 572
-    Height = 374
+    Width = 563
+    Height = 348
     Align = alClient
     BevelInner = bvRaised
     BevelWidth = 2
     TabOrder = 0
     DesignSize = (
-      572
-      374)
-    object Gradiente1: TGradiente
+      563
+      348)
+    object JvGradient1: TJvGradient
       Left = 4
       Top = 4
-      Width = 564
-      Height = 366
-      Align = alClient
+      Width = 555
+      Height = 340
+      Style = grVertical
     end
     object RxLabel1: TRxLabel
       Left = 72
       Top = 29
-      Width = 415
+      Width = 406
       Height = 38
       Alignment = taCenter
       AutoSize = False
@@ -60,8 +60,8 @@ object frmVendaAprovada: TfrmVendaAprovada
     end
     object lbl_valor: TRxLabel
       Left = 7
-      Top = 119
-      Width = 557
+      Top = 109
+      Width = 548
       Height = 38
       Alignment = taCenter
       AutoSize = False
@@ -79,8 +79,8 @@ object frmVendaAprovada: TfrmVendaAprovada
     end
     object lbl_Desconto: TRxLabel
       Left = 7
-      Top = 191
-      Width = 557
+      Top = 192
+      Width = 548
       Height = 38
       Alignment = taCenter
       AutoSize = False
@@ -98,8 +98,8 @@ object frmVendaAprovada: TfrmVendaAprovada
       Transparent = True
     end
     object btConfirma: TBitBtn
-      Left = 228
-      Top = 265
+      Left = 224
+      Top = 279
       Width = 98
       Height = 25
       Anchors = [akBottom]

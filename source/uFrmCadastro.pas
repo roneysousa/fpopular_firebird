@@ -56,6 +56,10 @@ type
     procedure dsConsultarStateChange(Sender: TObject);
     procedure dsConsultarDataChange(Sender: TObject; Field: TField);
     procedure TabSheet2Show(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure grdConsultarDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
   private
     procedure habilitaBotoes(const oper: Char);
     procedure habilitaCampos(const tof: Boolean);
@@ -70,6 +74,8 @@ var
   frmCadastro: TfrmCadastro;
 
 implementation
+
+Uses ufuncoes;
 
 {$R *.dfm}
 
@@ -161,6 +167,11 @@ begin
     if (PageControl1.Pages[0].Controls[i] is TCheckBox) then
       (PageControl1.Pages[0].Controls[i] as TCheckBox).Enabled := tof;
   end;
+
+  if (tof) Then
+      TabSheet2.TabVisible := False
+  Else
+      TabSheet2.TabVisible := True;
 end;
 
 procedure TfrmCadastro.rgConsultarClick(Sender: TObject);
@@ -243,6 +254,8 @@ begin
   strOper := 'I';
   if dsConsultar.DataSet.Active then
     dsConsultar.DataSet.Close;
+  //
+  habilitaCampos(True);
 end;
 
 procedure TfrmCadastro.BtGravarClick(Sender: TObject);
@@ -250,8 +263,8 @@ begin
   strOper := 'C';
 {  if dsConsultar.DataSet.Active then
     dsConsultar.DataSet.Close;
-  habilitaBotoes(strOper);
-  habilitaCampos(False);}
+  habilitaBotoes(strOper);   }
+  habilitaCampos(False);
 end;
 
 procedure TfrmCadastro.BtCancelarClick(Sender: TObject);
@@ -259,8 +272,8 @@ begin
   strOper := 'C';
 {  if dsConsultar.DataSet.Active then
     dsConsultar.DataSet.Close;
-  habilitaBotoes(strOper);
-  habilitaCampos(False);}
+  habilitaBotoes(strOper);}
+  habilitaCampos(False);
 end;
 
 procedure TfrmCadastro.BtExcluirClick(Sender: TObject);
@@ -275,8 +288,8 @@ end;
 procedure TfrmCadastro.BtEditarClick(Sender: TObject);
 begin
   strOper := 'A';
-{  habilitaBotoes(strOper);
-  habilitaCampos(True);}
+{  habilitaBotoes(strOper);    }
+  habilitaCampos(True);
 end;
 
 procedure TfrmCadastro.BtPesquisarClick(Sender: TObject);
@@ -304,6 +317,24 @@ begin
      cdsConsultar.Close;
      //
      edtConsultar.SetFocus; 
+end;
+
+procedure TfrmCadastro.FormShow(Sender: TObject);
+begin
+    habilitaCampos(False);
+end;
+
+procedure TfrmCadastro.grdConsultarDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn;
+  State: TGridDrawState);
+begin
+    if not odd(TDBGrid(Sender).DataSource.DataSet.RecNo) then
+      if not (gdSelected in State) then
+       begin
+            grdConsultar.Canvas.Brush.Color := ufuncoes.aCorGridZebrado;
+            grdConsultar.Canvas.FillRect(Rect);
+            grdConsultar.DefaultDrawDataCell(rect,Column.Field,state);
+       end;
 end;
 
 end.

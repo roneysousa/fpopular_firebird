@@ -9330,9 +9330,11 @@ object frmLogon: TfrmLogon
       Left = 121
       Top = 248
       Width = 121
-      Height = 21
+      Height = 19
       Hint = 'Digite a senha do usu'#225'rio'
+      Ctl3D = False
       MaxLength = 6
+      ParentCtl3D = False
       PasswordChar = '*'
       TabOrder = 0
       OnExit = edt_SENHAExit
@@ -9342,9 +9344,11 @@ object frmLogon: TfrmLogon
       Left = 121
       Top = 219
       Width = 121
-      Height = 21
+      Height = 19
       Hint = 'Digite o c'#243'digo do usu'#225'rio'
+      Ctl3D = False
       MaxLength = 3
+      ParentCtl3D = False
       TabOrder = 1
       OnExit = edtCDUSUAExit
       OnKeyPress = edtCDUSUAKeyPress

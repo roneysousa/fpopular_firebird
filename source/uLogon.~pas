@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ExtCtrls, StdCtrls, Buttons, Mask, ToolEdit, RxLookup, FMTBcd, DB,
-  SqlExpr, frxpngimage;
+  SqlExpr, jpeg;
 
 type
   TfrmLogon = class(TForm)

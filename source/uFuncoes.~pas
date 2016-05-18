@@ -56,6 +56,14 @@ Function PegaSolicitacao(cCNPJ, cCPJ, cCRM, cUFCRM, cDataEmissao: Pchar): Pchar;
 Function PegaConfirmacao(cCNPJ, cNumAutorizacao, cCupomFiscal: Pchar): Pchar; cdecl; external 'gbasmsb_library.dll';
 
 
+const
+    MSG_OK   = 'Registro gravado com sucesso.';
+    MSG_ERRO = 'Erro ao tentar gravar registro.';
+    MSG_PERGUTA = 'Deseja excluir este registro?';
+    MSG_PERMISSOES = 'Você não tem pemissão para isto';
+    MSG_ERROR = 'Ocorreu um erro!';
+    chave = 'email';
+
 implementation
 
 uses udmGerenciador;

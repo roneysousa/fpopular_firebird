@@ -1,12 +1,12 @@
 object frmCadUsuarios: TfrmCadUsuarios
-  Left = 203
-  Top = 130
+  Left = 249
+  Top = 181
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Cadastro de Usu'#225'rio'
   ClientHeight = 401
   ClientWidth = 585
-  Color = clBtnFace
+  Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -23,7 +23,7 @@ object frmCadUsuarios: TfrmCadUsuarios
     Top = 0
     Width = 585
     Height = 401
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -116,27 +116,33 @@ object frmCadUsuarios: TfrmCadUsuarios
         Left = 11
         Top = 68
         Width = 358
-        Height = 21
+        Height = 19
         CharCase = ecUpperCase
+        Ctl3D = False
         DataField = 'SEN_NOME'
         DataSource = dsUsuarios
+        ParentCtl3D = False
         TabOrder = 0
       end
       object cmbImpressora: TDBLookupComboBox
         Left = 11
         Top = 146
-        Width = 209
-        Height = 21
+        Width = 210
+        Height = 19
+        Ctl3D = False
         DataField = 'SEN_NMDESC'
         DataSource = dsUsuarios
+        ParentCtl3D = False
         TabOrder = 3
       end
       object edtSenha: TEdit
         Left = 11
         Top = 223
         Width = 121
-        Height = 21
+        Height = 19
+        Ctl3D = False
         MaxLength = 6
+        ParentCtl3D = False
         PasswordChar = '*'
         TabOrder = 5
         OnExit = edtSenhaExit
@@ -145,8 +151,10 @@ object frmCadUsuarios: TfrmCadUsuarios
         Left = 11
         Top = 260
         Width = 121
-        Height = 21
+        Height = 19
+        Ctl3D = False
         MaxLength = 6
+        ParentCtl3D = False
         PasswordChar = '*'
         TabOrder = 6
         OnExit = edt_ConfirmaExit
@@ -513,30 +521,36 @@ object frmCadUsuarios: TfrmCadUsuarios
       object DBEdit1: TDBEdit
         Left = 11
         Top = 107
-        Width = 264
-        Height = 21
+        Width = 358
+        Height = 19
         CharCase = ecUpperCase
+        Ctl3D = False
         DataField = 'SEN_CARGO'
         DataSource = dsUsuarios
+        ParentCtl3D = False
         TabOrder = 2
       end
       object edtNMPAST: TDBEdit
         Left = 11
         Top = 185
-        Width = 490
-        Height = 21
+        Width = 358
+        Height = 19
+        Ctl3D = False
         DataField = 'SEN_PASTA'
         DataSource = dsUsuarios
+        ParentCtl3D = False
         TabOrder = 4
       end
       object dbeSenhaVendedor: TDBEdit
         Left = 379
         Top = 68
         Width = 121
-        Height = 21
+        Height = 19
         CharCase = ecUpperCase
+        Ctl3D = False
         DataField = 'SEN_SENHA_VENDEDOR'
         DataSource = dsUsuarios
+        ParentCtl3D = False
         PasswordChar = '*'
         TabOrder = 1
         Visible = False
@@ -552,6 +566,7 @@ object frmCadUsuarios: TfrmCadUsuarios
         Width = 577
         Height = 59
         Align = alTop
+        Color = clWhite
         TabOrder = 0
         object lblConsultar: TLabel
           Left = 136
@@ -572,6 +587,7 @@ object frmCadUsuarios: TfrmCadUsuarios
           Width = 127
           Height = 55
           Caption = 'Consultar por:'
+          Ctl3D = False
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -581,6 +597,7 @@ object frmCadUsuarios: TfrmCadUsuarios
           Items.Strings = (
             'C'#243'di&go'
             '&Nome/Descri'#231#227'o')
+          ParentCtl3D = False
           ParentFont = False
           TabOrder = 0
           OnClick = rgConsultarClick
@@ -604,8 +621,8 @@ object frmCadUsuarios: TfrmCadUsuarios
           OnKeyPress = edtConsultarKeyPress
         end
         object btnConsultar: TBitBtn
-          Left = 492
-          Top = 2
+          Left = 491
+          Top = 17
           Width = 75
           Height = 25
           Hint = 'Consultar'
@@ -666,8 +683,8 @@ object frmCadUsuarios: TfrmCadUsuarios
             E6E6E6E6E3E3F2FFFFFFF2F2F2F2F2F2F2F2F2F2F2F2F2FFFFFF}
         end
         object btnAlterar: TBitBtn
-          Left = 492
-          Top = 32
+          Left = 396
+          Top = 48
           Width = 75
           Height = 25
           Hint = 'Alterar registro'
@@ -682,6 +699,7 @@ object frmCadUsuarios: TfrmCadUsuarios
           ParentShowHint = False
           ShowHint = True
           TabOrder = 3
+          Visible = False
           OnClick = btnAlterarClick
           Glyph.Data = {
             36050000424D3605000000000000360400002800000010000000100000000100
@@ -736,29 +754,38 @@ object frmCadUsuarios: TfrmCadUsuarios
         Align = alClient
         Ctl3D = False
         DataSource = dsConsultar
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
         Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
         ParentCtl3D = False
+        ParentFont = False
         ReadOnly = True
         TabOrder = 1
-        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Charset = ANSI_CHARSET
         TitleFont.Color = clWindowText
         TitleFont.Height = -11
-        TitleFont.Name = 'MS Sans Serif'
-        TitleFont.Style = []
+        TitleFont.Name = 'Verdana'
+        TitleFont.Style = [fsBold]
+        OnDrawColumnCell = grdConsultarDrawColumnCell
         OnDblClick = grdConsultarDblClick
         Columns = <
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'SEN_CODIGO'
+            Title.Alignment = taCenter
             Title.Caption = 'C'#211'DIGO'
-            Width = 47
+            Width = 62
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'SEN_NOME'
             Title.Caption = 'NOME'
-            Width = 454
+            Width = 444
             Visible = True
           end>
       end
@@ -768,6 +795,7 @@ object frmCadUsuarios: TfrmCadUsuarios
         Width = 34
         Height = 314
         Align = alRight
+        Color = clWhite
         TabOrder = 2
         object sbProximo: TSpeedButton
           Left = 5

@@ -31,12 +31,12 @@ object frmVendaAprovada: TfrmVendaAprovada
     DesignSize = (
       563
       348)
-    object Gradiente1: TGradiente
+    object JvGradient1: TJvGradient
       Left = 4
       Top = 4
       Width = 555
       Height = 340
-      Align = alClient
+      Style = grVertical
     end
     object RxLabel1: TRxLabel
       Left = 72

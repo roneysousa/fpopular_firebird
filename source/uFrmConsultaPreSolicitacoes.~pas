@@ -100,6 +100,9 @@ type
     procedure sbUltimoClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure btnVerificarClick(Sender: TObject);
+    procedure grdConsultarDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
   private
     { Private declarations }
     Function ConsultaPeriodo(aDtInicio, aDtFinal : TDatetime; aCPF: String): Boolean;
@@ -437,6 +440,19 @@ begin
           lblMsg.Caption := '';
      End;
      Application.ProcessMessages;
+end;
+
+procedure TFrmConsultaPreSolicitacoes.grdConsultarDrawColumnCell(
+  Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn;
+  State: TGridDrawState);
+begin
+    if not odd(TDBGrid(Sender).DataSource.DataSet.RecNo) then
+      if not (gdSelected in State) then
+       begin
+            grdConsultar.Canvas.Brush.Color := ufuncoes.aCorGridZebrado;
+            grdConsultar.Canvas.FillRect(Rect);
+            grdConsultar.DefaultDrawDataCell(rect,Column.Field,state);
+       end;
 end;
 
 end.

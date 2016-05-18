@@ -64,7 +64,6 @@ type
     procedure BtGravarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure btnConsultarClick(Sender: TObject);
     procedure sbPrimeiroClick(Sender: TObject);
     procedure sbAnteriorClick(Sender: TObject);
     procedure sbProximoClick(Sender: TObject);
@@ -77,11 +76,16 @@ type
     procedure dsConsultarDataChange(Sender: TObject; Field: TField);
     procedure TabSheet2Show(Sender: TObject);
     procedure grdConsultarDblClick(Sender: TObject);
+    procedure btnConsultarClick(Sender: TObject);
+    procedure grdConsultarDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
   private
      procedure tratabotoes;
      procedure buscar;
      procedure Exibir_edites;
      procedure Ocultar_edites;
+     procedure habilitaCampos(const tof: Boolean);
     { Private declarations }
   public
     { Public declarations }
@@ -158,6 +162,7 @@ begin
   tratabotoes;
   dmGerenciador.Parametros;
   //
+  habilitaCampos(true);
   dmGerenciador.cdsUsuarios.Append;
   dmGerenciador.cdsUsuariosSEN_CODIGO.Value := dmGerenciador.CdsConfigCFG_USUARIO.Value+1;
   dbeNMUSUA.SetFocus;
@@ -204,6 +209,7 @@ begin
            End;
        End;
        //
+       habilitaCampos(true);
        Exibir_edites;
        dbeNMUSUA.SetFocus;
   End;
@@ -228,6 +234,7 @@ begin
      tratabotoes;
      dmGerenciador.cdsUsuarios.Cancel;
      //
+     habilitaCampos(False);
      Ocultar_edites;
 end;
 
@@ -306,6 +313,7 @@ begin
     dmGerenciador.cdsUsuarios.Post;
     dmGerenciador.cdsUsuarios.ApplyUpdates(0);
     //
+    habilitaCampos(False);
     Ocultar_edites;
   Except
         on Exc:Exception do
@@ -324,6 +332,7 @@ begin
       dmGerenciador.cdsUsuarios.Open;
       dmGerenciador.cdsUsuarios.First;
       PageControl1.ActivePageIndex := 0;
+      habilitaCampos(false);
       Ocultar_edites;
 end;
 
@@ -333,28 +342,6 @@ begin
      dmGerenciador.cdsUsuarios.Close;
      //
      Action := caFree;
-end;
-
-procedure TfrmCadUsuarios.btnConsultarClick(Sender: TObject);
-begin
-  with cdsConsultar do
-  begin
-    Close;
-    CommandText := 'Select SEN_CODIGO, SEN_NOME from USUARIOS';
-    case rgConsultar.ItemIndex of
-      0: CommandText := CommandText + ' where SEN_CODIGO = ' + edtConsultar.Text;
-      1: CommandText := CommandText + ' where UPPER(SEN_NOME) like ' + QuotedStr(AnsiUpperCase(edtConsultar.Text) + '%');
-    end;
-    CommandText := CommandText + 'order by SEN_NOME';
-    Open;
-    if IsEmpty then
-    begin
-      MessageDlg('Nenhum registro encontrado!' + #13 + 'Refaça a pesquisa', mtInformation, [mbOk], 0);
-      edtConsultar.Clear;
-      if edtConsultar.CanFocus then
-        edtConsultar.SetFocus;
-    end;
-  end;
 end;
 
 procedure TfrmCadUsuarios.sbPrimeiroClick(Sender: TObject);
@@ -403,7 +390,21 @@ procedure TfrmCadUsuarios.edtConsultarChange(Sender: TObject);
 begin
   btnConsultar.Enabled := (edtConsultar.Text <> '');
   If uFuncoes.Empty(edtConsultar.Text) Then
-    cdsConsultar.Close;
+     cdsConsultar.Close
+  Else
+  begin
+       with cdsConsultar do
+       begin
+          Close;
+          CommandText := 'Select SEN_CODIGO, SEN_NOME from USUARIOS';
+          case rgConsultar.ItemIndex of
+            0: CommandText := CommandText + ' where SEN_CODIGO = ' + edtConsultar.Text;
+            1: CommandText := CommandText + ' where UPPER(SEN_NOME) like ' + QuotedStr(AnsiUpperCase(edtConsultar.Text) + '%');
+          end;
+          CommandText := CommandText + 'order by SEN_NOME';
+          Open;
+      End;
+  End;
 end;
 
 procedure TfrmCadUsuarios.edtConsultarKeyPress(Sender: TObject;
@@ -463,7 +464,83 @@ end;
 
 procedure TfrmCadUsuarios.grdConsultarDblClick(Sender: TObject);
 begin
-     btnAlterarClick(Sender);
+     btnConsultarClick(Self);
+end;
+
+procedure TfrmCadUsuarios.habilitaCampos(const tof: Boolean);
+var
+  i : Integer;
+  cor : TColor;
+begin
+  if tof then
+    cor := clWindow
+  else
+    cor := clBtnFace;
+  for i := 0 to PageControl1.Pages[0].ControlCount - 1 do
+  begin
+    if (PageControl1.Pages[0].Controls[i] is TEdit) then
+    begin
+      (PageControl1.Pages[0].Controls[i] as TEdit).Enabled := tof;
+      (PageControl1.Pages[0].Controls[i] as TEdit).Color := cor;
+    end
+    else
+    if (PageControl1.Pages[0].Controls[i] is TComboBox) then
+    begin
+      (PageControl1.Pages[0].Controls[i] as TComboBox).Enabled := tof;
+      (PageControl1.Pages[0].Controls[i] as TComboBox).Color := cor;
+    end
+    else
+    if (PageControl1.Pages[0].Controls[i] is TMaskEdit) then
+    begin
+      (PageControl1.Pages[0].Controls[i] as TMaskEdit).Enabled := tof;
+      (PageControl1.Pages[0].Controls[i] as TMaskEdit).Color := cor;
+    end
+    else
+    if (PageControl1.Pages[0].Controls[i] is TDBLookupComboBox) then
+    begin
+      (PageControl1.Pages[0].Controls[i] as TDBLookupComboBox).Enabled := tof;
+      (PageControl1.Pages[0].Controls[i] as TDBLookupComboBox).Color := cor;
+    end
+    Else
+    if (PageControl1.Pages[0].Controls[i] is TDBEdit) then
+    begin
+      (PageControl1.Pages[0].Controls[i] as TDBEdit).Enabled := tof;
+      (PageControl1.Pages[0].Controls[i] as TDBEdit).Color := cor;
+    end
+    else
+    if (PageControl1.Pages[0].Controls[i] is TRadioGroup) then
+      (PageControl1.Pages[0].Controls[i] as TRadioGroup).Enabled := tof
+    else
+    if (PageControl1.Pages[0].Controls[i] is TCheckBox) then
+      (PageControl1.Pages[0].Controls[i] as TCheckBox).Enabled := tof;
+  end;
+
+  if (tof) Then
+      TabSheet2.TabVisible := False
+  Else
+      TabSheet2.TabVisible := True;  
+end;
+
+procedure TfrmCadUsuarios.btnConsultarClick(Sender: TObject);
+begin
+    If not (cdsConsultar.IsEmpty) Then
+    begin
+       buscar;
+       PageControl1.ActivePageIndex := 0;
+    End;
+end;
+
+procedure TfrmCadUsuarios.grdConsultarDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn;
+  State: TGridDrawState);
+begin
+    if not odd(TDBGrid(Sender).DataSource.DataSet.RecNo) then
+      if not (gdSelected in State) then
+       begin
+            grdConsultar.Canvas.Brush.Color := ufuncoes.aCorGridZebrado;
+            grdConsultar.Canvas.FillRect(Rect);
+            grdConsultar.DefaultDrawDataCell(rect,Column.Field,state);
+       end;
 end;
 
 end.

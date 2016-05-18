@@ -23,6 +23,7 @@ object frmLocProdutos2: TfrmLocProdutos2
     Width = 439
     Height = 65
     Align = alTop
+    Color = clWhite
     TabOrder = 0
     object Label1: TLabel
       Left = 16
@@ -35,9 +36,11 @@ object frmLocProdutos2: TfrmLocProdutos2
       Left = 16
       Top = 33
       Width = 404
-      Height = 21
+      Height = 19
       CharCase = ecUpperCase
+      Ctl3D = False
       MaxLength = 40
+      ParentCtl3D = False
       TabOrder = 0
       OnChange = edtConsultarChange
       OnKeyDown = edtConsultarKeyDown
@@ -69,6 +72,7 @@ object frmLocProdutos2: TfrmLocProdutos2
       TitleFont.Height = -11
       TitleFont.Name = 'MS Sans Serif'
       TitleFont.Style = []
+      OnDrawColumnCell = grdConsultarDrawColumnCell
       OnDblClick = grdConsultarDblClick
       OnKeyPress = grdConsultarKeyPress
       Columns = <

@@ -1,6 +1,6 @@
 object frmConfig: TfrmConfig
-  Left = 245
-  Top = 216
+  Left = 336
+  Top = 174
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Configura'#231#245'es'
@@ -23,39 +23,40 @@ object frmConfig: TfrmConfig
     Width = 515
     Height = 363
     Align = alClient
+    Color = clWhite
     TabOrder = 0
     object Label1: TLabel
       Left = 16
       Top = 137
-      Width = 89
+      Width = 86
       Height = 13
-      Caption = 'C&NPJ da Empresa:'
+      Caption = 'C&NPJ da Empresa'
       FocusControl = edtNMEMPR
       Transparent = True
     end
     object Label2: TLabel
       Left = 437
       Top = 137
-      Width = 17
+      Width = 14
       Height = 13
-      Caption = '&UF:'
+      Caption = '&UF'
       Transparent = True
     end
     object Label3: TLabel
       Left = 16
       Top = 216
-      Width = 29
+      Width = 87
       Height = 13
-      Caption = '&Login:'
+      Caption = '&Login de Farm'#225'cia'
       FocusControl = DBEdit3
       Transparent = True
     end
     object Label4: TLabel
       Left = 16
       Top = 256
-      Width = 34
+      Width = 77
       Height = 13
-      Caption = '&Senha:'
+      Caption = '&Senha Farm'#225'cia'
       FocusControl = DBEdit4
       Transparent = True
     end
@@ -71,45 +72,45 @@ object frmConfig: TfrmConfig
     object Label6: TLabel
       Left = 16
       Top = 56
-      Width = 66
+      Width = 63
       Height = 13
-      Caption = 'Raz'#227'o Social:'
+      Caption = 'Raz'#227'o Social'
       FocusControl = edtRazao
       Transparent = True
     end
     object Label7: TLabel
       Left = 16
       Top = 96
-      Width = 49
+      Width = 54
       Height = 13
-      Caption = 'Endere'#231'o:'
+      Caption = 'Logradouro'
       FocusControl = DBEdit5
       Transparent = True
     end
     object Label8: TLabel
       Left = 166
       Top = 137
-      Width = 36
+      Width = 33
       Height = 13
-      Caption = 'Cidade:'
+      Caption = 'Cidade'
       FocusControl = DBEdit6
       Transparent = True
     end
     object Label9: TLabel
       Left = 16
       Top = 176
-      Width = 24
+      Width = 21
       Height = 13
-      Caption = 'CEP:'
+      Caption = 'CEP'
       FocusControl = DBEdit7
       Transparent = True
     end
     object Label10: TLabel
       Left = 164
       Top = 176
-      Width = 45
+      Width = 42
       Height = 13
-      Caption = 'Telefone:'
+      Caption = 'Telefone'
       FocusControl = DBEdit8
       Transparent = True
     end
@@ -117,9 +118,11 @@ object frmConfig: TfrmConfig
       Left = 16
       Top = 153
       Width = 145
-      Height = 21
+      Height = 19
+      Ctl3D = False
       DataField = 'CFG_CNPJ_EMPRESA'
       DataSource = dsEmpresa
+      ParentCtl3D = False
       TabOrder = 3
       OnExit = edtNMEMPRExit
     end
@@ -127,18 +130,22 @@ object frmConfig: TfrmConfig
       Left = 16
       Top = 232
       Width = 108
-      Height = 21
+      Height = 19
+      Ctl3D = False
       DataField = 'CFG_LOGIN'
       DataSource = dsEmpresa
+      ParentCtl3D = False
       TabOrder = 8
     end
     object DBEdit4: TDBEdit
       Left = 16
       Top = 272
       Width = 108
-      Height = 21
+      Height = 19
+      Ctl3D = False
       DataField = 'CFG_SENHA'
       DataSource = dsEmpresa
+      ParentCtl3D = False
       TabOrder = 9
     end
     object cmbUF: TDBComboBox
@@ -147,6 +154,10 @@ object frmConfig: TfrmConfig
       Width = 50
       Height = 22
       Style = csOwnerDrawFixed
+      BevelInner = bvNone
+      BevelOuter = bvRaised
+      BevelKind = bkFlat
+      Ctl3D = False
       DataField = 'CFG_UF_EMPRESA'
       DataSource = dsEmpresa
       ItemHeight = 16
@@ -177,64 +188,77 @@ object frmConfig: TfrmConfig
         'SE'
         'SP'
         'TO')
+      ParentCtl3D = False
       TabOrder = 5
     end
     object edtFantasia: TDBEdit
       Left = 16
       Top = 30
       Width = 472
-      Height = 21
+      Height = 19
       CharCase = ecUpperCase
+      Ctl3D = False
       DataField = 'CFG_FANTASIA'
       DataSource = dsEmpresa
+      ParentCtl3D = False
       TabOrder = 0
     end
     object edtRazao: TDBEdit
       Left = 16
       Top = 72
       Width = 472
-      Height = 21
+      Height = 19
       CharCase = ecUpperCase
+      Ctl3D = False
       DataField = 'CFG_RAZAO'
       DataSource = dsEmpresa
+      ParentCtl3D = False
       TabOrder = 1
     end
     object DBEdit5: TDBEdit
       Left = 16
       Top = 112
       Width = 472
-      Height = 21
+      Height = 19
       CharCase = ecUpperCase
+      Ctl3D = False
       DataField = 'CFG_ENDERECO'
       DataSource = dsEmpresa
+      ParentCtl3D = False
       TabOrder = 2
     end
     object DBEdit6: TDBEdit
       Left = 166
       Top = 153
       Width = 266
-      Height = 21
+      Height = 19
       CharCase = ecUpperCase
+      Ctl3D = False
       DataField = 'CFG_CIDADE'
       DataSource = dsEmpresa
+      ParentCtl3D = False
       TabOrder = 4
     end
     object DBEdit7: TDBEdit
       Left = 16
       Top = 192
       Width = 108
-      Height = 21
+      Height = 19
+      Ctl3D = False
       DataField = 'CFG_CEPEMPRESA'
       DataSource = dsEmpresa
+      ParentCtl3D = False
       TabOrder = 6
     end
     object DBEdit8: TDBEdit
       Left = 164
       Top = 192
       Width = 97
-      Height = 21
+      Height = 19
+      Ctl3D = False
       DataField = 'CFG_FONEEMPRESA'
       DataSource = dsEmpresa
+      ParentCtl3D = False
       TabOrder = 7
     end
     object imgLogo: TDBImage
@@ -242,8 +266,10 @@ object frmConfig: TfrmConfig
       Top = 184
       Width = 153
       Height = 105
+      Ctl3D = False
       DataField = 'CFC_IMGLOGO'
       DataSource = dsEmpresa
+      ParentCtl3D = False
       Stretch = True
       TabOrder = 10
     end
@@ -263,6 +289,8 @@ object frmConfig: TfrmConfig
       Width = 145
       Height = 17
       Caption = '&Vincular ao InfoG2 Farma'
+      Ctl3D = False
+      ParentCtl3D = False
       TabOrder = 12
     end
     object chbSimulacao: TCheckBox
@@ -271,6 +299,8 @@ object frmConfig: TfrmConfig
       Width = 97
       Height = 17
       Caption = 'S&imula'#231#227'o'
+      Ctl3D = False
+      ParentCtl3D = False
       TabOrder = 13
     end
     object DBRadioGroup1: TDBRadioGroup
@@ -279,11 +309,13 @@ object frmConfig: TfrmConfig
       Width = 157
       Height = 69
       Caption = '[ Hambiente ]'
+      Ctl3D = False
       DataField = 'CFG_FLPRODUCAO'
       DataSource = dsEmpresa
       Items.Strings = (
         '&Produ'#231#227'o'
         '&Homologa'#231#227'o')
+      ParentCtl3D = False
       TabOrder = 14
       Values.Strings = (
         'P'
@@ -296,6 +328,7 @@ object frmConfig: TfrmConfig
     Width = 515
     Height = 41
     Align = alBottom
+    Color = clNavy
     TabOrder = 1
     object btGravar: TBitBtn
       Left = 248

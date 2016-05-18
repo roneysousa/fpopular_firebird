@@ -1,11 +1,11 @@
 object frmVendas: TfrmVendas
-  Left = 195
-  Top = 129
+  Left = 194
+  Top = 102
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Venda'
-  ClientHeight = 505
-  ClientWidth = 792
+  ClientHeight = 566
+  ClientWidth = 1018
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,8 +13,8 @@ object frmVendas: TfrmVendas
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   ShowHint = True
-  WindowState = wsMaximized
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
@@ -23,52 +23,53 @@ object frmVendas: TfrmVendas
   object pnlSuperior: TPanel
     Left = 0
     Top = 0
-    Width = 792
+    Width = 1018
     Height = 128
     Align = alTop
+    Color = clWhite
     TabOrder = 0
     object Label1: TLabel
       Left = 16
       Top = 3
-      Width = 68
+      Width = 65
       Height = 13
-      Caption = 'CPF P&aciente:'
+      Caption = 'CPF P&aciente'
       FocusControl = edtNRCPF
       Transparent = True
     end
     object Label2: TLabel
       Left = 17
       Top = 43
-      Width = 84
+      Width = 81
       Height = 13
-      Caption = 'CRM &M'#233'dico/UF:'
+      Caption = 'CRM &M'#233'dico/UF'
       FocusControl = edtNRCRM
       Transparent = True
     end
     object Label3: TLabel
       Left = 17
       Top = 82
-      Width = 123
+      Width = 120
       Height = 13
-      Caption = '&Data Emiss'#227'o da Receita:'
+      Caption = '&Data Emiss'#227'o da Receita'
       FocusControl = edtDTEMISSAO
       Transparent = True
     end
     object Label8: TLabel
       Left = 152
       Top = 3
-      Width = 76
+      Width = 88
       Height = 13
-      Caption = 'N&ome Paciente:'
+      Caption = 'N&ome do Paciente'
       FocusControl = edtNMCLIE
       Transparent = True
     end
     object Label9: TLabel
       Left = 153
       Top = 82
-      Width = 84
+      Width = 81
       Height = 13
-      Caption = 'N'#186'. Cupom Fiscal:'
+      Caption = 'N'#186'. Cupom Fiscal'
       FocusControl = edtNRCUPO
       Transparent = True
     end
@@ -92,7 +93,7 @@ object frmVendas: TfrmVendas
       OnClick = spLocClienteClick
     end
     object Image3: TImage
-      Left = 499
+      Left = 699
       Top = 20
       Width = 138
       Height = 79
@@ -7031,7 +7032,7 @@ object frmVendas: TfrmVendas
       Stretch = True
     end
     object Image2: TImage
-      Left = 645
+      Left = 845
       Top = 20
       Width = 147
       Height = 79
@@ -9362,9 +9363,9 @@ object frmVendas: TfrmVendas
     object Label10: TLabel
       Left = 251
       Top = 82
-      Width = 49
+      Width = 46
       Height = 13
-      Caption = 'Vendedor:'
+      Caption = 'Vendedor'
       FocusControl = edtNRCUPO
       Transparent = True
     end
@@ -9372,10 +9373,12 @@ object frmVendas: TfrmVendas
       Left = 16
       Top = 19
       Width = 95
-      Height = 21
+      Height = 19
       Hint = 'CPF do paciente.'
+      Ctl3D = False
       EditMask = '999.999.999-99;0;_'
       MaxLength = 14
+      ParentCtl3D = False
       TabOrder = 0
       OnChange = edtNRCPFChange
       OnExit = edtNRCPFExit
@@ -9385,9 +9388,11 @@ object frmVendas: TfrmVendas
       Left = 16
       Top = 59
       Width = 121
-      Height = 21
+      Height = 19
       Hint = 'CRM do m'#233'dico que emitiu a prescri'#231#227'o.'
+      Ctl3D = False
       MaxLength = 10
+      ParentCtl3D = False
       TabOrder = 2
       OnExit = edtNRCRMExit
       OnKeyPress = edtNRCRMKeyPress
@@ -9398,7 +9403,9 @@ object frmVendas: TfrmVendas
       Width = 121
       Height = 21
       Hint = 'Data de emiss'#227'o da prescri'#231#227'o. N'#227'o pode ser superior a 180 dias.'
+      Ctl3D = False
       NumGlyphs = 2
+      ParentCtl3D = False
       TabOrder = 4
       OnExit = edtDTEMISSAOExit
       OnKeyPress = edtDTEMISSAOKeyPress
@@ -9409,8 +9416,11 @@ object frmVendas: TfrmVendas
       Width = 60
       Height = 22
       Hint = 'Unidade Federativa que emitiu o CRM do m'#233'dico prescritor.'
+      BevelKind = bkFlat
       Style = csOwnerDrawFixed
+      Ctl3D = False
       ItemHeight = 16
+      ParentCtl3D = False
       TabOrder = 3
       OnKeyPress = cmbUFKeyPress
       Items.Strings = (
@@ -9446,9 +9456,11 @@ object frmVendas: TfrmVendas
       Left = 152
       Top = 19
       Width = 342
-      Height = 21
+      Height = 19
       CharCase = ecUpperCase
+      Ctl3D = False
       MaxLength = 40
+      ParentCtl3D = False
       TabOrder = 1
       OnKeyPress = edtNMCLIEKeyPress
     end
@@ -9456,9 +9468,11 @@ object frmVendas: TfrmVendas
       Left = 152
       Top = 98
       Width = 89
-      Height = 21
+      Height = 19
       CharCase = ecUpperCase
+      Ctl3D = False
       MaxLength = 6
+      ParentCtl3D = False
       TabOrder = 5
       OnExit = edtNRCUPOExit
       OnKeyPress = edtNRCUPOKeyPress
@@ -9468,23 +9482,28 @@ object frmVendas: TfrmVendas
       Top = 98
       Width = 239
       Height = 22
+      BevelInner = bvNone
+      BevelKind = bkFlat
+      BevelOuter = bvRaised
       Style = csOwnerDrawFixed
+      Ctl3D = False
       ItemHeight = 16
+      ParentCtl3D = False
       TabOrder = 6
     end
   end
   object pnlGrid: TPanel
     Left = 0
     Top = 128
-    Width = 792
-    Height = 358
+    Width = 1018
+    Height = 419
     Align = alClient
     TabOrder = 1
     object grdConsultar: TDBGrid
       Left = 1
       Top = 1
-      Width = 790
-      Height = 242
+      Width = 1016
+      Height = 303
       TabStop = False
       Align = alClient
       Ctl3D = False
@@ -9498,10 +9517,12 @@ object frmVendas: TfrmVendas
       TitleFont.Height = -11
       TitleFont.Name = 'MS Sans Serif'
       TitleFont.Style = []
+      OnDrawColumnCell = grdConsultarDrawColumnCell
       Columns = <
         item
           Expanded = False
           FieldName = 'PRO_CDBARR'
+          Title.Alignment = taCenter
           Title.Caption = 'C'#243'd.Barras'
           Title.Font.Charset = ANSI_CHARSET
           Title.Font.Color = clWindowText
@@ -9514,6 +9535,7 @@ object frmVendas: TfrmVendas
         item
           Expanded = False
           FieldName = 'PRO_NMPROD'
+          Title.Alignment = taCenter
           Title.Caption = 'Descri'#231#227'o do Medicamento'
           Title.Font.Charset = ANSI_CHARSET
           Title.Font.Color = clWindowText
@@ -9586,6 +9608,7 @@ object frmVendas: TfrmVendas
         item
           Expanded = False
           FieldName = 'PRO_FLSITUACAO'
+          Title.Alignment = taCenter
           Title.Caption = 'Situa'#231#227'o'
           Title.Font.Charset = ANSI_CHARSET
           Title.Font.Color = clWindowText
@@ -9630,8 +9653,8 @@ object frmVendas: TfrmVendas
         end>
     end
     object Animate1: TAnimate
-      Left = 287
-      Top = 83
+      Left = 375
+      Top = 99
       Width = 220
       Height = 80
       Hint = 'Enviando Solicita'#231#227'o'
@@ -9641,10 +9664,11 @@ object frmVendas: TfrmVendas
     end
     object pnlDados: TPanel
       Left = 1
-      Top = 243
-      Width = 790
+      Top = 304
+      Width = 1016
       Height = 73
       Align = alBottom
+      Color = clWhite
       TabOrder = 2
       object Label4: TLabel
         Left = 13
@@ -9744,9 +9768,11 @@ object frmVendas: TfrmVendas
         Left = 13
         Top = 17
         Width = 137
-        Height = 21
+        Height = 19
         Hint = 'C'#243'digo de barras do medicamento.'
+        Ctl3D = False
         MaxLength = 13
+        ParentCtl3D = False
         TabOrder = 0
         OnChange = edtCDPRODChange
         OnEnter = edtCDPRODEnter
@@ -9760,8 +9786,10 @@ object frmVendas: TfrmVendas
         Height = 21
         Hint = 'Quantidade solicitada (em comprimidos ou ml).'
         AutoSize = False
+        Ctl3D = False
         DisplayFormat = ',0;'
         MaxLength = 99
+        ParentCtl3D = False
         TabOrder = 1
         OnEnter = edtQuantidadeEnter
         OnExit = edtQuantidadeExit
@@ -9775,12 +9803,14 @@ object frmVendas: TfrmVendas
         Hint = 'Valor unit'#225'rio de venda da apresenta'#231#227'o.'
         AutoSize = False
         Color = clSilver
+        Ctl3D = False
         DisplayFormat = ',0.00;-,0.00'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlue
         Font.Height = -11
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
+        ParentCtl3D = False
         ParentFont = False
         TabOrder = 4
       end
@@ -9788,17 +9818,19 @@ object frmVendas: TfrmVendas
         Left = 13
         Top = 41
         Width = 532
-        Height = 21
+        Height = 19
         Hint = 'Descri'#231#227'o do produto'
         TabStop = False
         CharCase = ecUpperCase
         Color = clSilver
+        Ctl3D = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlue
         Font.Height = -11
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         MaxLength = 13
+        ParentCtl3D = False
         ParentFont = False
         ReadOnly = True
         TabOrder = 3
@@ -9810,10 +9842,12 @@ object frmVendas: TfrmVendas
         Height = 21
         Hint = 'Quantidade di'#225'ria prescrita (Posologia em comprimidos ou ml).'
         AutoSize = False
+        Ctl3D = False
         DisplayFormat = ',0;'
         MaxLength = 2
         MaxValue = 1.000000000000000000
         MinValue = 30.000000000000000000
+        ParentCtl3D = False
         TabOrder = 2
         OnEnter = edtQTPRESCEnter
         OnExit = edtQTPRESCExit
@@ -9822,14 +9856,14 @@ object frmVendas: TfrmVendas
     end
     object pnlInferior: TPanel
       Left = 1
-      Top = 316
-      Width = 790
+      Top = 377
+      Width = 1016
       Height = 41
       Align = alBottom
       Color = clNavy
       TabOrder = 3
       object btFechar: TBitBtn
-        Left = 712
+        Left = 896
         Top = 8
         Width = 75
         Height = 25
@@ -9919,7 +9953,7 @@ object frmVendas: TfrmVendas
           0E0E0E0E0E0E0B08171B0C1B1B1B1B1B1B1B1B1B1B1B1B1B1B0C}
       end
       object btCancelar: TBitBtn
-        Left = 616
+        Left = 800
         Top = 8
         Width = 75
         Height = 25
@@ -9972,7 +10006,7 @@ object frmVendas: TfrmVendas
           1311110F0E0C0A081B1F121F1F1F1F1F1F1F1F1F1F1F1F1F1F12}
       end
       object btGravar: TBitBtn
-        Left = 528
+        Left = 712
         Top = 8
         Width = 75
         Height = 25
@@ -10137,8 +10171,8 @@ object frmVendas: TfrmVendas
       end
     end
     object Panel1: TPanel
-      Left = 168
-      Top = 176
+      Left = 224
+      Top = 128
       Width = 529
       Height = 41
       Caption = 'Enviando Confirma'#231#227'o de Venda...'
@@ -10154,8 +10188,8 @@ object frmVendas: TfrmVendas
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 486
-    Width = 792
+    Top = 547
+    Width = 1018
     Height = 19
     Panels = <
       item

@@ -2,11 +2,9 @@ inherited frmCadVendedores: TfrmCadVendedores
   Caption = 'Cadastro de Vendedores'
   OldCreateOrder = True
   OnClose = FormClose
-  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl1: TPageControl
-    ActivePage = TabSheet1
     inherited TabSheet1: TTabSheet
       object Label1: TLabel [0]
         Left = 16
@@ -68,10 +66,12 @@ inherited frmCadVendedores: TfrmCadVendedores
         Left = 16
         Top = 72
         Width = 394
-        Height = 21
+        Height = 19
         CharCase = ecUpperCase
+        Ctl3D = False
         DataField = 'VEN_NOME'
         DataSource = dsCadastro
+        ParentCtl3D = False
         TabOrder = 1
         OnExit = dbeNomeExit
       end
@@ -79,9 +79,11 @@ inherited frmCadVendedores: TfrmCadVendedores
         Left = 16
         Top = 112
         Width = 147
-        Height = 21
+        Height = 19
+        Ctl3D = False
         DataField = 'VEN_CPF'
         DataSource = dsCadastro
+        ParentCtl3D = False
         TabOrder = 2
         OnExit = dbeCPFExit
       end
@@ -89,19 +91,23 @@ inherited frmCadVendedores: TfrmCadVendedores
         Left = 16
         Top = 152
         Width = 147
-        Height = 21
+        Height = 19
+        Ctl3D = False
         DataField = 'VEN_LOGIN'
         DataSource = dsCadastro
+        ParentCtl3D = False
         TabOrder = 3
       end
       object dbeSenha: TDBEdit
         Left = 16
         Top = 192
         Width = 147
-        Height = 21
+        Height = 19
         CharCase = ecUpperCase
+        Ctl3D = False
         DataField = 'VEN_SENHA'
         DataSource = dsCadastro
+        ParentCtl3D = False
         PasswordChar = '*'
         TabOrder = 4
       end
@@ -110,12 +116,10 @@ inherited frmCadVendedores: TfrmCadVendedores
       inherited Panel2: TPanel
         inherited btnConsultar: TBitBtn
           Left = 369
-          Top = 44
           Visible = False
         end
         inherited btnAlterar: TBitBtn
-          Top = 16
-          Caption = '&Ver Registro'
+          Left = 500
         end
       end
       inherited grdConsultar: TDBGrid
@@ -123,7 +127,6 @@ inherited frmCadVendedores: TfrmCadVendedores
         OnDblClick = btnAlterarClick
         Columns = <
           item
-            Alignment = taCenter
             Expanded = False
             FieldName = 'VEN_CODIGO'
             Title.Alignment = taCenter
@@ -139,6 +142,9 @@ inherited frmCadVendedores: TfrmCadVendedores
           end>
       end
     end
+  end
+  inherited dsConsultar: TDataSource
+    Left = 188
   end
   inherited datasetConsultar: TSQLDataSet
     CommandText = 

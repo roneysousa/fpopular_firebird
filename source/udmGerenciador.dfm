@@ -1524,7 +1524,7 @@ object dmGerenciador: TdmGerenciador
       DisplayFormat = '0000000'
     end
     object cdsConsultaVendasMOV_CPFPACIENTE: TStringField
-      Alignment = taRightJustify
+      Alignment = taCenter
       FieldName = 'MOV_CPFPACIENTE'
       EditMask = '999.999.999-99;0;_'
       FixedChar = True

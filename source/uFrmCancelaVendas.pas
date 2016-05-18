@@ -104,6 +104,11 @@ type
     cdsProdutosVendasPRV_FLCANC: TStringField;
     cdsProdutosVendasPRV_QTESTORNADA: TFMTBCDField;
     lbl_registros: TLabel;
+    Panel5: TPanel;
+    sbProximo: TSpeedButton;
+    sbUltimo: TSpeedButton;
+    sbAnterior: TSpeedButton;
+    sbPrimeiro: TSpeedButton;
     procedure btFecharClick(Sender: TObject);
     procedure btEstornarClick(Sender: TObject);
     procedure btLocalizarClick(Sender: TObject);
@@ -115,6 +120,13 @@ type
     procedure BitBtn1Click(Sender: TObject);
     procedure grdConsultarDblClick(Sender: TObject);
     procedure dsConsultaDataChange(Sender: TObject; Field: TField);
+    procedure grdConsultarDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
+    procedure sbPrimeiroClick(Sender: TObject);
+    procedure sbProximoClick(Sender: TObject);
+    procedure sbAnteriorClick(Sender: TObject);
+    procedure sbUltimoClick(Sender: TObject);
   private
       Procedure CONSULTA(M_DTINIC, M_DTFINA : TDate );
     { Private declarations }
@@ -532,11 +544,53 @@ end;
 procedure TfrmCancelaVendas.dsConsultaDataChange(Sender: TObject;
   Field: TField);
 begin
+     sbPrimeiro.Enabled := (((Sender as TDataSource).DataSet.Active) and not (Sender as TDataSource).DataSet.IsEmpty) and not ((Sender as TDataSource).DataSet.Bof);
+     sbAnterior.Enabled := sbPrimeiro.Enabled;
+     sbUltimo.Enabled := (((Sender as TDataSource).DataSet.Active) and not (Sender as TDataSource).DataSet.IsEmpty) and not ((Sender as TDataSource).DataSet.Eof);
+     sbProximo.Enabled := sbUltimo.Enabled;
+
      if (dsConsulta.DataSet.Active) Then
         lbl_registros.Caption := 'Registro(s): ' + InttoStr(dsConsulta.DataSet.RecNo) + '/'+
                                  InttoStr(dsConsulta.DataSet.RecordCount)
      Else
          lbl_registros.Caption := 'Registro(s):';
+end;
+
+procedure TfrmCancelaVendas.grdConsultarDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn;
+  State: TGridDrawState);
+begin
+    if not odd(TDBGrid(Sender).DataSource.DataSet.RecNo) then
+      if not (gdSelected in State) then
+       begin
+            grdConsultar.Canvas.Brush.Color := ufuncoes.aCorGridZebrado;
+            grdConsultar.Canvas.FillRect(Rect);
+            grdConsultar.DefaultDrawDataCell(rect,Column.Field,state);
+       end;
+end;
+
+procedure TfrmCancelaVendas.sbPrimeiroClick(Sender: TObject);
+begin
+     If (dsConsulta.DataSet.Active ) Then
+        dsConsulta.DataSet.First;
+end;
+
+procedure TfrmCancelaVendas.sbProximoClick(Sender: TObject);
+begin
+     If (dsConsulta.DataSet.Active ) Then
+        dsConsulta.DataSet.Next;
+end;
+
+procedure TfrmCancelaVendas.sbAnteriorClick(Sender: TObject);
+begin
+     If (dsConsulta.DataSet.Active ) Then
+        dsConsulta.DataSet.Prior;
+end;
+
+procedure TfrmCancelaVendas.sbUltimoClick(Sender: TObject);
+begin
+     If (dsConsulta.DataSet.Active ) Then
+        dsConsulta.DataSet.Last;
 end;
 
 end.

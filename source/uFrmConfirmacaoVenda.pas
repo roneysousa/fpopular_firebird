@@ -101,6 +101,14 @@ procedure TFrmConfirmacaoVenda.DBGrid1DrawColumnCell(Sender: TObject;
 var
   Icon: TBitmap;
 begin
+    if not odd(TDBGrid(Sender).DataSource.DataSet.RecNo) then
+      if not (gdSelected in State) then
+       begin
+            DBGrid1.Canvas.Brush.Color := ufuncoes.aCorGridZebrado;
+            DBGrid1.Canvas.FillRect(Rect);
+            DBGrid1.DefaultDrawDataCell(rect,Column.Field,state);
+       end;
+
   Icon := TBitmap.Create;
   if (Column.FieldName = 'PRO_FLAUTO') then
   begin

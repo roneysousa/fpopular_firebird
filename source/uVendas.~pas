@@ -8,7 +8,7 @@ uses
   Buttons, DBXpress, ServicoSolicitacaoWS3,  Types, XSBuiltIns, InvokeRegistry, Rio, SOAPHTTPClient,
   DBCtrls, IdBaseComponent, IdComponent, IdTCPServer, IdTCPConnection,
   IdTCPClient, ComCtrls, Animate, GIFCtrl, FMTBcd, SqlExpr, DBClient,
-  OleCtrls, SHDocVw;
+  OleCtrls, SHDocVw, jpeg;
 
 type
   TfrmVendas = class(TForm)
@@ -91,6 +91,9 @@ type
     procedure dsProdutosVendasDataChange(Sender: TObject; Field: TField);
     procedure edtCDPRODChange(Sender: TObject);
     procedure edtNRCPFChange(Sender: TObject);
+    procedure grdConsultarDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
   private
     procedure INCLUIR_ITEM;
     procedure MOSTRA(aProduto : String);
@@ -699,19 +702,18 @@ end;
 
 procedure TfrmVendas.FormCreate(Sender: TObject);
 begin
-    scaled := true;
+    {scaled := true;
     if (screen.width <> ScreenWidth) then
     begin
         height := longint(height) * longint(screen.height) DIV ScreenHeight;
         width := longint(width) * longint(screen.width) DIV ScreenWidth;
         scaleBy(screen.width, ScreenWidth);
-    end;
+    end;  }
     //
     ShortDateFormat := 'dd/mm/yyyy';
     M_FLFARM := False;
     dmGerenciador.Parametros;
-    dmGerenciador.Hambiente;
-
+    dmGerenciador.Hambiente; 
 end;
 
 
@@ -2435,6 +2437,19 @@ procedure TfrmVendas.edtNRCPFChange(Sender: TObject);
 begin
     if uFuncoes.Empty(ufuncoes.RemoveChar(edtNRCPF.Text)) Then
          edtNMCLIE.Clear;
+end;
+
+procedure TfrmVendas.grdConsultarDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn;
+  State: TGridDrawState);
+begin
+    if not odd(TDBGrid(Sender).DataSource.DataSet.RecNo) then
+      if not (gdSelected in State) then
+       begin
+            grdConsultar.Canvas.Brush.Color := ufuncoes.aCorGridZebrado;
+            grdConsultar.Canvas.FillRect(Rect);
+            grdConsultar.DefaultDrawDataCell(rect,Column.Field,state);
+       end;
 end;
 
 end.

@@ -27,6 +27,9 @@ type
     procedure grdConsultarKeyPress(Sender: TObject; var Key: Char);
     procedure edtNomeKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure grdConsultarDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
   private
     procedure CONSULTA(M_NMCLIE : String);
     procedure CONFIRMAR;
@@ -128,6 +131,19 @@ begin
      IF (key = vk_Down) then
           cdsConsulta.Next;
    End;
+end;
+
+procedure TfrmLocCliente.grdConsultarDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn;
+  State: TGridDrawState);
+begin
+    if not odd(TDBGrid(Sender).DataSource.DataSet.RecNo) then
+      if not (gdSelected in State) then
+       begin
+            grdConsultar.Canvas.Brush.Color := ufuncoes.aCorGridZebrado;
+            grdConsultar.Canvas.FillRect(Rect);
+            grdConsultar.DefaultDrawDataCell(rect,Column.Field,state);
+       end;
 end;
 
 end.

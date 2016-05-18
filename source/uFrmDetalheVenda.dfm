@@ -1,10 +1,10 @@
 object frmDetalheVenda: TfrmDetalheVenda
-  Left = 253
-  Top = 293
+  Left = 275
+  Top = 239
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Produtos da Venda'
-  ClientHeight = 322
+  ClientHeight = 326
   ClientWidth = 645
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -20,14 +20,14 @@ object frmDetalheVenda: TfrmDetalheVenda
     Left = 0
     Top = 0
     Width = 645
-    Height = 281
+    Height = 285
     Align = alClient
     TabOrder = 0
     object grdConsultar: TDBGrid
       Left = 1
       Top = 1
       Width = 643
-      Height = 279
+      Height = 283
       Align = alClient
       Ctl3D = False
       DataSource = dsDados
@@ -40,6 +40,7 @@ object frmDetalheVenda: TfrmDetalheVenda
       TitleFont.Height = -11
       TitleFont.Name = 'MS Sans Serif'
       TitleFont.Style = []
+      OnDrawColumnCell = grdConsultarDrawColumnCell
       Columns = <
         item
           Alignment = taCenter
@@ -69,7 +70,6 @@ object frmDetalheVenda: TfrmDetalheVenda
           Visible = True
         end
         item
-          Alignment = taCenter
           Expanded = False
           FieldName = 'PRV_QUANTIDADE'
           Title.Alignment = taCenter
@@ -83,7 +83,6 @@ object frmDetalheVenda: TfrmDetalheVenda
           Visible = True
         end
         item
-          Alignment = taCenter
           Expanded = False
           FieldName = 'PRV_QUANTIDADE_AUTORIZADA'
           Title.Alignment = taCenter
@@ -100,7 +99,7 @@ object frmDetalheVenda: TfrmDetalheVenda
   end
   object Panel2: TPanel
     Left = 0
-    Top = 281
+    Top = 285
     Width = 645
     Height = 41
     Align = alBottom

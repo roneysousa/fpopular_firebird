@@ -4,16 +4,17 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Buttons, RXCtrls, Gradient, ExtCtrls, Grids, DBGrids;
+  Dialogs, StdCtrls, Buttons, RXCtrls, Gradient, ExtCtrls, Grids, DBGrids,
+  JvExControls, JvGradient;
 
 type
   TfrmVendaAprovada = class(TForm)
     Panel1: TPanel;
-    Gradiente1: TGradiente;
     RxLabel1: TRxLabel;
     lbl_valor: TRxLabel;
     lbl_Desconto: TRxLabel;
     btConfirma: TBitBtn;
+    JvGradient1: TJvGradient;
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btConfirmaClick(Sender: TObject);

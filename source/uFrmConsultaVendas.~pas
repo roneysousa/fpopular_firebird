@@ -25,6 +25,11 @@ type
     Memo1: TMemo;
     btnPesquisa: TBitBtn;
     HTTPRIO1: THTTPRIO;
+    Panel4: TPanel;
+    sbProximo: TSpeedButton;
+    sbUltimo: TSpeedButton;
+    sbAnterior: TSpeedButton;
+    sbPrimeiro: TSpeedButton;
     procedure edtDTINICExit(Sender: TObject);
     procedure edtDTFINAExit(Sender: TObject);
     procedure btFecharClick(Sender: TObject);
@@ -38,6 +43,13 @@ type
     procedure btnGera2ViaClick(Sender: TObject);
     procedure dsConsultaDataChange(Sender: TObject; Field: TField);
     procedure btnPesquisaClick(Sender: TObject);
+    procedure grdConsultarDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
+    procedure sbPrimeiroClick(Sender: TObject);
+    procedure sbAnteriorClick(Sender: TObject);
+    procedure sbProximoClick(Sender: TObject);
+    procedure sbUltimoClick(Sender: TObject);
   private
     Procedure CONSULTA(M_DTINIC, M_DTFINA : TDate );
     { Private declarations }
@@ -301,6 +313,11 @@ end;
 procedure TfrmConsultaVendas.dsConsultaDataChange(Sender: TObject;
   Field: TField);
 begin
+     sbPrimeiro.Enabled := (((Sender as TDataSource).DataSet.Active) and not (Sender as TDataSource).DataSet.IsEmpty) and not ((Sender as TDataSource).DataSet.Bof);
+     sbAnterior.Enabled := sbPrimeiro.Enabled;
+     sbUltimo.Enabled := (((Sender as TDataSource).DataSet.Active) and not (Sender as TDataSource).DataSet.IsEmpty) and not ((Sender as TDataSource).DataSet.Eof);
+     sbProximo.Enabled := sbUltimo.Enabled;
+
      btnGera2Via.Enabled := (dsConsulta.DataSet.Active) and not (dsConsulta.DataSet.IsEmpty);
      //
      if (dsConsulta.DataSet.Active) Then
@@ -443,6 +460,43 @@ begin
        btnPesquisa.Enabled := true;
  End;
  Application.ProcessMessages;
+end;
+
+procedure TfrmConsultaVendas.grdConsultarDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn;
+  State: TGridDrawState);
+begin
+    if not odd(TDBGrid(Sender).DataSource.DataSet.RecNo) then
+      if not (gdSelected in State) then
+       begin
+            grdConsultar.Canvas.Brush.Color := ufuncoes.aCorGridZebrado;
+            grdConsultar.Canvas.FillRect(Rect);
+            grdConsultar.DefaultDrawDataCell(rect,Column.Field,state);
+       end;
+end;
+
+procedure TfrmConsultaVendas.sbPrimeiroClick(Sender: TObject);
+begin
+     If (dsConsulta.DataSet.Active ) Then
+        dsConsulta.DataSet.First;
+end;
+
+procedure TfrmConsultaVendas.sbAnteriorClick(Sender: TObject);
+begin
+     If (dsConsulta.DataSet.Active ) Then
+        dsConsulta.DataSet.Prior;
+end;
+
+procedure TfrmConsultaVendas.sbProximoClick(Sender: TObject);
+begin
+     If (dsConsulta.DataSet.Active ) Then
+        dsConsulta.DataSet.Next;
+end;
+
+procedure TfrmConsultaVendas.sbUltimoClick(Sender: TObject);
+begin
+     If (dsConsulta.DataSet.Active ) Then
+        dsConsulta.DataSet.Last;
 end;
 
 end.

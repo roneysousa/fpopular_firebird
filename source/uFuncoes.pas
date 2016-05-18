@@ -5,7 +5,7 @@ interface
 uses
 Windows, Dialogs, Messages, SysUtils, Classes, Controls,
 StdCtrls, Mask,Db, DBTables,DBIProcs,TypInfo,WinProcs, ExtCtrls, uInfoPrincipal,
-DBXpress, SqlExpr, DBClient, Provider;
+DBXpress, SqlExpr, DBClient, Provider, Graphics;
 
 // Funcões e procedures para o sistema.
 type
@@ -63,6 +63,9 @@ const
     MSG_PERMISSOES = 'Você não tem pemissão para isto';
     MSG_ERROR = 'Ocorreu um erro!';
     chave = 'email';
+
+Var
+  aCorGridZebrado : TColor;
 
 implementation
 
