@@ -24,7 +24,7 @@ type
     Info: TStatusBar;
     mnuAjuda: TMenuItem;
     mnuSobreItem: TMenuItem;
-    ImageList1: TImageList;
+    ImageList3: TImageList;
     Cadastro1: TMenuItem;
     mnuVendaItem: TMenuItem;
     N3: TMenuItem;
@@ -48,6 +48,7 @@ type
     mnuVendedoresSubItem: TMenuItem;
     mnuConsultarPreSolitacoesItem: TMenuItem;
     WebBrowser1: TWebBrowser;
+    ImageList1: TImageList;
     procedure mnuSairItemClick(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormCreate(Sender: TObject);

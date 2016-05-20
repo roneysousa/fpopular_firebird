@@ -29,7 +29,8 @@ uses
   uFrmCadVendedores in 'uFrmCadVendedores.pas' {frmCadVendedores},
   uFrmConfirmacaoVenda in 'uFrmConfirmacaoVenda.pas' {FrmConfirmacaoVenda},
   uFrmConsultaPreSolicitacoes in 'uFrmConsultaPreSolicitacoes.pas' {FrmConsultaPreSolicitacoes},
-  ServicoSolicitacaoWS3 in 'ServicoSolicitacaoWS3.pas';
+  ServicoSolicitacaoWS3 in 'ServicoSolicitacaoWS3.pas',
+  uFrmDigitalizacao in 'uFrmDigitalizacao.pas' {FrmDigitalizacao};
 
 {$R *.res}
 

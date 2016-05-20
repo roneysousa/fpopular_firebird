@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, Buttons, Mask, ToolEdit, ExtCtrls, Grids, DBGrids, DB,
-  InvokeRegistry, Rio, SOAPHTTPClient, XSBuiltIns;
+  InvokeRegistry, Rio, SOAPHTTPClient, XSBuiltIns, ImgList;
 
 type
   TfrmConsultaVendas = class(TForm)
@@ -30,6 +30,8 @@ type
     sbUltimo: TSpeedButton;
     sbAnterior: TSpeedButton;
     sbPrimeiro: TSpeedButton;
+    bntDigitalizar: TBitBtn;
+    ImageList1: TImageList;
     procedure edtDTINICExit(Sender: TObject);
     procedure edtDTFINAExit(Sender: TObject);
     procedure btFecharClick(Sender: TObject);
@@ -50,6 +52,7 @@ type
     procedure sbAnteriorClick(Sender: TObject);
     procedure sbProximoClick(Sender: TObject);
     procedure sbUltimoClick(Sender: TObject);
+    procedure bntDigitalizarClick(Sender: TObject);
   private
     Procedure CONSULTA(M_DTINIC, M_DTFINA : TDate );
     { Private declarations }
@@ -68,7 +71,7 @@ var
 implementation
 
 uses udmGerenciador, uFrmDetalheVenda, DBClient, uInfoPrincipal, uFuncoes,
-  ServicoSolicitacaoWS2;
+  ServicoSolicitacaoWS2, uFrmDigitalizacao;
 
 {$R *.dfm}
 
@@ -151,21 +154,21 @@ end;
 
 procedure TfrmConsultaVendas.btLocalizarClick(Sender: TObject);
 begin
-      If (edtDTINIC.Text <> '  /  /    ')
-        and (edtDTFINA.Text <> '  /  /    ') Then
-          CONSULTA(edtDTINIC.Date, edtDTFINA.Date);
-      //
-      If (edtDTINIC.Text = '  /  /    ') Then
+      If uFuncoes.Empty(uFuncoes.RemoveChar(edtDTINIC.Text)) Then
         begin
              edtDTINIC.SetFocus;
              Exit;
         End;
       //
-      If (edtDTFINA.Text = '  /  /    ') Then
+      If uFuncoes.Empty(uFuncoes.RemoveChar(edtDTFINA.Text)) Then
         begin
              edtDTFINA.SetFocus;
              Exit;
         End;
+       //
+      If not uFuncoes.Empty(uFuncoes.RemoveChar(edtDTINIC.Text))
+        and not uFuncoes.Empty(uFuncoes.RemoveChar(edtDTFINA.Text)) Then
+          CONSULTA(edtDTINIC.Date, edtDTFINA.Date);
 end;
 
 procedure TfrmConsultaVendas.FormShow(Sender: TObject);
@@ -173,7 +176,7 @@ begin
     edtDTINIC.Date := Date();
     edtDTFINA.Date := Date();
     //
-    btnGera2Via.Enabled := False;
+    btnGera2Via.Visible := False;
     //
     btLocalizar.SetFocus;
 end;
@@ -318,7 +321,8 @@ begin
      sbUltimo.Enabled := (((Sender as TDataSource).DataSet.Active) and not (Sender as TDataSource).DataSet.IsEmpty) and not ((Sender as TDataSource).DataSet.Eof);
      sbProximo.Enabled := sbUltimo.Enabled;
 
-     btnGera2Via.Enabled := (dsConsulta.DataSet.Active) and not (dsConsulta.DataSet.IsEmpty);
+    // btnGera2Via.Enabled := (dsConsulta.DataSet.Active) and not (dsConsulta.DataSet.IsEmpty);
+     bntDigitalizar.Enabled := (dsConsulta.DataSet.Active) and not (dsConsulta.DataSet.IsEmpty) and (dsConsulta.DataSet.FieldByName('MOV_FLSITU').AsString = 'F');
      //
      if (dsConsulta.DataSet.Active) Then
          lbl_registros.Caption := 'Registro(s): ' + InttoStr(dsConsulta.DataSet.RecNo) + '/'+
@@ -473,6 +477,16 @@ begin
             grdConsultar.Canvas.FillRect(Rect);
             grdConsultar.DefaultDrawDataCell(rect,Column.Field,state);
        end;
+      // Imagens
+      if Column.Field = dsConsulta.DataSet.FieldByName('DIGITALIZACAO') then
+       begin
+            grdConsultar.Canvas.FillRect(Rect);
+            ImageList1.Draw(grdConsultar.Canvas,Rect.Left+10,Rect.Top+1,0);
+            if (dsConsulta.DataSet.FieldByName('DIGITALIZACAO').AsBoolean) then
+                ImageList1.Draw(grdConsultar.Canvas,Rect.Left+10,Rect.Top+1,0)
+            else
+                ImageList1.Draw(grdConsultar.Canvas,Rect.Left+10,Rect.Top+1,1);
+       end;     // if Column.Field = dsConsulta.DataSet.FieldByName('DIGITALIZACAO') then
 end;
 
 procedure TfrmConsultaVendas.sbPrimeiroClick(Sender: TObject);
@@ -497,6 +511,34 @@ procedure TfrmConsultaVendas.sbUltimoClick(Sender: TObject);
 begin
      If (dsConsulta.DataSet.Active ) Then
         dsConsulta.DataSet.Last;
+end;
+
+procedure TfrmConsultaVendas.bntDigitalizarClick(Sender: TObject);
+Var
+    idRegistro : Integer;
+begin
+     if not (dsConsulta.DataSet.IsEmpty) Then
+     begin
+          idRegistro := dsConsulta.DataSet.FieldByName('MOV_CODSOLICITACAO').AsInteger;
+          Application.CreateForm(TFrmDigitalizacao, FrmDigitalizacao);
+          Try
+                uFrmDigitalizacao.idVenda := idRegistro;
+                uFrmDigitalizacao.aCupom := uFuncoes.StrZero(dsConsulta.DataSet.FieldByName('MOV_NRCUPOM').AsString,6);
+                uFrmDigitalizacao.aCPF   := dsConsulta.DataSet.FieldByName('MOV_CPFPACIENTE').AsString;
+                uFrmDigitalizacao.aNome  := dsConsulta.DataSet.FieldByName('MOV_NOMEPESSOA').AsString;
+                uFrmDigitalizacao.aData  := dsConsulta.DataSet.FieldByName('MOV_DTVENDA').AsString;
+                uFrmDigitalizacao.aNumAutorizacao := dsConsulta.DataSet.FieldByName('MOV_AUTORIZACAO').AsString;
+                //
+                FrmDigitalizacao.ShowModal;
+          Finally
+                FrmDigitalizacao.Free;
+          End;
+          //
+          btLocalizarClick(Self);
+          //
+          if not (dsConsulta.DataSet.IsEmpty) Then
+             dsConsulta.DataSet.Locate('MOV_CODSOLICITACAO', idRegistro,[]) ;
+     End;
 end;
 
 end.

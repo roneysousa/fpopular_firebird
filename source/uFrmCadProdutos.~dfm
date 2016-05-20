@@ -203,6 +203,7 @@ inherited frmCadProdutos: TfrmCadProdutos
         DataSource = dsConsultar
         Columns = <
           item
+            Alignment = taRightJustify
             Expanded = False
             FieldName = 'PRO_BARRAS'
             Title.Caption = 'BARRAS'

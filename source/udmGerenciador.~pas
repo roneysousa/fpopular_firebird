@@ -524,6 +524,14 @@ type
     cdsMedicosMED_NOME: TStringField;
     dstVendasMOV_CRM_MEDICO: TStringField;
     cdsVendasMOV_CRM_MEDICO: TStringField;
+    cdsConsultaVendasDIGITALIZACAO: TBooleanField;
+    dstDocumentosVenda: TSQLDataSet;
+    dstDocumentosVendaMOV_CODSOLICITACAO: TIntegerField;
+    dstDocumentosVendaMOV_IMG_RECEITA: TGraphicField;
+    dstDocumentosVendaMOV_IMG_CUPOM_FISCAL: TGraphicField;
+    dstDocumentosVendaMOV_DOC_IDENTIFICACAO: TGraphicField;
+    dstDocumentosVendaMOV_DOC_PROCURACAO: TGraphicField;
+    dstDocumentosVendaMOV_DOC_CARTA: TGraphicField;
     procedure dspConfigGetTableName(Sender: TObject; DataSet: TDataSet;
       var TableName: String);
     procedure dspMedicosGetTableName(Sender: TObject;
@@ -596,6 +604,7 @@ type
     Function SetAtualizaConfirmaPreSolicitacao(aAutorizacao : String): Boolean;
     Function EstornarVenda(iNumVenda : Integer; aNumAutorizacao : String): Boolean;
     Function ExcluirVenda(iNumVenda : Integer): Boolean;
+    Function VerificarDocumentosVenda(idVenda: Integer): Boolean;
     { Public declarations }
   end;
 
@@ -790,10 +799,16 @@ end;
 
 procedure TdmGerenciador.cdsConsultaVendasCalcFields(DataSet: TDataSet);
 begin
-      If (cdsConsultaVendas.FieldByName('MOV_FLSITU').AsString = 'F') Then
-         cdsConsultaVendas.FieldByName('MOV_SITUACAO').AsString := 'FECHADA'
-      Else
-         cdsConsultaVendas.FieldByName('MOV_SITUACAO').AsString := 'CANCELADA';
+    If (cdsConsultaVendas.State = dsInternalCalc) Then
+     begin
+        If (cdsConsultaVendas.FieldByName('MOV_FLSITU').AsString = 'F') Then
+           cdsConsultaVendas.FieldByName('MOV_SITUACAO').AsString := 'FECHADA'
+        Else
+           cdsConsultaVendas.FieldByName('MOV_SITUACAO').AsString := 'CANCELADA';
+        //
+        cdsConsultaVendas.FieldByName('DIGITALIZACAO').AsBoolean :=
+              VerificarDocumentosVenda(cdsConsultaVendas.FieldByName('MOV_CODSOLICITACAO').AsInteger);
+     End;
 end;
 
 function TdmGerenciador.PROCURAR_PRODUTO2(M_CDPROD: String): boolean;
@@ -1867,6 +1882,33 @@ begin
     finally
       free;
     end;
+end;
+
+function TdmGerenciador.VerificarDocumentosVenda(
+  idVenda: Integer): Boolean;
+var
+    qraux : TSQLquery;
+    texto : string;
+begin
+  Result := False;
+  texto := 'Select MOV_CODSOLICITACAO, MOV_IMG_RECEITA, MOV_IMG_CUPOM_FISCAL, ';
+  texto := texto + ' MOV_DOC_IDENTIFICACAO, MOV_DOC_PROCURACAO, MOV_DOC_CARTA  ';
+  texto := texto + ' from VENDAS where (MOV_CODSOLICITACAO = :pvenda) ';
+  //
+  QrAux := TSQLquery.Create(nil);
+  with QrAux do
+      Try
+         SQLConnection := sqlConnGerenciador;
+         sql.Add(texto);
+         Params.ParamByName('pvenda').AsInteger := idVenda;
+         Open;
+         //
+         if not (IsEmpty) Then
+           if not (FieldByName('MOV_IMG_RECEITA').IsNull) Then
+               Result := True;
+    finally
+      free;
+    end;  
 end;
 
 end.

@@ -123,7 +123,7 @@ object frmCancelaVendas: TfrmCancelaVendas
       Width = 75
       Height = 25
       Hint = 'Fechar a janela'
-      Caption = '&Fechar'
+      Caption = '&Sair'
       TabOrder = 0
       OnClick = btFecharClick
       Glyph.Data = {

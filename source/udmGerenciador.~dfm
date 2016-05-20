@@ -5,7 +5,7 @@ object dmGerenciador: TdmGerenciador
   Left = 238
   Top = 129
   Height = 565
-  Width = 764
+  Width = 848
   object sqlConnGerenciador: TSQLConnection
     ConnectionName = 'GERENCIADOR'
     DriverName = 'UIB FireBird15'
@@ -28,6 +28,7 @@ object dmGerenciador: TdmGerenciador
       'WaitOnLocks=True')
     VendorLib = 'C:\INFOG2\fbclient.dll'
     BeforeConnect = sqlConnGerenciadorBeforeConnect
+    Connected = True
     Left = 40
     Top = 8
   end
@@ -1570,10 +1571,9 @@ object dmGerenciador: TdmGerenciador
       FieldName = 'MOV_DTCANCELAMENTO'
     end
     object cdsConsultaVendasMOV_SITUACAO: TStringField
-      FieldKind = fkCalculated
+      FieldKind = fkInternalCalc
       FieldName = 'MOV_SITUACAO'
       Size = 15
-      Calculated = True
     end
     object cdsConsultaVendasMOV_TEXTO_CUPOM: TMemoField
       FieldName = 'MOV_TEXTO_CUPOM'
@@ -1582,6 +1582,10 @@ object dmGerenciador: TdmGerenciador
     object cdsConsultaVendasMOV_CUPOM_VINCULADO: TMemoField
       FieldName = 'MOV_CUPOM_VINCULADO'
       BlobType = ftMemo
+    end
+    object cdsConsultaVendasDIGITALIZACAO: TBooleanField
+      FieldKind = fkInternalCalc
+      FieldName = 'DIGITALIZACAO'
     end
   end
   object dstProdutos: TSQLDataSet
@@ -2980,6 +2984,52 @@ object dmGerenciador: TdmGerenciador
     object cdsAtualizarVendaMOV_CUPOM_VINCULADO: TMemoField
       FieldName = 'MOV_CUPOM_VINCULADO'
       BlobType = ftMemo
+    end
+  end
+  object dstDocumentosVenda: TSQLDataSet
+    CommandText = 
+      'select MOV_CODSOLICITACAO, MOV_IMG_RECEITA, MOV_IMG_CUPOM_FISCAL' +
+      ', MOV_DOC_IDENTIFICACAO, MOV_DOC_PROCURACAO, MOV_DOC_CARTA from ' +
+      'VENDAS'#13#10'where (MOV_CODSOLICITACAO = :pvenda)'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'pvenda'
+        ParamType = ptInput
+      end>
+    SQLConnection = sqlConnGerenciador
+    Left = 744
+    Top = 16
+    object dstDocumentosVendaMOV_CODSOLICITACAO: TIntegerField
+      FieldName = 'MOV_CODSOLICITACAO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object dstDocumentosVendaMOV_IMG_RECEITA: TGraphicField
+      FieldName = 'MOV_IMG_RECEITA'
+      ProviderFlags = [pfInUpdate]
+      BlobType = ftGraphic
+    end
+    object dstDocumentosVendaMOV_IMG_CUPOM_FISCAL: TGraphicField
+      FieldName = 'MOV_IMG_CUPOM_FISCAL'
+      ProviderFlags = [pfInUpdate]
+      BlobType = ftGraphic
+    end
+    object dstDocumentosVendaMOV_DOC_IDENTIFICACAO: TGraphicField
+      FieldName = 'MOV_DOC_IDENTIFICACAO'
+      ProviderFlags = [pfInUpdate]
+      BlobType = ftGraphic
+    end
+    object dstDocumentosVendaMOV_DOC_PROCURACAO: TGraphicField
+      FieldName = 'MOV_DOC_PROCURACAO'
+      ProviderFlags = [pfInUpdate]
+      BlobType = ftGraphic
+    end
+    object dstDocumentosVendaMOV_DOC_CARTA: TGraphicField
+      FieldName = 'MOV_DOC_CARTA'
+      ProviderFlags = [pfInUpdate]
+      BlobType = ftGraphic
     end
   end
 end

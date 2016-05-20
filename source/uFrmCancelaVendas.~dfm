@@ -391,6 +391,7 @@ object frmCancelaVendas: TfrmCancelaVendas
           3939393939393939393939393939393939393939393939393939}
         ParentShowHint = False
         ShowHint = True
+        OnClick = sbProximoClick
       end
       object sbUltimo: TSpeedButton
         Left = 5
@@ -416,6 +417,7 @@ object frmCancelaVendas: TfrmCancelaVendas
           7777777777777777777777777777777777777777777777777777}
         ParentShowHint = False
         ShowHint = True
+        OnClick = sbUltimoClick
       end
       object sbAnterior: TSpeedButton
         Left = 5
@@ -480,6 +482,7 @@ object frmCancelaVendas: TfrmCancelaVendas
           3131313131313131313131313131313131313131313131313131}
         ParentShowHint = False
         ShowHint = True
+        OnClick = sbAnteriorClick
       end
       object sbPrimeiro: TSpeedButton
         Left = 5
@@ -505,6 +508,7 @@ object frmCancelaVendas: TfrmCancelaVendas
           7777777777777777777777777777777777777777777777777777}
         ParentShowHint = False
         ShowHint = True
+        OnClick = sbPrimeiroClick
       end
     end
   end
