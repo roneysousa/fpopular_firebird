@@ -322,6 +322,7 @@ end;
 procedure TfrmCadastro.FormShow(Sender: TObject);
 begin
     habilitaCampos(False);
+    PageControl1.ActivePageIndex := 0;
 end;
 
 procedure TfrmCadastro.grdConsultarDrawColumnCell(Sender: TObject;

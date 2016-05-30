@@ -22,7 +22,7 @@ object frmCadastro: TfrmCadastro
     Top = 29
     Width = 607
     Height = 312
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet

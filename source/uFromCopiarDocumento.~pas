@@ -1,0 +1,231 @@
+unit uFromCopiarDocumento;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, StdCtrls, Buttons, DB, Mask, DBCtrls, Grids,
+  DBGrids, Clipbrd, ToolEdit;
+
+type
+  TFromCopiarDocumento = class(TForm)
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    btnOK: TBitBtn;
+    BitBtn2: TBitBtn;
+    Panel4: TPanel;
+    Panel5: TPanel;
+    grdConsultar: TDBGrid;
+    Label1: TLabel;
+    DBEdit1: TDBEdit;
+    dsCadastro: TDataSource;
+    dbiDocumento: TDBImage;
+    Label2: TLabel;
+    edtDTINIC: TDateEdit;
+    Label3: TLabel;
+    edtDTFINA: TDateEdit;
+    btLocalizar: TBitBtn;
+    procedure FormShow(Sender: TObject);
+    procedure dsCadastroDataChange(Sender: TObject; Field: TField);
+    procedure dbiDocumentoClick(Sender: TObject);
+    procedure grdConsultarDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
+    procedure btnOKClick(Sender: TObject);
+    procedure edtDTINICExit(Sender: TObject);
+    procedure edtDTINICKeyPress(Sender: TObject; var Key: Char);
+    procedure edtDTFINAExit(Sender: TObject);
+    procedure edtDTFINAKeyPress(Sender: TObject; var Key: Char);
+    procedure btLocalizarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FromCopiarDocumento: TFromCopiarDocumento;
+  aNomeCampo, aCPF, aNumeroVenda : String;
+
+implementation
+
+uses udmGerenciador, ufuncoes;
+
+{$R *.dfm}
+
+procedure TFromCopiarDocumento.FormShow(Sender: TObject);
+begin
+     Caption := 'Copiar Documento - ';
+     if (dsCadastro.DataSet.IsEmpty) Then
+         btLocalizarClick(Self);
+     //
+     dbiDocumento.DataField := aNomeCampo;
+     //
+     btnOK.Enabled := False;
+     if (aNomeCampo = 'MOV_IMG_RECEITA') and
+         not (dsCadastro.DataSet.FieldByName('MOV_IMG_RECEITA').IsNull) Then
+         begin
+            btnOK.Enabled := True;
+            Exit;
+         End;
+     if (aNomeCampo = 'MOV_IMG_CUPOM_FISCAL') and
+         not (dsCadastro.DataSet.FieldByName('MOV_IMG_CUPOM_FISCAL').IsNull) Then
+         begin
+            btnOK.Enabled := True;
+            Exit;
+         End;
+     if (aNomeCampo = 'MOV_DOC_IDENTIFICACAO') and
+         not (dsCadastro.DataSet.FieldByName('MOV_DOC_IDENTIFICACAO').IsNull) Then
+         begin
+            btnOK.Enabled := True;
+            Exit;
+         End;
+     if (aNomeCampo = 'MOV_DOC_PROCURACAO') and
+        not (dsCadastro.DataSet.FieldByName('MOV_DOC_PROCURACAO').IsNull) Then
+         begin
+            btnOK.Enabled := True;
+            Exit;
+         End;
+     if (aNomeCampo = 'MOV_DOC_CARTA') and
+         not (dsCadastro.DataSet.FieldByName('MOV_DOC_CARTA').IsNull) Then
+         begin
+            btnOK.Enabled := True;
+            Exit;
+         End;
+end;
+
+procedure TFromCopiarDocumento.dsCadastroDataChange(Sender: TObject;
+  Field: TField);
+begin
+     if (aNomeCampo = 'MOV_IMG_RECEITA') Then
+        btnOK.Enabled := not (dsCadastro.DataSet.FieldByName('MOV_IMG_RECEITA').IsNull);
+     if (aNomeCampo = 'MOV_IMG_CUPOM_FISCAL') Then
+        btnOK.Enabled := not (dsCadastro.DataSet.FieldByName('MOV_IMG_CUPOM_FISCAL').IsNull);
+     if (aNomeCampo = 'MOV_DOC_IDENTIFICACAO') Then
+        btnOK.Enabled := not (dsCadastro.DataSet.FieldByName('MOV_DOC_IDENTIFICACAO').IsNull);
+     if (aNomeCampo = 'MOV_DOC_PROCURACAO') Then
+        btnOK.Enabled := not (dsCadastro.DataSet.FieldByName('MOV_DOC_PROCURACAO').IsNull);
+     if (aNomeCampo = 'MOV_DOC_CARTA') Then
+        btnOK.Enabled := not (dsCadastro.DataSet.FieldByName('MOV_DOC_CARTA').IsNull);
+end;
+
+procedure TFromCopiarDocumento.dbiDocumentoClick(Sender: TObject);
+begin
+     grdConsultar.SetFocus;
+end;
+
+procedure TFromCopiarDocumento.grdConsultarDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn;
+  State: TGridDrawState);
+begin
+    if not odd(TDBGrid(Sender).DataSource.DataSet.RecNo) then
+      if not (gdSelected in State) then
+       begin
+            grdConsultar.Canvas.Brush.Color := ufuncoes.aCorGridZebrado;
+            grdConsultar.Canvas.FillRect(Rect);
+            grdConsultar.DefaultDrawDataCell(rect,Column.Field,state);
+       end;
+end;
+
+procedure TFromCopiarDocumento.btnOKClick(Sender: TObject);
+begin
+     ModalResult := mrOk;  
+end;
+
+procedure TFromCopiarDocumento.edtDTINICExit(Sender: TObject);
+begin
+    If not uFuncoes.Empty(uFuncoes.RemoveChar(edtDTINIC.Text)) Then
+    Begin
+        try
+            StrToDate(edtDTINIC.Text);
+            edtDTINIC.Date := StrToDate(edtDTINIC.Text);
+            //
+            If (edtDTINIC.Date > Date()) Then
+              begin
+                   edtDTINIC.SetFocus;
+                   Exit;
+              End;
+        except
+          on EConvertError do
+          Begin
+               ShowMessage ('Data Inválida!');
+               edtDTINIC.SetFocus;
+               Exit;
+          End;
+        end;
+    End;
+end;
+
+procedure TFromCopiarDocumento.edtDTINICKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+     If (key = #13) and not uFuncoes.Empty(uFuncoes.RemoveChar(edtDTINIC.Text)) Then
+      begin
+           Key := #0;
+           edtDTFINA.SetFocus;
+      End;
+end;
+
+procedure TFromCopiarDocumento.edtDTFINAExit(Sender: TObject);
+begin
+    If not uFuncoes.Empty(uFuncoes.RemoveChar(edtDTFINA.Text)) Then
+    Begin
+        try
+            StrToDate(edtDTFINA.Text);
+            edtDTFINA.Date := StrToDate(edtDTFINA.Text);
+            //
+            If (edtDTFINA.Date > Date())
+            or (edtDTFINA.Date < edtDTINIC.date) Then
+              begin
+                   edtDTFINA.SetFocus;
+                   Exit;
+              End;
+        except
+          on EConvertError do
+          Begin
+               ShowMessage ('Data Inválida!');
+               edtDTFINA.SetFocus;
+               Exit;
+          End;
+        end;
+    End;
+end;
+
+procedure TFromCopiarDocumento.edtDTFINAKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+     If (key = #13) and not uFuncoes.Empty(uFuncoes.RemoveChar(edtDTFINA.Text)) Then
+      begin
+           Key := #0;
+           btLocalizar.SetFocus;
+      End;
+end;
+
+procedure TFromCopiarDocumento.btLocalizarClick(Sender: TObject);
+Var
+   aDtInicio, aDtFinal : TDatetime;
+begin
+     //
+     If not ufuncoes.Empty(ufuncoes.RemoveChar(edtDTINIC.Text)) Then
+         aDtInicio := edtDTINIC.Date
+     Else
+         aDtInicio := StrtoDate('01/01/2006');
+     //    
+     If not ufuncoes.Empty(ufuncoes.RemoveChar(edtDTFINA.Text)) Then
+         aDtFinal := edtDTFINA.Date
+     Else
+         aDtFinal := Date();
+     //
+     btnOK.Enabled := False;
+     //
+     btLocalizar.Enabled := False;
+     Try
+         dmGerenciador.AbrirVendaCliente(aCPF, aNumeroVenda, aDtInicio , aDtFinal);
+     Finally
+          btLocalizar.Enabled := True;
+     End;
+     Application.ProcessMessages;
+end;
+
+end.

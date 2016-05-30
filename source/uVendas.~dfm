@@ -58,9 +58,9 @@ object frmVendas: TfrmVendas
     object Label8: TLabel
       Left = 152
       Top = 3
-      Width = 73
+      Width = 88
       Height = 13
-      Caption = 'N&ome Paciente'
+      Caption = 'N&ome do Paciente'
       FocusControl = edtNMCLIE
       Transparent = True
     end

@@ -45,6 +45,34 @@ object frmConsultaVendas: TfrmConsultaVendas
       Caption = #224
       Transparent = True
     end
+    object Label3: TLabel
+      Left = 292
+      Top = 11
+      Width = 65
+      Height = 13
+      Caption = 'CPF P&aciente'
+      FocusControl = edtNRCPF
+      Transparent = True
+    end
+    object spLocCliente: TSpeedButton
+      Left = 389
+      Top = 26
+      Width = 23
+      Height = 22
+      Hint = 'Localizar Cliente'
+      Enabled = False
+      Flat = True
+      Glyph.Data = {
+        F6000000424DF600000000000000760000002800000010000000100000000100
+        0400000000008000000000000000000000001000000000000000000000000000
+        80000080000000808000800000008000800080800000C0C0C000808080000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00777777777777
+        7777777777777777777777770077777777777770FF077777777777077FF07777
+        7777770777FF077777777770777FFF00777777790777F1111077777790771117
+        0B77777770799170B77777777709990B77777777770990B77777777777090B77
+        777777777770B777777777777777777777777777777777777777}
+      Visible = False
+    end
     object edtDTINIC: TDateEdit
       Left = 16
       Top = 27
@@ -72,7 +100,7 @@ object frmConsultaVendas: TfrmConsultaVendas
       OnKeyPress = edtDTFINAKeyPress
     end
     object btLocalizar: TBitBtn
-      Left = 290
+      Left = 424
       Top = 23
       Width = 75
       Height = 25
@@ -89,6 +117,19 @@ object frmConsultaVendas: TfrmConsultaVendas
         4447444444474444444744B444444B44444744B444744B44444744B444744B44
         44477444444444444477774B44474B4447777744444744444777777444777444
         77777774B47774B4777777744477744477777777777777777777}
+    end
+    object edtNRCPF: TMaskEdit
+      Left = 292
+      Top = 27
+      Width = 95
+      Height = 19
+      Hint = 'CPF do paciente.'
+      Ctl3D = False
+      EditMask = '999.999.999-99;0;_'
+      MaxLength = 14
+      ParentCtl3D = False
+      TabOrder = 3
+      OnKeyPress = edtNRCPFKeyPress
     end
   end
   object Panel3: TPanel
@@ -618,8 +659,8 @@ object frmConsultaVendas: TfrmConsultaVendas
   object dsConsulta: TDataSource
     DataSet = dmGerenciador.cdsConsultaVendas
     OnDataChange = dsConsultaDataChange
-    Left = 400
-    Top = 16
+    Left = 704
+    Top = 8
   end
   object HTTPRIO1: THTTPRIO
     HTTPWebNode.Agent = 'Borland SOAP 1.2'

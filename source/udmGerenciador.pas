@@ -5,7 +5,7 @@ interface
 uses
   SysUtils, Classes, DBXpress, DB, SqlExpr, DBTables, FMTBcd, Provider,
   DBClient, InvokeRegistry, Rio, SOAPHTTPClient, Forms, Dialogs,
-  AppEvnts, Windows, FileCtrl, MidasLib, Graphics;
+  AppEvnts, Windows, FileCtrl, MidasLib, Graphics, ExtCtrls;
 
 type
   TdmGerenciador = class(TDataModule)
@@ -540,6 +540,38 @@ type
     cdsDocumentosVendaMOV_DOC_IDENTIFICACAO: TGraphicField;
     cdsDocumentosVendaMOV_DOC_PROCURACAO: TGraphicField;
     cdsDocumentosVendaMOV_DOC_CARTA: TGraphicField;
+    dstDocumentosVendas: TSQLDataSet;
+    dstDocumentosVendasMOV_CODSOLICITACAO: TIntegerField;
+    dstDocumentosVendasMOV_CPFPACIENTE: TStringField;
+    dstDocumentosVendasMOV_DTVENDA: TDateField;
+    dstDocumentosVendasMOV_FLSITU: TStringField;
+    dstDocumentosVendasMOV_IMG_RECEITA: TGraphicField;
+    dstDocumentosVendasMOV_IMG_CUPOM_FISCAL: TGraphicField;
+    dstDocumentosVendasMOV_DOC_IDENTIFICACAO: TGraphicField;
+    dstDocumentosVendasMOV_DOC_PROCURACAO: TGraphicField;
+    dstDocumentosVendasMOV_DOC_CARTA: TGraphicField;
+    dspDocumentosVendas: TDataSetProvider;
+    cdsDocumentosVendas: TClientDataSet;
+    cdsDocumentosVendasMOV_CODSOLICITACAO: TIntegerField;
+    cdsDocumentosVendasMOV_CPFPACIENTE: TStringField;
+    cdsDocumentosVendasMOV_DTVENDA: TDateField;
+    cdsDocumentosVendasMOV_FLSITU: TStringField;
+    cdsDocumentosVendasMOV_IMG_RECEITA: TGraphicField;
+    cdsDocumentosVendasMOV_IMG_CUPOM_FISCAL: TGraphicField;
+    cdsDocumentosVendasMOV_DOC_IDENTIFICACAO: TGraphicField;
+    cdsDocumentosVendasMOV_DOC_PROCURACAO: TGraphicField;
+    cdsDocumentosVendasMOV_DOC_CARTA: TGraphicField;
+    dstDocumentosVendasMOV_NRCUPOM: TIntegerField;
+    cdsDocumentosVendasMOV_NRCUPOM: TIntegerField;
+    dstCliente: TSQLDataSet;
+    dspCliente: TDataSetProvider;
+    dstClientePAC_CPF: TStringField;
+    dstClientePAC_NOME: TStringField;
+    dstClientePAC_IMG_IDENTIDADE: TGraphicField;
+    cdsCliente: TClientDataSet;
+    cdsClientePAC_CPF: TStringField;
+    cdsClientePAC_NOME: TStringField;
+    cdsClientePAC_IMG_IDENTIDADE: TGraphicField;
     procedure dspConfigGetTableName(Sender: TObject; DataSet: TDataSet;
       var TableName: String);
     procedure dspMedicosGetTableName(Sender: TObject;
@@ -613,6 +645,8 @@ type
     Function EstornarVenda(iNumVenda : Integer; aNumAutorizacao : String): Boolean;
     Function ExcluirVenda(iNumVenda : Integer): Boolean;
     Function VerificarDocumentosVenda(idVenda: Integer): Boolean;
+    Function AbrirVendaCliente(aCPF, aCodVenda : String; aDataIni, aDataFim : TDatetime): Boolean;
+    Function GravarDocumentoIdentidadeBanco(aCPF : String; objImage : TImage): Boolean;
     { Public declarations }
   end;
 
@@ -1917,6 +1951,81 @@ begin
     finally
       free;
     end;  
+end;
+
+function TdmGerenciador.AbrirVendaCliente(aCPF, aCodVenda: String; aDataIni,
+  aDataFim: TDatetime): Boolean;
+Var
+   aTextoSQL : String;
+begin
+     Result := False;
+     aTextoSQL := 'SELECT V.MOV_CODSOLICITACAO, V.MOV_CPFPACIENTE, V.MOV_DTVENDA, V.MOV_FLSITU, ';
+     aTextoSQL := aTextoSQL + ' V.MOV_IMG_RECEITA, V.MOV_IMG_CUPOM_FISCAL, V.MOV_DOC_IDENTIFICACAO, V.MOV_DOC_PROCURACAO, ';
+     aTextoSQL := aTextoSQL + ' V.MOV_DOC_CARTA, V.MOV_NRCUPOM ';
+     aTextoSQL := aTextoSQL + ' FROM VENDAS V WHERE (V.mov_cpfpaciente = :pCPF) AND (V.MOV_FLSITU = '+QuotedStr('F')+') ';
+     aTextoSQL := aTextoSQL + ' and (V.MOV_DTVENDA >= :pDTINIC) and (V.MOV_DTVENDA <= :pDTFINAL)  ';
+     if not uFuncoes.Empty(aCodVenda) then
+        aTextoSQL := aTextoSQL + ' and (V.MOV_CODSOLICITACAO <> '+QuotedStr( aCodVenda )+' ) ';
+     aTextoSQL := aTextoSQL + ' ORDER BY V.MOV_CODSOLICITACAO DESC ';
+     //
+     With cdsDocumentosVendas do
+     begin
+          DisableControls;
+          Close;
+          CommandText := aTextoSQL;
+          Params.ParamByName('pCPF').AsString       := aCPF;
+          Params.ParamByName('pDTINIC').AsDateTime  := aDataIni;
+          Params.ParamByName('pDTFINAL').AsDateTime := aDataFim;
+          Open;
+          //
+          if not (IsEmpty) then
+             Result := True;
+          //
+          EnableControls;
+     End;
+end;
+
+function TdmGerenciador.GravarDocumentoIdentidadeBanco( aCPF : String;
+  objImage: TImage): Boolean;
+Var
+   qraux : TSQLquery;
+   texto : string;
+   msFoto: TMemoryStream;
+begin
+     Result := false;
+     //
+     msFoto := TMemoryStream.Create;
+     objImage.Picture.Graphic.SaveToStream(msFoto);
+     msFoto.Position := 0;
+     //
+     texto := 'Update PACIENTES set PAC_IMG_IDENTIDADE = :pfoto where (PAC_CPF = :pcpf)';
+     //
+     dmGerenciador.Start;
+     Try
+       QrAux := TSQLquery.Create(nil);
+       Try
+           With QrAux do
+           begin
+                SQLConnection := dmGerenciador.sqlConnGerenciador;
+                sql.Add(texto);
+                Params.ParamByName('pcpf').AsString  := uFuncoes.RemoveChar(aCPF);
+                Params.ParamByName('pfoto').LoadFromStream(msFoto, ftBlob);
+                ExecSQL();
+           End;
+           // Grava dados
+           dmGerenciador.Comit(dmGerenciador.Transc);
+
+           Result := True;
+
+       Except
+            on e: exception do
+             begin
+                  Showmessage('Erro ao tentar gravar documento!'+#13+e.Message);
+             End;
+       End;
+     Finally
+          qraux.Free;
+     End;
 end;
 
 end.

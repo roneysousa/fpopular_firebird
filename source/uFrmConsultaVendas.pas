@@ -32,6 +32,9 @@ type
     sbPrimeiro: TSpeedButton;
     bntDigitalizar: TBitBtn;
     ImageList1: TImageList;
+    edtNRCPF: TMaskEdit;
+    Label3: TLabel;
+    spLocCliente: TSpeedButton;
     procedure edtDTINICExit(Sender: TObject);
     procedure edtDTFINAExit(Sender: TObject);
     procedure btFecharClick(Sender: TObject);
@@ -53,8 +56,9 @@ type
     procedure sbProximoClick(Sender: TObject);
     procedure sbUltimoClick(Sender: TObject);
     procedure bntDigitalizarClick(Sender: TObject);
+    procedure edtNRCPFKeyPress(Sender: TObject; var Key: Char);
   private
-    Procedure CONSULTA(M_DTINIC, M_DTFINA : TDate );
+    Procedure CONSULTA(M_DTINIC, M_DTFINA : TDate ; aCPF : String);
     { Private declarations }
   public
     { Public declarations }
@@ -131,11 +135,22 @@ begin
      Close;
 end;
 
-procedure TfrmConsultaVendas.CONSULTA(M_DTINIC, M_DTFINA: TDate);
+procedure TfrmConsultaVendas.CONSULTA(M_DTINIC, M_DTFINA: TDate; aCPF : String);
+Var
+   aTextoSQL : String;
 begin
+     aTextoSQL := 'select MOV_CODSOLICITACAO, MOV_CPFPACIENTE, MOV_NRCUPOM, MOV_VALOR, MOV_VLPAGO, ';
+     aTextoSQL := aTextoSQL + ' MOV_NRAUTORIZACAO, MOV_NOMEPESSOA, MOV_DTVENDA, MOV_AUTORIZACAO, MOV_FLSITU, MOV_DTCANCELAMENTO, ';
+     aTextoSQL := aTextoSQL + ' MOV_TEXTO_CUPOM, MOV_CUPOM_VINCULADO from VENDAS ';
+     aTextoSQL := aTextoSQL + ' Where (MOV_DTVENDA >= :pDTINIC) AND (MOV_DTVENDA <= :pDTFINA)';
+     if not ufuncoes.Empty(aCPF) Then
+          aTextoSQL := aTextoSQL + ' and (MOV_CPFPACIENTE = '+QuotedStr(aCPF) + ') ';
+     aTextoSQL := aTextoSQL + ' order by MOV_CODSOLICITACAO';
+     //
      With dmGerenciador.cdsConsultaVendas do
       begin
            Active := False;
+           CommandText := aTextoSQL;
            Params.ParamByName('pDTINIC').AsDate := M_DTINIC;
            Params.ParamByName('pDTFINA').AsDate := M_DTFINA;
            Active := True;
@@ -168,7 +183,7 @@ begin
        //
       If not uFuncoes.Empty(uFuncoes.RemoveChar(edtDTINIC.Text))
         and not uFuncoes.Empty(uFuncoes.RemoveChar(edtDTFINA.Text)) Then
-          CONSULTA(edtDTINIC.Date, edtDTFINA.Date);
+          CONSULTA(edtDTINIC.Date, edtDTFINA.Date, uFuncoes.RemoveChar(edtNRCPF.Text));
 end;
 
 procedure TfrmConsultaVendas.FormShow(Sender: TObject);
@@ -539,6 +554,16 @@ begin
           if not (dsConsulta.DataSet.IsEmpty) Then
              dsConsulta.DataSet.Locate('MOV_CODSOLICITACAO', idRegistro,[]) ;
      End;
+end;
+
+procedure TfrmConsultaVendas.edtNRCPFKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+      if (Key = #13) and not (ufuncoes.Empty(ufuncoes.RemoveChar(edtNRCPF.Text))) Then
+       begin
+            key := #0;
+            btLocalizar.SetFocus;
+       End;
 end;
 
 end.

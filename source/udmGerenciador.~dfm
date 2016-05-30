@@ -3032,4 +3032,254 @@ object dmGerenciador: TdmGerenciador
       BlobType = ftGraphic
     end
   end
+  object dspDocumentosVenda: TDataSetProvider
+    DataSet = dstDocumentosVenda
+    Options = [poAllowCommandText]
+    Left = 744
+    Top = 64
+  end
+  object cdsDocumentosVenda: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'pvenda'
+        ParamType = ptInput
+      end>
+    ProviderName = 'dspDocumentosVenda'
+    Left = 744
+    Top = 112
+    object cdsDocumentosVendaMOV_CODSOLICITACAO: TIntegerField
+      FieldName = 'MOV_CODSOLICITACAO'
+      Required = True
+    end
+    object cdsDocumentosVendaMOV_IMG_RECEITA: TGraphicField
+      FieldName = 'MOV_IMG_RECEITA'
+      BlobType = ftGraphic
+    end
+    object cdsDocumentosVendaMOV_IMG_CUPOM_FISCAL: TGraphicField
+      FieldName = 'MOV_IMG_CUPOM_FISCAL'
+      BlobType = ftGraphic
+    end
+    object cdsDocumentosVendaMOV_DOC_IDENTIFICACAO: TGraphicField
+      FieldName = 'MOV_DOC_IDENTIFICACAO'
+      BlobType = ftGraphic
+    end
+    object cdsDocumentosVendaMOV_DOC_PROCURACAO: TGraphicField
+      FieldName = 'MOV_DOC_PROCURACAO'
+      BlobType = ftGraphic
+    end
+    object cdsDocumentosVendaMOV_DOC_CARTA: TGraphicField
+      FieldName = 'MOV_DOC_CARTA'
+      BlobType = ftGraphic
+    end
+  end
+  object dstDocumentosVendas: TSQLDataSet
+    CommandText = 
+      'SELECT V.MOV_CODSOLICITACAO, V.MOV_CPFPACIENTE, V.MOV_DTVENDA, V' +
+      '.MOV_FLSITU,'#13#10'V.MOV_IMG_RECEITA, V.MOV_IMG_CUPOM_FISCAL, V.MOV_D' +
+      'OC_IDENTIFICACAO, V.MOV_DOC_PROCURACAO,'#13#10'V.MOV_DOC_CARTA, V.MOV_' +
+      'NRCUPOM'#13#10'FROM VENDAS V WHERE (V.mov_cpfpaciente = :pCPF) AND (V.' +
+      'MOV_FLSITU = '#39'F'#39')'#13#10'and (V.MOV_DTVENDA >= :pDTINIC) and (V.MOV_DT' +
+      'VENDA <= :pDTFINAL) ORDER BY V.MOV_CODSOLICITACAO DESC'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftString
+        Name = 'pCPF'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = 'pDTINIC'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = 'pDTFINAL'
+        ParamType = ptInput
+      end>
+    SQLConnection = sqlConnGerenciador
+    Left = 736
+    Top = 184
+    object dstDocumentosVendasMOV_CODSOLICITACAO: TIntegerField
+      FieldName = 'MOV_CODSOLICITACAO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object dstDocumentosVendasMOV_NRCUPOM: TIntegerField
+      FieldName = 'MOV_NRCUPOM'
+    end
+    object dstDocumentosVendasMOV_CPFPACIENTE: TStringField
+      FieldName = 'MOV_CPFPACIENTE'
+      ProviderFlags = [pfInUpdate]
+      FixedChar = True
+      Size = 11
+    end
+    object dstDocumentosVendasMOV_DTVENDA: TDateField
+      FieldName = 'MOV_DTVENDA'
+      ProviderFlags = [pfInUpdate]
+    end
+    object dstDocumentosVendasMOV_FLSITU: TStringField
+      FieldName = 'MOV_FLSITU'
+      ProviderFlags = [pfInUpdate]
+      FixedChar = True
+      Size = 1
+    end
+    object dstDocumentosVendasMOV_IMG_RECEITA: TGraphicField
+      FieldName = 'MOV_IMG_RECEITA'
+      ProviderFlags = [pfInUpdate]
+      BlobType = ftGraphic
+    end
+    object dstDocumentosVendasMOV_IMG_CUPOM_FISCAL: TGraphicField
+      FieldName = 'MOV_IMG_CUPOM_FISCAL'
+      ProviderFlags = [pfInUpdate]
+      BlobType = ftGraphic
+    end
+    object dstDocumentosVendasMOV_DOC_IDENTIFICACAO: TGraphicField
+      FieldName = 'MOV_DOC_IDENTIFICACAO'
+      ProviderFlags = [pfInUpdate]
+      BlobType = ftGraphic
+    end
+    object dstDocumentosVendasMOV_DOC_PROCURACAO: TGraphicField
+      FieldName = 'MOV_DOC_PROCURACAO'
+      ProviderFlags = [pfInUpdate]
+      BlobType = ftGraphic
+    end
+    object dstDocumentosVendasMOV_DOC_CARTA: TGraphicField
+      FieldName = 'MOV_DOC_CARTA'
+      ProviderFlags = [pfInUpdate]
+      BlobType = ftGraphic
+    end
+  end
+  object dspDocumentosVendas: TDataSetProvider
+    DataSet = dstDocumentosVendas
+    Options = [poAllowCommandText]
+    Left = 744
+    Top = 240
+  end
+  object cdsDocumentosVendas: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftString
+        Name = 'pCPF'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = 'pDTINIC'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = 'pDTFINAL'
+        ParamType = ptInput
+      end>
+    ProviderName = 'dspDocumentosVendas'
+    Left = 736
+    Top = 288
+    object cdsDocumentosVendasMOV_CODSOLICITACAO: TIntegerField
+      FieldName = 'MOV_CODSOLICITACAO'
+      Required = True
+      DisplayFormat = '0000000'
+    end
+    object cdsDocumentosVendasMOV_NRCUPOM: TIntegerField
+      FieldName = 'MOV_NRCUPOM'
+    end
+    object cdsDocumentosVendasMOV_CPFPACIENTE: TStringField
+      FieldName = 'MOV_CPFPACIENTE'
+      EditMask = '###.###.###-##;0;_'
+      FixedChar = True
+      Size = 11
+    end
+    object cdsDocumentosVendasMOV_DTVENDA: TDateField
+      FieldName = 'MOV_DTVENDA'
+    end
+    object cdsDocumentosVendasMOV_FLSITU: TStringField
+      FieldName = 'MOV_FLSITU'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsDocumentosVendasMOV_IMG_RECEITA: TGraphicField
+      FieldName = 'MOV_IMG_RECEITA'
+      BlobType = ftGraphic
+    end
+    object cdsDocumentosVendasMOV_IMG_CUPOM_FISCAL: TGraphicField
+      FieldName = 'MOV_IMG_CUPOM_FISCAL'
+      BlobType = ftGraphic
+    end
+    object cdsDocumentosVendasMOV_DOC_IDENTIFICACAO: TGraphicField
+      FieldName = 'MOV_DOC_IDENTIFICACAO'
+      BlobType = ftGraphic
+    end
+    object cdsDocumentosVendasMOV_DOC_PROCURACAO: TGraphicField
+      FieldName = 'MOV_DOC_PROCURACAO'
+      BlobType = ftGraphic
+    end
+    object cdsDocumentosVendasMOV_DOC_CARTA: TGraphicField
+      FieldName = 'MOV_DOC_CARTA'
+      BlobType = ftGraphic
+    end
+  end
+  object dstCliente: TSQLDataSet
+    CommandText = 'select * from PACIENTES where (PAC_CPF = :pCPF)'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftString
+        Name = 'pCPF'
+        ParamType = ptInput
+      end>
+    SQLConnection = sqlConnGerenciador
+    Left = 744
+    Top = 344
+    object dstClientePAC_CPF: TStringField
+      FieldName = 'PAC_CPF'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Size = 11
+    end
+    object dstClientePAC_NOME: TStringField
+      FieldName = 'PAC_NOME'
+      ProviderFlags = [pfInUpdate]
+      Size = 40
+    end
+    object dstClientePAC_IMG_IDENTIDADE: TGraphicField
+      FieldName = 'PAC_IMG_IDENTIDADE'
+      ProviderFlags = [pfInUpdate]
+      BlobType = ftGraphic
+    end
+  end
+  object dspCliente: TDataSetProvider
+    DataSet = dstCliente
+    Options = [poAllowCommandText]
+    Left = 744
+    Top = 392
+  end
+  object cdsCliente: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftString
+        Name = 'pCPF'
+        ParamType = ptInput
+      end>
+    ProviderName = 'dspCliente'
+    Left = 752
+    Top = 440
+    object cdsClientePAC_CPF: TStringField
+      Alignment = taRightJustify
+      FieldName = 'PAC_CPF'
+      EditMask = '999.999.999-99;0;_'
+      Size = 11
+    end
+    object cdsClientePAC_NOME: TStringField
+      FieldName = 'PAC_NOME'
+      Size = 40
+    end
+    object cdsClientePAC_IMG_IDENTIDADE: TGraphicField
+      FieldName = 'PAC_IMG_IDENTIDADE'
+      BlobType = ftGraphic
+    end
+  end
 end

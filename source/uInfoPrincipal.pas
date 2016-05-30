@@ -49,6 +49,8 @@ type
     mnuConsultarPreSolitacoesItem: TMenuItem;
     WebBrowser1: TWebBrowser;
     ImageList1: TImageList;
+    N2: TMenuItem;
+    mnuPacientesItem: TMenuItem;
     procedure mnuSairItemClick(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
@@ -73,6 +75,7 @@ type
     procedure FormActivate(Sender: TObject);
     procedure mnuVendedoresSubItemClick(Sender: TObject);
     procedure mnuConsultarPreSolitacoesItemClick(Sender: TObject);
+    procedure mnuPacientesItemClick(Sender: TObject);
   private
     { Private declarations }
     Procedure Status;
@@ -104,7 +107,7 @@ implementation
 uses uSobre, uSplash, uVendas, ufrmConfig, uFrmPesquisa,
   uFrmCadUsuario, uLogon, uFuncoes, udmGerenciador, uFrmConsultaVendas,
   uFrmCancelaVendas, uFiscal, uFrmCadProdutos, uFrmCadVendedores,
-  uFrmConsultaPreSolicitacoes;
+  uFrmConsultaPreSolicitacoes, uFrmClientes;
 
 
 {$R *.dfm}
@@ -516,6 +519,18 @@ begin
      // WebBrowser1.Navigate('https://200.214.130.55:9443/farmaciapopular/services/ServicoSolicitacaoWS?wsdl');
      //
      WebBrowser1.Visible := False;
+end;
+
+procedure TfrmPrincipal.mnuPacientesItemClick(Sender: TObject);
+begin
+//
+    frmCadClientes := TfrmCadClientes.create(application);
+    try
+          frmCadClientes.showmodal;
+    finally
+        frmCadClientes.Release;
+        frmCadClientes := nil;
+    end;
 end;
 
 end.

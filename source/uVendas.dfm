@@ -75,7 +75,7 @@ object frmVendas: TfrmVendas
     end
     object spLocCliente: TSpeedButton
       Left = 113
-      Top = 19
+      Top = 18
       Width = 23
       Height = 22
       Hint = 'Localizar Cliente'

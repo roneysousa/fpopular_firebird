@@ -30,7 +30,9 @@ uses
   uFrmConfirmacaoVenda in 'uFrmConfirmacaoVenda.pas' {FrmConfirmacaoVenda},
   uFrmConsultaPreSolicitacoes in 'uFrmConsultaPreSolicitacoes.pas' {FrmConsultaPreSolicitacoes},
   ServicoSolicitacaoWS3 in 'ServicoSolicitacaoWS3.pas',
-  uFrmDigitalizacao in 'uFrmDigitalizacao.pas' {FrmDigitalizacao};
+  uFrmDigitalizacao in 'uFrmDigitalizacao.pas' {FrmDigitalizacao},
+  uFromCopiarDocumento in 'uFromCopiarDocumento.pas' {FromCopiarDocumento},
+  uFrmClientes in 'uFrmClientes.pas' {frmCadClientes};
 
 {$R *.res}
 
@@ -38,6 +40,7 @@ begin
   Application.Initialize;
   Application.CreateForm(TdmGerenciador, dmGerenciador);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TfrmCadClientes, frmCadClientes);
   Application.Title := 'InfoFarmacia Popular';
   Application.Run;
 end.
