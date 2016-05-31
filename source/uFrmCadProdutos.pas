@@ -41,6 +41,7 @@ type
     procedure btImportarClick(Sender: TObject);
     procedure edtConsultarChange(Sender: TObject);
     procedure rgConsultarClick(Sender: TObject);
+    procedure edtConsultarKeyPress(Sender: TObject; var Key: Char);
   private
      procedure tratabotoes;
      procedure buscar;
@@ -578,6 +579,18 @@ begin
   inherited;
        if not (cdsConsultar.IsEmpty) Then
            cdsConsultar.Close;
+end;
+
+procedure TfrmCadProdutos.edtConsultarKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  inherited;
+       if (key = #13) and not (dsConsultar.DataSet.IsEmpty) Then
+       begin
+           key := #0;
+           if (btnAlterar.Enabled)then
+              btnAlterar.SetFocus;
+       End;
 end;
 
 end.

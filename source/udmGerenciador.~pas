@@ -645,7 +645,7 @@ type
     Function EstornarVenda(iNumVenda : Integer; aNumAutorizacao : String): Boolean;
     Function ExcluirVenda(iNumVenda : Integer): Boolean;
     Function VerificarDocumentosVenda(idVenda: Integer): Boolean;
-    Function AbrirVendaCliente(aCPF : String; aDataIni, aDataFim : TDatetime): Boolean;
+    Function AbrirVendaCliente(aCPF, aCodVenda : String; aDataIni, aDataFim : TDatetime): Boolean;
     Function GravarDocumentoIdentidadeBanco(aCPF : String; objImage : TImage): Boolean;
     { Public declarations }
   end;
@@ -1953,14 +1953,26 @@ begin
     end;  
 end;
 
-function TdmGerenciador.AbrirVendaCliente(aCPF: String; aDataIni,
+function TdmGerenciador.AbrirVendaCliente(aCPF, aCodVenda: String; aDataIni,
   aDataFim: TDatetime): Boolean;
+Var
+   aTextoSQL : String;
 begin
      Result := False;
+     aTextoSQL := 'SELECT V.MOV_CODSOLICITACAO, V.MOV_CPFPACIENTE, V.MOV_DTVENDA, V.MOV_FLSITU, ';
+     aTextoSQL := aTextoSQL + ' V.MOV_IMG_RECEITA, V.MOV_IMG_CUPOM_FISCAL, V.MOV_DOC_IDENTIFICACAO, V.MOV_DOC_PROCURACAO, ';
+     aTextoSQL := aTextoSQL + ' V.MOV_DOC_CARTA, V.MOV_NRCUPOM ';
+     aTextoSQL := aTextoSQL + ' FROM VENDAS V WHERE (V.mov_cpfpaciente = :pCPF) AND (V.MOV_FLSITU = '+QuotedStr('F')+') ';
+     aTextoSQL := aTextoSQL + ' and (V.MOV_DTVENDA >= :pDTINIC) and (V.MOV_DTVENDA <= :pDTFINAL)  ';
+     if not uFuncoes.Empty(aCodVenda) then
+        aTextoSQL := aTextoSQL + ' and (V.MOV_CODSOLICITACAO <> '+QuotedStr( aCodVenda )+' ) ';
+     aTextoSQL := aTextoSQL + ' ORDER BY V.MOV_CODSOLICITACAO DESC ';
+     //
      With cdsDocumentosVendas do
      begin
           DisableControls;
           Close;
+          CommandText := aTextoSQL;
           Params.ParamByName('pCPF').AsString       := aCPF;
           Params.ParamByName('pDTINIC').AsDateTime  := aDataIni;
           Params.ParamByName('pDTFINAL').AsDateTime := aDataFim;

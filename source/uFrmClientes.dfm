@@ -1,13 +1,14 @@
 inherited frmCadClientes: TfrmCadClientes
   Caption = 'Cadastro de Pacientes'
-  ClientHeight = 434
+  ClientHeight = 443
   ClientWidth = 781
+  OldCreateOrder = True
   OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl1: TPageControl
     Width = 781
-    Height = 405
+    Height = 414
     inherited TabSheet1: TTabSheet
       object Label1: TLabel [0]
         Left = 13
@@ -39,19 +40,19 @@ inherited frmCadClientes: TfrmCadClientes
       object Shape1: TShape [3]
         Left = 12
         Top = 72
-        Width = 210
-        Height = 261
+        Width = 224
+        Height = 295
         Brush.Color = 13750737
       end
       object imgDocumento: TImage [4]
         Left = 13
         Top = 73
-        Width = 208
-        Height = 259
+        Width = 222
+        Height = 293
         Stretch = True
       end
       inherited Panel1: TPanel
-        Top = 336
+        Top = 345
         Width = 773
         inherited BtExcluir: TBitBtn
           Visible = False
@@ -158,14 +159,14 @@ inherited frmCadClientes: TfrmCadClientes
       end
       inherited grdConsultar: TDBGrid
         Width = 739
-        Height = 318
+        Height = 327
         DataSource = dsConsultar
         OnDblClick = btnAlterarClick
         Columns = <
           item
-            Alignment = taCenter
             Expanded = False
             FieldName = 'PAC_CPF'
+            Title.Alignment = taCenter
             Width = 118
             Visible = True
           end
@@ -178,7 +179,7 @@ inherited frmCadClientes: TfrmCadClientes
       end
       inherited Panel3: TPanel
         Left = 739
-        Height = 318
+        Height = 327
       end
     end
   end
@@ -192,6 +193,7 @@ inherited frmCadClientes: TfrmCadClientes
   end
   inherited cdsConsultar: TClientDataSet
     object cdsConsultarPAC_CPF: TStringField
+      Alignment = taCenter
       DisplayLabel = 'CPF'
       FieldName = 'PAC_CPF'
       EditMask = '999.999.999-99;0;_'

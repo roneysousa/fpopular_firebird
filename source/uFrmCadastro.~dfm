@@ -26,7 +26,7 @@ object frmCadastro: TfrmCadastro
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
-      Caption = 'Dados'
+      Caption = '&1 - Dados'
       object Panel1: TPanel
         Left = 0
         Top = 243
@@ -405,7 +405,7 @@ object frmCadastro: TfrmCadastro
       end
     end
     object TabSheet2: TTabSheet
-      Caption = 'Consulta'
+      Caption = '&2 - Consulta'
       ImageIndex = 1
       OnShow = TabSheet2Show
       object Panel2: TPanel

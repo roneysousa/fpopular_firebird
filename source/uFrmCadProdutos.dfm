@@ -9,6 +9,7 @@ inherited frmCadProdutos: TfrmCadProdutos
   TextHeight = 13
   inherited PageControl1: TPageControl
     Width = 661
+    ActivePage = TabSheet2
     inherited TabSheet1: TTabSheet
       object Label1: TLabel [0]
         Left = 16

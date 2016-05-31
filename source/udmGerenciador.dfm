@@ -3194,6 +3194,7 @@ object dmGerenciador: TdmGerenciador
       Size = 11
     end
     object cdsDocumentosVendasMOV_DTVENDA: TDateField
+      Alignment = taRightJustify
       FieldName = 'MOV_DTVENDA'
     end
     object cdsDocumentosVendasMOV_FLSITU: TStringField

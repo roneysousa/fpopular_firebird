@@ -107,9 +107,9 @@ end;
 procedure TFrmDigitalizacao.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-     if (Key = VK_F10) then
+     if (Key = VK_F10) and (spDigitalizar.Enabled)  then
         spDigitalizarClick(Self);
-     if (Key = VK_F11) then
+     if (Key = VK_F11) and (spCopiaDocumento.Enabled) then
         spCopiaDocumentoClick(Self);
 end;
 
@@ -172,6 +172,7 @@ begin
      uFuncoes.FilterCDS(dmGerenciador.cdsDocumentosVenda, fsInteger, InttoStr(idVenda));
      if not (dmGerenciador.cdsDocumentosVenda.IsEmpty) Then
      begin
+          spCopiaDocumento.Enabled := True;
           bTemDocumento := false;
           imgDocumento.Picture.Assign(nil);
           Try
@@ -191,6 +192,7 @@ begin
                       begin
                           dbiDocumento.DataField := 'MOV_IMG_CUPOM_FISCAL';
                           imgDocumento.Picture.Assign(dbiDocumento.Picture);
+                          spCopiaDocumento.Enabled := False;
                           bTemDocumento := True;
                       End;
                    End;
@@ -209,6 +211,7 @@ begin
                       begin
                           dbiDocumento.DataField := 'MOV_DOC_IDENTIFICACAO';
                           imgDocumento.Picture.Assign(dbiDocumento.Picture);
+                          spCopiaDocumento.Enabled := False;
                           bTemDocumento := True;
                       End
                       Else
@@ -406,6 +409,7 @@ end;
 procedure TFrmDigitalizacao.spCopiaDocumentoClick(Sender: TObject);
 Var
   aNomeCampo : String;
+  idDocumento : integer;
 begin
      if (rgDocumentos.ItemIndex = 3) and not (imgDocumento.Visible) then
      begin
@@ -424,17 +428,38 @@ begin
      End;  }
      //
      Case rgDocumentos.ItemIndex of
-        0 : aNomeCampo := 'MOV_IMG_RECEITA';
-        1 : aNomeCampo := 'MOV_IMG_CUPOM_FISCAL';
-        2 : aNomeCampo := 'MOV_DOC_PROCURACAO';
-        3 : aNomeCampo := 'MOV_DOC_IDENTIFICACAO';
-        4 : aNomeCampo := 'MOV_DOC_CARTA';
+        0 :
+           begin
+               aNomeCampo := 'MOV_IMG_RECEITA';
+               idDocumento := 1;
+           end;
+        1 :
+          begin
+               aNomeCampo := 'MOV_IMG_CUPOM_FISCAL';
+               idDocumento := 2;
+          end;
+        2 :
+           begin
+               aNomeCampo := 'MOV_DOC_PROCURACAO';
+               idDocumento := 3;
+           end;
+        3 :
+           begin
+                aNomeCampo := 'MOV_DOC_IDENTIFICACAO';
+                idDocumento := 4;
+           end;
+        4 :
+           begin
+                aNomeCampo := 'MOV_DOC_CARTA';
+                idDocumento := 5;
+           end;     
      End;
      //
      Application.CreateForm(TFromCopiarDocumento, FromCopiarDocumento);
      Try
            uFromCopiarDocumento.aNomeCampo := aNomeCampo;
            uFromCopiarDocumento.aCPF       := aCPF;
+           uFromCopiarDocumento.idDocumento := idDocumento;
            uFromCopiarDocumento.aNumeroVenda := InttoStr(idVenda);
            If (FromCopiarDocumento.ShowModal = mrOK) then
            begin

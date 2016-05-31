@@ -47,6 +47,7 @@ type
 var
   FromCopiarDocumento: TFromCopiarDocumento;
   aNomeCampo, aCPF, aNumeroVenda : String;
+  idDocumento : integer;
 
 implementation
 
@@ -56,11 +57,21 @@ uses udmGerenciador, ufuncoes;
 
 procedure TFromCopiarDocumento.FormShow(Sender: TObject);
 begin
-     Caption := 'Copiar Documento - ';
+     //
      if (dsCadastro.DataSet.IsEmpty) Then
          btLocalizarClick(Self);
      //
      dbiDocumento.DataField := aNomeCampo;
+     //
+     case idDocumento of
+        1 : Caption := 'Copiar Documento - RECEITA';
+        2 : Caption := 'Copiar Documento - Cupom Fiscal';
+        3 : Caption := 'Copiar Documento - Procuração';
+        4 : Caption := 'Copiar Documento - Identidade';
+        5 : Caption := 'Copiar Documento - Outros';
+     else
+         Caption := 'Copiar Documento';
+     end;
      //
      btnOK.Enabled := False;
      if (aNomeCampo = 'MOV_IMG_RECEITA') and

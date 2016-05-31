@@ -361,7 +361,7 @@ procedure TfrmCadClientes.edtConsultarKeyPress(Sender: TObject;
   var Key: Char);
 begin
   inherited;
-       if (key = #13) and not (dsCadastro.DataSet.IsEmpty) Then
+       if (key = #13) and not (dsConsultar.DataSet.IsEmpty) Then
        begin
            key := #0;
            if (btnAlterar.Enabled)then

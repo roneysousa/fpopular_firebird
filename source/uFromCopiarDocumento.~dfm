@@ -2,7 +2,7 @@ object FromCopiarDocumento: TFromCopiarDocumento
   Left = 279
   Top = 130
   Width = 805
-  Height = 523
+  Height = 551
   Caption = 'Copiar Documento'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -119,21 +119,21 @@ object FromCopiarDocumento: TFromCopiarDocumento
     Left = 0
     Top = 49
     Width = 789
-    Height = 394
+    Height = 422
     Align = alClient
     TabOrder = 1
     object Panel4: TPanel
       Left = 1
       Top = 1
       Width = 444
-      Height = 392
+      Height = 420
       Align = alClient
       TabOrder = 0
       object grdConsultar: TDBGrid
         Left = 1
         Top = 1
         Width = 442
-        Height = 390
+        Height = 418
         Align = alClient
         Ctl3D = False
         DataSource = dsCadastro
@@ -163,7 +163,6 @@ object FromCopiarDocumento: TFromCopiarDocumento
             Visible = True
           end
           item
-            Alignment = taCenter
             Expanded = False
             FieldName = 'MOV_DTVENDA'
             Title.Alignment = taCenter
@@ -183,14 +182,14 @@ object FromCopiarDocumento: TFromCopiarDocumento
       Left = 445
       Top = 1
       Width = 343
-      Height = 392
+      Height = 420
       Align = alRight
       TabOrder = 1
       object dbiDocumento: TDBImage
-        Left = 30
+        Left = 15
         Top = 1
-        Width = 284
-        Height = 387
+        Width = 308
+        Height = 415
         DataSource = dsCadastro
         Stretch = True
         TabOrder = 0
@@ -201,7 +200,7 @@ object FromCopiarDocumento: TFromCopiarDocumento
   end
   object Panel3: TPanel
     Left = 0
-    Top = 443
+    Top = 471
     Width = 789
     Height = 41
     Align = alBottom

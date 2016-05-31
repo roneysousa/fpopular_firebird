@@ -1,6 +1,6 @@
 object FrmDigitalizacao: TFrmDigitalizacao
-  Left = 204
-  Top = 92
+  Left = 219
+  Top = 76
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Digitaliza'#231#227'o de Documentos'

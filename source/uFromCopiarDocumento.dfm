@@ -163,7 +163,6 @@ object FromCopiarDocumento: TFromCopiarDocumento
             Visible = True
           end
           item
-            Alignment = taCenter
             Expanded = False
             FieldName = 'MOV_DTVENDA'
             Title.Alignment = taCenter
