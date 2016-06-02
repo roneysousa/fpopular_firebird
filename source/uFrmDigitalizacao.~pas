@@ -5,7 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComCtrls, ExtCtrls, StdCtrls, Buttons, AcquireImage, ClipBrd, Jpeg,
-  FMTBcd, DB, SqlExpr, DBCtrls, frxClass, frxExportPDF;
+  FMTBcd, DB, SqlExpr, DBCtrls, frxClass, frxExportPDF, ImgList,
+  JvPageList, JvNavigationPane, JvExControls, ActnList;
 
 type
   TFrmDigitalizacao = class(TForm)
@@ -18,42 +19,71 @@ type
     btnImprimir: TBitBtn;
     BtSair: TBitBtn;
     TabSheet1: TTabSheet;
-    rgDocumentos: TRadioGroup;
-    spDigitalizar: TSpeedButton;
     aiScanearImagem: TAcquireImage;
     dbiDocumento: TDBImage;
     dsDocumento: TDataSource;
     frxReport1: TfrxReport;
     frxPDFExport1: TfrxPDFExport;
-    spCopiaDocumento: TSpeedButton;
     dbeIdentidade: TDBImage;
     dsClienteIdentidade: TDataSource;
     pnlDocumentos: TPanel;
     Shape1: TShape;
     imgDocumento: TImage;
+    spDigitalizar: TBitBtn;
+    spCopiaDocumento: TBitBtn;
+    pnlBotoes: TPanel;
+    imgOK: TImage;
+    imgCancel: TImage;
+    ImageList1: TImageList;
+    pnlBotoesWeb: TPanel;
+    JvNavPane: TJvNavigationPane;
+    JvNavPanelPage2: TJvNavPanelPage;
+    JvNavPanelPage3: TJvNavPanelPage;
+    JvNavPanelPage4: TJvNavPanelPage;
+    JvNavPanelPage5: TJvNavPanelPage;
+    pnlCheck: TPanel;
+    imgCheckReceita: TImage;
+    imgCheckCupom: TImage;
+    imgCheckProcuracao: TImage;
+    imgCheckIdentidade: TImage;
+    imgCheckOutros: TImage;
+    JvNavPanelPage1: TJvNavPanelPage;
+    ActionList1: TActionList;
+    actReceita: TAction;
+    actCupom: TAction;
+    actProcuracao: TAction;
+    actIdentidade: TAction;
+    actOutros: TAction;
     procedure FormShow(Sender: TObject);
     procedure BtSairClick(Sender: TObject);
-    procedure spDigitalizarClick(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure aiScanearImagemTwainError(Sender: TObject; state,
       error: Integer);
     procedure rgDocumentosClick(Sender: TObject);
     procedure btnImprimirClick(Sender: TObject);
+    procedure spDigitalizarClick(Sender: TObject);
     procedure spCopiaDocumentoClick(Sender: TObject);
+    procedure actReceitaExecute(Sender: TObject);
+    procedure actCupomExecute(Sender: TObject);
+    procedure actProcuracaoExecute(Sender: TObject);
+    procedure actIdentidadeExecute(Sender: TObject);
+    procedure actOutrosExecute(Sender: TObject);
   private
     { Private declarations }
     Function DigitalizarDocumento(): Boolean;
     Function GravarDocumentoBanco(): Boolean;
     Procedure CarregarDocumentoBanco();
     Procedure CopiarImagemClipBrd(imgOrigem :  TDBImage; imgDestino : TImage);
+    Procedure Checkbox_Limpar();
+    Procedure Habilitar_Checkbox();
   public
     { Public declarations }
   end;
 
 var
   FrmDigitalizacao: TFrmDigitalizacao;
-  idVenda :Integer;
+  idVenda, idDocumento :Integer;
   aCPF, aNome, aData, aNumAutorizacao, aCupom : String;
 
 implementation
@@ -68,40 +98,13 @@ begin
      lblVenda.Caption   := 'Venda: '+uFuncoes.StrZero(InttoStr(idVenda),7)+' :: Autorização: '+aNumAutorizacao + ' :: Data: '+aData;
      lblCliente.Caption := 'CPF: '+uFuncoes.FormataCPF( aCPF)+' :: '+aNome;
      //
+     idDocumento := 0;
      CarregarDocumentoBanco;
 end;
 
 procedure TFrmDigitalizacao.BtSairClick(Sender: TObject);
 begin
      Close;
-end;
-
-procedure TFrmDigitalizacao.spDigitalizarClick(Sender: TObject);
-begin
-     spDigitalizar.Enabled := False;
-     Try
-         Try
-                if (DigitalizarDocumento()) Then
-                 begin
-                      // Gravar dados
-                      If (GravarDocumentoBanco()) Then
-                      begin
-                           CarregarDocumentoBanco;
-                           Application.MessageBox('Documento gravado com sucesso!!!','ATENÇÃO',
-                               MB_OK+MB_ICONINFORMATION+MB_APPLMODAL);
-                      End;
-                 End;
-         Except
-              on e: exception do
-               begin
-                    Application.MessageBox(Pchar('Erro ao tentar digitalizar documento!'+#13+e.Message),'ATENÇÃO',
-                           MB_OK+MB_ICONERROR+MB_APPLMODAL);
-               End;
-         End;
-     Finally
-          spDigitalizar.Enabled := True;
-     End;
-     Application.ProcessMessages;
 end;
 
 procedure TFrmDigitalizacao.FormKeyDown(Sender: TObject; var Key: Word;
@@ -167,6 +170,7 @@ Var
   texto : string;
   bTemDocumento : Boolean;
 begin
+     Checkbox_Limpar;
      imgDocumento.Visible := false;
      dmGerenciador.cdsDocumentosVenda.Close;
      uFuncoes.FilterCDS(dmGerenciador.cdsDocumentosVenda, fsInteger, InttoStr(idVenda));
@@ -176,23 +180,24 @@ begin
           bTemDocumento := false;
           imgDocumento.Picture.Assign(nil);
           Try
-              Case rgDocumentos.ItemIndex of
+              Case idDocumento of
                 0 :
                  begin
                       if not (dmGerenciador.cdsDocumentosVendaMOV_IMG_RECEITA.IsNull) Then
                       begin
                           dbiDocumento.DataField := 'MOV_IMG_RECEITA';
                           imgDocumento.Picture.Assign(dbiDocumento.Picture);
+                          // spCopiaDocumento.Enabled := True;
                           bTemDocumento := True;
                       End;
                  End;
                 1 :
                    begin
+                      spCopiaDocumento.Enabled := False;
                       if not (dmGerenciador.cdsDocumentosVendaMOV_IMG_CUPOM_FISCAL.IsNull) Then
                       begin
                           dbiDocumento.DataField := 'MOV_IMG_CUPOM_FISCAL';
                           imgDocumento.Picture.Assign(dbiDocumento.Picture);
-                          spCopiaDocumento.Enabled := False;
                           bTemDocumento := True;
                       End;
                    End;
@@ -207,6 +212,7 @@ begin
                    End;
                 3 :
                    begin
+                      spCopiaDocumento.Enabled := False;
                       if not (dmGerenciador.cdsDocumentosVendaMOV_DOC_IDENTIFICACAO.IsNull) Then
                       begin
                           dbiDocumento.DataField := 'MOV_DOC_IDENTIFICACAO';
@@ -229,7 +235,9 @@ begin
                                           bTemDocumento := True;
                                      End;
                                      if (bTemDocumento) then
+                                      begin
                                          imgDocumento.Visible := True;
+                                      End;
                                 Finally
 
                                 End;
@@ -244,15 +252,18 @@ begin
                       begin
                           dbiDocumento.DataField := 'MOV_DOC_CARTA';
                           imgDocumento.Picture.Assign(dbiDocumento.Picture);
-                          bTemDocumento := True;
+                          bTemDocumento := True; 
                       End;
                    End;
               End;
 
               if (bTemDocumento) then
-                   imgDocumento.Visible := True;
+                 imgDocumento.Visible := True;
+              //
+              Habilitar_Checkbox();
           Finally
-
+                if (dmGerenciador.cdsCliente.Active) Then
+                  dmGerenciador.cdsCliente.close;
           End;
      End;     //  if not (dmGerenciador.cdsDocumentosVenda.IsEmpty) Then
      //
@@ -267,7 +278,7 @@ Var
    msFoto: TMemoryStream;
 begin
      Result := false;
-     Case rgDocumentos.ItemIndex of
+     Case idDocumento of
         0 : aNomeCampo := 'MOV_IMG_RECEITA';
         1 : aNomeCampo := 'MOV_IMG_CUPOM_FISCAL';
         2 : aNomeCampo := 'MOV_DOC_PROCURACAO';
@@ -348,7 +359,7 @@ begin
            Exit;
         End;
       //
-      Case rgDocumentos.ItemIndex of
+      Case idDocumento of
          0 : aNomeDocumento := 'DOCUMENTO - RECEITA';
          1 : aNomeDocumento := 'DOCUMENTO - CUPOM FISCAL';
          2 : aNomeDocumento := 'DOCUMENTO - PROCURAÇÃO';
@@ -405,80 +416,6 @@ begin
      Application.ProcessMessages;
 end;
 
-procedure TFrmDigitalizacao.spCopiaDocumentoClick(Sender: TObject);
-Var
-  aNomeCampo : String;
-  idDocumento : integer;
-begin
-     if (rgDocumentos.ItemIndex = 3) and not (imgDocumento.Visible) then
-     begin
-         Application.MessageBox(Pchar('Documentos não pode ser copiado!!!'+#13+'Tente digitalizar este documento.')
-                      ,'ATENÇÃO', MB_OK+MB_ICONWARNING+MB_APPLMODAL);
-         Exit;
-     End;
-     //uFuncoes.FilterCDS(dmGerenciador.cdsDocumentosVendas, fsString, aCPF);
-     dmGerenciador.AbrirVendaCliente(aCPF, InttoStr(idVenda), Date()-180 ,Date());
-     //
-     {if (dmGerenciador.cdsDocumentosVendas.IsEmpty) Then
-     begin
-          Application.MessageBox(Pchar('Não documentos digitalizados para este cliente!!!')
-                      ,'ATENÇÃO', MB_OK+MB_ICONWARNING+MB_APPLMODAL);
-          Exit;
-     End;  }
-     //
-     Case rgDocumentos.ItemIndex of
-        0 :
-           begin
-               aNomeCampo := 'MOV_IMG_RECEITA';
-               idDocumento := 1;
-           end;
-        1 :
-          begin
-               aNomeCampo := 'MOV_IMG_CUPOM_FISCAL';
-               idDocumento := 2;
-          end;
-        2 :
-           begin
-               aNomeCampo := 'MOV_DOC_PROCURACAO';
-               idDocumento := 3;
-           end;
-        3 :
-           begin
-                aNomeCampo := 'MOV_DOC_IDENTIFICACAO';
-                idDocumento := 4;
-           end;
-        4 :
-           begin
-                aNomeCampo := 'MOV_DOC_CARTA';
-                idDocumento := 5;
-           end;     
-     End;
-     //
-     Application.CreateForm(TFromCopiarDocumento, FromCopiarDocumento);
-     Try
-           uFromCopiarDocumento.aNomeCampo := aNomeCampo;
-           uFromCopiarDocumento.aCPF       := aCPF;
-           uFromCopiarDocumento.idDocumento := idDocumento;
-           uFromCopiarDocumento.aNumeroVenda := InttoStr(idVenda);
-           If (FromCopiarDocumento.ShowModal = mrOK) then
-           begin
-                Try
-                    // Metodo de copia
-                    CopiarImagemClipBrd(FromCopiarDocumento.dbiDocumento, imgDocumento);
-                    //
-                Except
-                    on e: exception do
-                    begin
-                        ShowMessage('Erro na copia de documento! Erro:' + e.message);
-                    End;
-                End;
-           End;
-     Finally
-           FromCopiarDocumento.free;
-           dmGerenciador.cdsDocumentosVendas.close;
-     End;
-end;
-
 procedure TFrmDigitalizacao.CopiarImagemClipBrd(imgOrigem :  TDBImage; imgDestino : TImage);
 Var
      Bmp: TBitmap;
@@ -508,6 +445,181 @@ begin
                Bmp.Free;
           end;
      end;
+end;
+
+procedure TFrmDigitalizacao.spDigitalizarClick(Sender: TObject);
+begin
+     spDigitalizar.Enabled := False;
+     Try
+         Try
+                if (DigitalizarDocumento()) Then
+                 begin
+                      // Gravar dados
+                      If (GravarDocumentoBanco()) Then
+                      begin
+                           CarregarDocumentoBanco;
+                           Application.MessageBox('Documento gravado com sucesso!!!','ATENÇÃO',
+                               MB_OK+MB_ICONINFORMATION+MB_APPLMODAL);
+                      End;
+                 End;
+         Except
+              on e: exception do
+               begin
+                    Application.MessageBox(Pchar('Erro ao tentar digitalizar documento!'+#13+e.Message),'ATENÇÃO',
+                           MB_OK+MB_ICONERROR+MB_APPLMODAL);
+               End;
+         End;
+     Finally
+          spDigitalizar.Enabled := True;
+     End;
+     Application.ProcessMessages;
+
+end;
+
+procedure TFrmDigitalizacao.spCopiaDocumentoClick(Sender: TObject);
+Var
+  aNomeCampo : String;
+begin
+     if (idDocumento = 1) or (idDocumento = 3) Then // not (imgDocumento.Visible) then
+     begin
+         Application.MessageBox(Pchar('Documentos não pode ser copiado!!!'+#13+'Tente digitalizar este documento.')
+                      ,'ATENÇÃO', MB_OK+MB_ICONWARNING+MB_APPLMODAL);
+         Exit;
+     End;
+     //uFuncoes.FilterCDS(dmGerenciador.cdsDocumentosVendas, fsString, aCPF);
+     dmGerenciador.AbrirVendaCliente(aCPF, InttoStr(idVenda), Date()-180 ,Date());
+     //
+     Case idDocumento of
+        0 :
+           begin
+               aNomeCampo := 'MOV_IMG_RECEITA';
+           end;
+        1 :
+          begin
+               aNomeCampo := 'MOV_IMG_CUPOM_FISCAL';
+          end;
+        2 :
+           begin
+               aNomeCampo := 'MOV_DOC_PROCURACAO';
+           end;
+        3 :
+           begin
+                aNomeCampo := 'MOV_DOC_IDENTIFICACAO';
+           end;
+        4 :
+           begin
+                aNomeCampo := 'MOV_DOC_CARTA';
+           end;     
+     End;
+     //
+     spCopiaDocumento.Enabled := False;
+     Application.CreateForm(TFromCopiarDocumento, FromCopiarDocumento);
+     Try
+           uFromCopiarDocumento.aNomeCampo := aNomeCampo;
+           uFromCopiarDocumento.aCPF       := aCPF;
+           uFromCopiarDocumento.idDocumento := idDocumento+1;
+           uFromCopiarDocumento.aNumeroVenda := InttoStr(idVenda);
+           If (FromCopiarDocumento.ShowModal = mrOK) then
+           begin
+                Try
+                    // Metodo de copia
+                    CopiarImagemClipBrd(FromCopiarDocumento.dbiDocumento, imgDocumento);
+                    //
+                Except
+                    on e: exception do
+                    begin
+                        ShowMessage('Erro na copia de documento! Erro:' + e.message);
+                    End;
+                End;
+           End;
+     Finally
+           FromCopiarDocumento.free;
+           dmGerenciador.cdsDocumentosVendas.close;
+           spCopiaDocumento.Enabled := True;
+     End;
+     Application.ProcessMessages;
+end;
+
+procedure TFrmDigitalizacao.Checkbox_Limpar;
+begin
+    imgCheckReceita.Picture.Assign(imgCancel.Picture);
+    imgCheckCupom.Picture.Assign(imgCancel.Picture);
+    imgCheckProcuracao.Picture.Assign(imgCancel.Picture);
+    imgCheckIdentidade.Picture.Assign(imgCancel.Picture);
+    imgCheckOutros.Picture.Assign(imgCancel.Picture);
+end;
+
+procedure TFrmDigitalizacao.Habilitar_Checkbox;
+begin
+    if not (dmGerenciador.cdsDocumentosVendaMOV_IMG_RECEITA.IsNull) Then
+       imgCheckReceita.Picture.Assign(imgOK.Picture)
+       // ckbReceita.Checked  := True
+    Else
+       imgCheckReceita.Picture.Assign(imgCancel.Picture);
+       // ckbReceita.Checked  := False;
+    if not (dmGerenciador.cdsDocumentosVendaMOV_IMG_CUPOM_FISCAL.IsNull) Then
+       imgCheckCupom.Picture.Assign(imgOK.Picture)
+        //ckbCupomFiscal.Checked  := True
+    Else
+       imgCheckCupom.Picture.Assign(imgCancel.Picture);
+       // ckbCupomFiscal.Checked  := False;
+    if not (dmGerenciador.cdsDocumentosVendaMOV_DOC_PROCURACAO.IsNull) Then
+       imgCheckProcuracao.Picture.Assign(imgOK.Picture)
+        //cbxProduracao.Checked  := true
+    Else
+       imgCheckProcuracao.Picture.Assign(imgCancel.Picture);
+       //  cbxProduracao.Checked  := False;
+    // cbkIdentidade.Checked  := False;
+    imgCheckIdentidade.Picture.Assign(imgCancel.Picture);
+    if not (dmGerenciador.cdsDocumentosVendaMOV_DOC_IDENTIFICACAO.IsNull) Then
+        // cbkIdentidade.Checked  := True
+        imgCheckIdentidade.Picture.Assign(imgOK.Picture)
+    Else
+    begin
+        dmGerenciador.cdsCliente.close;
+        uFuncoes.FilterCDS(dmGerenciador.cdsCliente, fsString, aCPF);
+        //
+        If not (dmGerenciador.cdsClientePAC_IMG_IDENTIDADE.IsNull) then
+            imgCheckIdentidade.Picture.Assign(imgOK.Picture);
+              // cbkIdentidade.Checked  := True;
+        dmGerenciador.cdsCliente.close;
+    End;
+    if not (dmGerenciador.cdsDocumentosVendaMOV_DOC_CARTA.IsNull) Then
+       imgCheckOutros.Picture.Assign(imgOK.Picture)
+       // ckbOutros.Checked  := True
+    Else
+       imgCheckOutros.Picture.Assign(imgCancel.Picture);
+      //  ckbOutros.Checked  := False;
+end;
+
+procedure TFrmDigitalizacao.actReceitaExecute(Sender: TObject);
+begin
+     idDocumento := 0;
+     CarregarDocumentoBanco;
+end;
+
+procedure TFrmDigitalizacao.actCupomExecute(Sender: TObject);
+begin
+     idDocumento := 1;
+     CarregarDocumentoBanco;
+end;
+
+procedure TFrmDigitalizacao.actProcuracaoExecute(Sender: TObject);
+begin
+     idDocumento := 2;
+     CarregarDocumentoBanco;
+end;
+
+procedure TFrmDigitalizacao.actIdentidadeExecute(Sender: TObject);
+begin
+     idDocumento := 3;
+     CarregarDocumentoBanco;
+end;
+
+procedure TFrmDigitalizacao.actOutrosExecute(Sender: TObject);
+begin
+     idDocumento := 4;
+     CarregarDocumentoBanco;
 end;
 
 end.

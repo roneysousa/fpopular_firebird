@@ -24,13 +24,13 @@ object frmConsultaVendas: TfrmConsultaVendas
     Left = 0
     Top = 0
     Width = 1017
-    Height = 65
+    Height = 89
     Align = alTop
     Color = clWhite
     TabOrder = 0
     object Label1: TLabel
       Left = 16
-      Top = 11
+      Top = 31
       Width = 41
       Height = 13
       Caption = '&Per'#237'odo:'
@@ -39,7 +39,7 @@ object frmConsultaVendas: TfrmConsultaVendas
     end
     object Label2: TLabel
       Left = 144
-      Top = 32
+      Top = 52
       Width = 6
       Height = 13
       Caption = #224
@@ -47,7 +47,7 @@ object frmConsultaVendas: TfrmConsultaVendas
     end
     object Label3: TLabel
       Left = 292
-      Top = 11
+      Top = 31
       Width = 65
       Height = 13
       Caption = 'CPF P&aciente'
@@ -56,7 +56,7 @@ object frmConsultaVendas: TfrmConsultaVendas
     end
     object spLocCliente: TSpeedButton
       Left = 389
-      Top = 26
+      Top = 46
       Width = 23
       Height = 22
       Hint = 'Localizar Cliente'
@@ -75,7 +75,7 @@ object frmConsultaVendas: TfrmConsultaVendas
     end
     object edtDTINIC: TDateEdit
       Left = 16
-      Top = 27
+      Top = 47
       Width = 121
       Height = 21
       Hint = 'Per'#237'odo inicial'
@@ -88,7 +88,7 @@ object frmConsultaVendas: TfrmConsultaVendas
     end
     object edtDTFINA: TDateEdit
       Left = 160
-      Top = 27
+      Top = 47
       Width = 121
       Height = 21
       Hint = 'Per'#237'odo Final'
@@ -101,7 +101,7 @@ object frmConsultaVendas: TfrmConsultaVendas
     end
     object btLocalizar: TBitBtn
       Left = 424
-      Top = 23
+      Top = 43
       Width = 75
       Height = 25
       Hint = 'Clique aqui para consulta'
@@ -120,7 +120,7 @@ object frmConsultaVendas: TfrmConsultaVendas
     end
     object edtNRCPF: TMaskEdit
       Left = 292
-      Top = 27
+      Top = 47
       Width = 95
       Height = 19
       Hint = 'CPF do paciente.'
@@ -130,6 +130,22 @@ object frmConsultaVendas: TfrmConsultaVendas
       ParentCtl3D = False
       TabOrder = 3
       OnKeyPress = edtNRCPFKeyPress
+    end
+    object cbkVendas: TCheckBox
+      Left = 16
+      Top = 8
+      Width = 257
+      Height = 17
+      Caption = 'Somente vendas a digitalizar'
+      Ctl3D = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentCtl3D = False
+      ParentFont = False
+      TabOrder = 4
     end
   end
   object Panel3: TPanel
@@ -297,16 +313,16 @@ object frmConsultaVendas: TfrmConsultaVendas
   end
   object Panel2: TPanel
     Left = 0
-    Top = 65
+    Top = 89
     Width = 1017
-    Height = 364
+    Height = 340
     Align = alClient
     TabOrder = 2
     object grdConsultar: TDBGrid
       Left = 1
       Top = 1
       Width = 981
-      Height = 252
+      Height = 228
       Hint = 'Clique 2 vezes para visualizar os produto da venda'
       TabStop = False
       Align = alClient
@@ -457,7 +473,7 @@ object frmConsultaVendas: TfrmConsultaVendas
     end
     object Memo1: TMemo
       Left = 1
-      Top = 253
+      Top = 229
       Width = 1015
       Height = 110
       Align = alBottom
@@ -468,7 +484,7 @@ object frmConsultaVendas: TfrmConsultaVendas
       Left = 982
       Top = 1
       Width = 34
-      Height = 252
+      Height = 228
       Align = alRight
       Color = clWhite
       TabOrder = 2

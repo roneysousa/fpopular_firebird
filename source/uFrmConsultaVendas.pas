@@ -35,6 +35,7 @@ type
     edtNRCPF: TMaskEdit;
     Label3: TLabel;
     spLocCliente: TSpeedButton;
+    cbkVendas: TCheckBox;
     procedure edtDTINICExit(Sender: TObject);
     procedure edtDTFINAExit(Sender: TObject);
     procedure btFecharClick(Sender: TObject);
@@ -145,6 +146,9 @@ begin
      aTextoSQL := aTextoSQL + ' Where (MOV_DTVENDA >= :pDTINIC) AND (MOV_DTVENDA <= :pDTFINA)';
      if not ufuncoes.Empty(aCPF) Then
           aTextoSQL := aTextoSQL + ' and (MOV_CPFPACIENTE = '+QuotedStr(aCPF) + ') ';
+     if (cbkVendas.Checked) Then
+         aTextoSQL := aTextoSQL + ' and (MOV_IMG_RECEITA is null) and (MOV_FLSITU = '+QuotedStr('F') +')  ';
+     //
      aTextoSQL := aTextoSQL + ' order by MOV_CODSOLICITACAO';
      //
      With dmGerenciador.cdsConsultaVendas do
@@ -155,7 +159,7 @@ begin
            Params.ParamByName('pDTFINA').AsDate := M_DTFINA;
            Active := True;
            //
-           If (IsEmpty) Then
+           {If (IsEmpty) Then
             begin
                 Application.MessageBox('Não há vendas no período!!! Refaça a consulta.',
                  'ATENÇÃO', MB_OK+MB_ICONINFORMATION+MB_APPLMODAL);
@@ -163,7 +167,7 @@ begin
                 //lbl_registros.Caption := 'Registro:';
                 edtDTINIC.SetFocus;
                 Exit;
-            End;
+            End;   }
       End;
 end;
 
@@ -192,6 +196,9 @@ begin
     edtDTFINA.Date := Date();
     //
     btnGera2Via.Visible := False;
+    //
+    cbkVendas.Checked := True;
+    btLocalizarClick( Self);        
     //
     btLocalizar.SetFocus;
 end;
