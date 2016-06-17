@@ -28,7 +28,6 @@ object dmGerenciador: TdmGerenciador
       'WaitOnLocks=True')
     VendorLib = 'C:\INFOG2\fbclient.dll'
     BeforeConnect = sqlConnGerenciadorBeforeConnect
-    Connected = True
     Left = 40
     Top = 8
   end

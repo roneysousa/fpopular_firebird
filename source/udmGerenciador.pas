@@ -938,9 +938,9 @@ Begin
     	ConfigIni := TIniFile.Create(ExtractFilePath(ParamStr(0)) + 'Config.ini');
     	sqlConnGerenciador.Params.Values['Database'] := ConfigIni.ReadString('CONFIG','DATABASE','');
       //
-      if not FileExists(sqlConnGerenciador.Params.Values['Database']) Then
+      {if not FileExists(sqlConnGerenciador.Params.Values['Database']) Then
            Application.MessageBox(PChar('Arquivo de banco de dados não encontrado!!!'),
-                         'Atenção', MB_OK+MB_ICONSTOP+MB_APPLMODAL);
+                         'Atenção', MB_OK+MB_ICONSTOP+MB_APPLMODAL);    }
   Finally
     	ConfigIni.Free;
   End;

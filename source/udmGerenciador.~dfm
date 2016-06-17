@@ -28,7 +28,6 @@ object dmGerenciador: TdmGerenciador
       'WaitOnLocks=True')
     VendorLib = 'C:\INFOG2\fbclient.dll'
     BeforeConnect = sqlConnGerenciadorBeforeConnect
-    Connected = True
     Left = 40
     Top = 8
   end
@@ -3194,6 +3193,7 @@ object dmGerenciador: TdmGerenciador
       Size = 11
     end
     object cdsDocumentosVendasMOV_DTVENDA: TDateField
+      Alignment = taRightJustify
       FieldName = 'MOV_DTVENDA'
     end
     object cdsDocumentosVendasMOV_FLSITU: TStringField
